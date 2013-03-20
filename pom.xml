@@ -285,6 +285,30 @@
 			<timezone>2</timezone>
 			<properties />
 		</developer>
+		<developer>
+			<id>alvarogarcia</id>
+			<name>Álvaro García López</name>
+			<email>uo217918@uniovi.es</email>
+			<organization>University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
+		<developer>
+			<id>herminiogg</id>
+			<name>Herminio García González</name>
+			<email>uo218768@uniovi.es</email>
+			<organization>University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
 	</developers>
 
 
