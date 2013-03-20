@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.uniovi.asw</groupId>
-	<artifactId>Entrecine4</artifactId>
+	<artifactId>Entrecine7</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<name>Entrecine, library</name>
 	<packaging>jar</packaging>
@@ -14,13 +14,31 @@
 
 	<dependencies>
 
-		<!--Unit Testing -->
-		<dependency>
+	<dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.29.1</version>
+    </dependency>
+	<dependency>
+        	<groupId>info.cukes</groupId>
+        	<artifactId>cucumber-picocontainer</artifactId>
+        	<version>1.1.1</version>
+    	    <scope>test</scope>
+    	</dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+	<!--Unit Testing -->
+	<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
-		</dependency>
+	</dependency>
 
 		<!--Logging -->
 		<dependency>
