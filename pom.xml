@@ -273,6 +273,18 @@
 			<timezone>2</timezone>
 			<properties />
 		</developer>
+		<developer>
+			<id>AdolfoFernandezSuarez</id>
+			<name>Adolfo Fernández Suárez</name>
+			<email>UO218757@uniovi.es</email>
+			<organization>University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
 	</developers>
 
 
