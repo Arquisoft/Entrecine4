@@ -309,9 +309,7 @@
 			<timezone>2</timezone>
 			<properties />
 		</developer>
-	</developers>
-			</developer>
-			<developer>
+		<developer>
 			<id>albertolm</id>
 			<name>Alberto Lorenzo Matilla</name>
 			<email>uo220841@uniovi.es</email>
