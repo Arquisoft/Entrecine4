@@ -310,6 +310,21 @@
 			<properties />
 		</developer>
 	</developers>
+			</developer>
+			<developer>
+			<id>albertolm</id>
+			<name>Alberto Lorenzo Matilla</name>
+			<email>uo220841@uniovi.es</email>
+			<organization>University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
+	</developers>
+
 
 
 </project>
