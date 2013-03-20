@@ -6,5 +6,3 @@ Simple blank project for the Software Architecture course
 Author
 ======
 Jose Emilio Labra Gayo
-Herminio García González
-Álvaro García López
