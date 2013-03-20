@@ -7,11 +7,11 @@ Author
 ======
 Jose Emilio Labra Gayo
 
-Herminio GarcÃ­a GonzÃ¡lez
+Herminio Garcia Gonzalez
 
-Ã�lvaro GarcÃ­a LÃ³pez
+Alvaro Garcia Lopez
 
-Adolfo FernÃ¡ndez SuÃ¡rez
+Adolfo Fernandez Suarez
 
 Daniel Loureda Arteaga
 
