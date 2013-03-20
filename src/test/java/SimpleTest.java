@@ -8,6 +8,7 @@ public class SimpleTest {
     public void simpleCheck() {
         int a = 1 + 1;
         assertThat(a).isEqualTo(2);
+        
     }
 
 }
