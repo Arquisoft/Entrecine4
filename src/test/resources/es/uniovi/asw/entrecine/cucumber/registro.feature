@@ -10,3 +10,11 @@ Característica: Registro
   	Dado un usuario ya existente de nombre David
   	Cuando se intenta registrar un usuario con el mismo username
   	Entonces el sistema da un error
+  	
+  Escenario: Registrar un usuario con username y password
+  	Dado un usuario con los siguientes datos
+  	| username |  password	|
+  	|   Pepe   |   pepito   |
+  	Cuando Yo pregunto por los datos de Pepe
+  	Entonces el sistema me devuelve un <username> igual a pepe
+  	Y un <password> igual a pepito 
