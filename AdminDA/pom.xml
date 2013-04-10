@@ -9,4 +9,11 @@
   <artifactId>AdminDA</artifactId>
   <name>AdminDA</name>
   <description>Admin Desktop Application</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>es.uniovi.asw.api</groupId>
+  		<artifactId>API</artifactId>
+  		<version>0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

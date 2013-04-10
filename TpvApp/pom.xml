@@ -9,4 +9,11 @@
   <artifactId>TpvApp</artifactId>
   <name>TpvApp</name>
   <description>Tpv Application</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>es.uniovi.asw.api</groupId>
+  		<artifactId>API</artifactId>
+  		<version>0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
