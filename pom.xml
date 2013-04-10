@@ -287,6 +287,19 @@
 			<properties />
 		</developer>
 		<developer>
+			<id>herminiogg</id>
+			<name>Herminio García González</name>
+			<email>uo218768@uniovi.es</email>
+			<organization>University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+				<role>Student</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
+		<developer>
 			<id>danielloureda</id>
 			<name>Daniel Loureda Arteaga</name>
 			<email>uo219639@uniovi.es</email>
