@@ -304,5 +304,8 @@
 
 	<modules>
 		<module>WebApp</module>
+		<module>TpvApp</module>
+		<module>API</module>
+		<module>AdminDA</module>
 	</modules>
 </project>
