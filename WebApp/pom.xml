@@ -8,7 +8,7 @@
   <groupId>es.uniovi.asw.webapp</groupId>
   <artifactId>WebApp</artifactId>
   <packaging>war</packaging>
-  <name>webapp</name>
+  <name>Webapp</name>
   <description>Web Application</description>
   <dependencies>
   	<dependency>
