@@ -264,7 +264,7 @@
 			<id>uo220841</id>
 			<name>Alberto Lorenzo Matilla</name>
 			<email>uo220841@uniovi.es</email>
-			<organization>WESO-University of Oviedo</organization>
+			<organization>University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
 				<role>Developer</role>
@@ -278,6 +278,19 @@
 			<name>Adolfo Fernández Suárez</name>
 			<email>uo218757@uniovi.es</email>
 			<organization>Arquitectura Software-University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+				<role>Student</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
+		<developer>
+			<id>danielloureda</id>
+			<name>Daniel Loureda Arteaga</name>
+			<email>uo219639@uniovi.es</email>
+			<organization>University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
 				<role>Developer</role>
