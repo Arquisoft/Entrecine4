@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.uniovi.asw</groupId>
-	<artifactId>Entrecine7</artifactId>
+	<artifactId>Entrecine8</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<name>Entrecine, library</name>
 	<packaging>jar</packaging>
@@ -13,32 +13,6 @@
 	</properties>
 
 	<dependencies>
-
-	<dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.29.1</version>
-    </dependency>
-	<dependency>
-        	<groupId>info.cukes</groupId>
-        	<artifactId>cucumber-picocontainer</artifactId>
-        	<version>1.1.1</version>
-    	    <scope>test</scope>
-    	</dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.1.1</version>
-            <scope>test</scope>
-        </dependency>
-        
-	<!--Unit Testing -->
-	<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-	</dependency>
 
 		<!--Logging -->
 		<dependency>
@@ -68,25 +42,59 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+	<dependency>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-maven-plugin</artifactId>
 			<version>3.7</version>
 			<scope>test</scope>
-		</dependency>
+	</dependency>
 
-		<dependency>
+	<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.6.2.201302030002</version>
 			<scope>test</scope>
-		</dependency>
+	</dependency>
 
+    
+	<dependency>
+        	<groupId>info.cukes</groupId>
+        	<artifactId>cucumber-picocontainer</artifactId>
+        	<version>1.1.1</version>
+    	    <scope>test</scope>
+    	</dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+	</dependency>
+
+	<dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.28.0</version>
+    </dependency>
+    
+    <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
+        </dependency>
+    
 	</dependencies>
 
 	<!--Build plugins -->
 	<build>
-		<pluginManagement>
+	<pluginManagement>
 			<plugins>
 				<plugin>
 				<groupId>org.eclipse.m2e</groupId>
@@ -129,27 +137,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>org.jbehave</groupId>
-				<artifactId>jbehave-maven-plugin</artifactId>
-				<version>3.7</version>
-				<executions>
-					<execution>
-						<id>run-stories-as-embeddables</id>
-						<phase>integration-test</phase>
-						<configuration>
-							<includes>
-								<include>**/stories/*.java</include>
-							</includes>
-							<ignoreFailureInStories>true</ignoreFailureInStories>
-							<ignoreFailureInView>true</ignoreFailureInView>
-						</configuration>
-						<goals>
-							<goal>run-stories-as-embeddables</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 
 			<plugin>
 				<groupId>com.google.code.maven-license-plugin</groupId>
@@ -274,67 +261,32 @@
 			<properties />
 		</developer>
 		<developer>
-			<id>AdolfoFernandezSuarez</id>
-			<name>Adolfo Fernández Suárez</name>
-			<email>UO218757@uniovi.es</email>
-			<organization>University of Oviedo</organization>
+			<id>uo2017</id>
+			<name>Abdón Rodríguez Pérez</name>
+			<email>uo2017@uniovi.es</email>
+			<organization>WESO-University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
 				<role>Developer</role>
+				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
 			<properties />
 		</developer>
 		<developer>
-			<id>alvarogarcia</id>
-			<name>Álvaro García López</name>
-			<email>uo217918@uniovi.es</email>
-			<organization>University of Oviedo</organization>
+			<id>oscarrb</id>
+			<name>Óscar Rodríguez Pérez</name>
+			<email>uo218751@uniovi.es</email>
+			<organization>WESO-University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
 				<role>Developer</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>herminiogg</id>
-			<name>Herminio García González</name>
-			<email>uo218768@uniovi.es</email>
-			<organization>University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>albertolm</id>
-			<name>Alberto Lorenzo Matilla</name>
-			<email>uo220841@uniovi.es</email>
-			<organization>University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>danielloureda</id>
-			<name>Daniel Loureda Arteaga</name>
-			<email>uo219639@uniovi.es</email>
-			<organization>University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
+				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
 			<properties />
 		</developer>
 	</developers>
-
 
 
 </project>
