@@ -13,11 +13,39 @@
 		<h2> Experimenta el realismo y la emoción </h2>
 		</div>
 		<div id="bloqueCabeceraDcha">
+            <div id="login">
+            <a href="#openModal">Iniciar Sesion</a>
+
+
+            </div>
 			 <h3>Cartelera</h3>
 		</div>
 	</div>
 	<div id="cuerpo" >
 		<div class="main">
+                <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
+                <div id="openModal" class="modalDialog">
+                <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Inicio de Sesión</h2>
+                <form method="POST" action="#">
+                    <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
+                <div  class="formularioAlineado">
+                <input type="text" class="rounded" name="username" size="30" /><br />
+                <input type="password" class="rounded" name="passwort" size="30" /><br />
+                </div>
+                <div align="center">
+                <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
+                </div>
+
+                </form>
+                <div align=center>
+                    <button id="registrarse" type="button">Registrarse</button>
+                </div>
+             </div>
+            </div>
+                <!--FIN MODAL LOGIN -->
+
                 <div class="view view-first">
                     <img src="images/small/1.jpg" />
                     <div class="mask">
