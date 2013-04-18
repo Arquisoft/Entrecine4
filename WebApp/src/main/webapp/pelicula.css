@@ -67,6 +67,11 @@ footer h2{
 	margin-top: 10px;
 }
 
+#cabecera{
+  display: inline;
+ }
+
+
 #bloqueCabeceraIzq *{
    display: block;
 }
