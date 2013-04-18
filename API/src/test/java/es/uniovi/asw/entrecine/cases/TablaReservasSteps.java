@@ -5,10 +5,11 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.Reservation;
+
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dadas;
 import cucumber.api.java.es.Entonces;
-import es.uniovi.asw.entrecine.Reservation;
 
 public class TablaReservasSteps {
 	

@@ -1,4 +1,4 @@
-package es.uniovi.asw.entrecine;
+package com.entrecine4;
 
 public class Reservation {
 

@@ -1,4 +1,4 @@
-package es.uniovi.asw.entrecine;
+package com.entrecine4;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
