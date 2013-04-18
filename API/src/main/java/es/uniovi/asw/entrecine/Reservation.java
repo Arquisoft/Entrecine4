@@ -1,10 +1,5 @@
 package es.uniovi.asw.entrecine;
 
-/**
- * Reservations.
- * @author labra
- *
- */
 public class Reservation {
 
 /** Number of seats. */

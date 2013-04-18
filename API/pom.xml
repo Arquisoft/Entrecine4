@@ -9,19 +9,4 @@
   <artifactId>API</artifactId>
   <name>API</name>
   <description>Api for all the applications</description>
-  <dependencies>
-    <dependency>
-      <groupid>net.glxn</groupid>
-      <artifactid>qrgen</artifactid>
-      <version>1.1</version>
-    </dependency>
-    </dependencies>
- 
-    <repositories>
-    <repository>
-      <id>QRGen</id>
-      <name>QRGen Repo</name>
-      <url>http://kenglxn.github.com/QRGen/repository</url>
-    </repository>
-</repositories>       
 </project>
