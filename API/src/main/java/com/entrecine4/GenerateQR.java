@@ -25,7 +25,6 @@ public class GenerateQR {
 			is.close();
 			os.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
