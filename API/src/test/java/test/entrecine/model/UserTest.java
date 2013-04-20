@@ -4,6 +4,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import com.entrecine4.model.User;
 
+/**
+ * Test for User in model
+ * @author Arquisoft - Entrecine4
+ *
+ */
 public class UserTest {
 	
 	private User user1;

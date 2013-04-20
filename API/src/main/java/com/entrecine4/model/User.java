@@ -25,7 +25,7 @@ public class User {
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		// if this constructor is not necesary, just remove it
+		// if this constructor is not necessary, just remove it
 	}
 
 	/**
