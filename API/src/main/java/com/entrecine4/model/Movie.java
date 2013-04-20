@@ -1,6 +1,6 @@
 package com.entrecine4.model;
 
-//TODO:This is a sample implementation of a DTO, there's no javadoc until this is a final implementation
+//TODO:No javadoc & JUnit yet
 public class Movie
 {
 	private long id;
@@ -11,8 +11,22 @@ public class Movie
 	private double dailyPrice;
 	private double nightPrice;
 	
-	//TODO: Constructor using all fields, or use the default constructor without parameters and set the variable values with setters. I will use setters in this sample
+	public Movie()
+	{
+	}
 	
+	public Movie(long id, String name, String synopsis, String imgPath,
+			double morningPrice, double dailyPrice, double nightPrice)
+	{
+		this.id = id;
+		this.name = name;
+		this.synopsis = synopsis;
+		this.imgPath = imgPath;
+		this.morningPrice = morningPrice;
+		this.dailyPrice = dailyPrice;
+		this.nightPrice = nightPrice;
+	}
+
 	public long getId()
 	{
 		return id;
