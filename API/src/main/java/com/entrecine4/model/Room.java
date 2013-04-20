@@ -1,14 +1,23 @@
 package com.entrecine4.model;
 
-//TODO: No javadoc yet
+//TODO:No javadoc & JUnit yet
 public class Room
 {
 	private long id;
 	private int rows;
 	private int columns;
 	
-	//TODO: Constructor using all fields, or use the default constructor without parameters and set the variable values with setters.
+	public Room()
+	{
+	}
 	
+	public Room(long id, int rows, int columns) {
+		super();
+		this.id = id;
+		this.rows = rows;
+		this.columns = columns;
+	}
+
 	public long getId()
 	{
 		return id;

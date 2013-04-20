@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.entrecine4.model.Room;
 
-//TODO:No javadoc yet
+//TODO:No javadoc & JUnit yet
 public interface RoomDAO 
 {
 	public Room get(long roomId) throws SQLException;
