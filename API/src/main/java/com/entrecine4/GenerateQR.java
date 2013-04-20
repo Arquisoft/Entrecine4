@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class GenerateQR {
 
-	public void generate(String codigo) {
+	public static void generate(String codigo) {
 
 		try {
 			URL url = new URL(
@@ -29,4 +29,6 @@ public class GenerateQR {
 		}
 
 	}
+	
+	
 }
