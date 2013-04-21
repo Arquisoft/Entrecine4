@@ -10,7 +10,7 @@ import java.util.List;
 import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
-//TODO:No javadoc & JUnit yet
+//TODO:No JUnit yet
 public class RoomJdbcDAO implements RoomDAO
 {
 	//Variables to use in the class and this way don't be defining all the time the same variables in each method

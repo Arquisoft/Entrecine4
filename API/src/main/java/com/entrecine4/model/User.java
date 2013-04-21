@@ -16,7 +16,7 @@ public class User {
 	public User() {}
 
 	/**
-	 * Contructor with all parameters
+	 * Constructor with all parameters
 	 * @param id
 	 * @param username
 	 * @param password
