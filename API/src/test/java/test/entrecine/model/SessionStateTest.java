@@ -3,17 +3,17 @@ package test.entrecine.model;
 import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import org.junit.Test;
-import com.entrecine4.model.SesionState;
+import com.entrecine4.model.SessionState;
 
 
 /**
  * @author Arquisoft - Entrecine4
  *
  */
-public class SesionStateTest {
+public class SessionStateTest {
 
-	private SesionState sessionState1;
-	private SesionState sessionState2;
+	private SessionState sessionState1;
+	private SessionState sessionState2;
 	
 	private final static long ROOM_ID = 12;
 	private final static int ROW = 3;
@@ -27,7 +27,7 @@ public class SesionStateTest {
 	 */
 	@Test
 	public void testWithoutParameters() {
-		sessionState1 = new SesionState();
+		sessionState1 = new SessionState();
 		sessionState1.setRoomId(ROOM_ID);
 		sessionState1.setRow(ROW);
 		sessionState1.setColumn(COLUMN);
@@ -41,7 +41,7 @@ public class SesionStateTest {
 	 */
 	@Test
 	public void testWithParameters() {
-		sessionState2 = new SesionState(ROOM_ID, ROW, COLUMN, DATE, SESSION);
+		sessionState2 = new SessionState(ROOM_ID, ROW, COLUMN, DATE, SESSION);
 		testAttributes(sessionState2);
 	}
 
@@ -49,7 +49,7 @@ public class SesionStateTest {
 	 * Method for test the attributes
 	 * @param the user to test
 	 */
-	private void testAttributes(SesionState sessionState) {
+	private void testAttributes(SessionState sessionState) {
 		assertEquals(sessionState.getRoomId(), ROOM_ID);
 		assertEquals(sessionState.getRow(), ROW);
 		assertEquals(sessionState.getColumn(), COLUMN);

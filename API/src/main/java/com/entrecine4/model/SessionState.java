@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Arquisoft - Entrecine4
  *
  */
-public class SesionState {
+public class SessionState {
 	
 	private long roomId;
 	private int row;
@@ -18,20 +18,20 @@ public class SesionState {
 	/**
 	 * Constructor without parameters
 	 */
-	public SesionState() {}
+	public SessionState() {}
 	
 	/**
 	 * Constructor with all parameters
 	 * @param roomId
-	 * @param room
+	 * @param row
 	 * @param column
 	 * @param date
 	 * @param session
 	 */
-	public SesionState(long roomId, int room, int column,
+	public SessionState(long roomId, int row, int column,
 			Date date, long session) {
 		this.roomId = roomId;
-		this.row = room;
+		this.row = row;
 		this.column = column;
 		this.date = date;
 		this.session = session;

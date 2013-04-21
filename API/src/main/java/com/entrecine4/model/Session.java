@@ -1,5 +1,5 @@
 package com.entrecine4.model;
 
-public class Sesion {
+public class Session {
 
 }

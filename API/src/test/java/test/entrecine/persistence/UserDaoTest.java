@@ -21,7 +21,7 @@ import com.entrecine4.persistence.UserDAO;
 public class UserDaoTest {
 	
 	private static UserDAO dao = new UserJdbcDAO();
-	private static Connection con = null; //we need the connection here
+	private static Connection con = null; //TODO: we need the connection here
 	
 	/**
 	 * Method before all test
@@ -78,6 +78,7 @@ public class UserDaoTest {
 		User user = new User(0,"pepito", "pepito");
 		dao.save(user);
 		user.setPassword("pepiton");
+		dao.update(user);
 		User recoveredUser = dao.get("pepito");
 		assertEquals(recoveredUser.getPassword(), "pepiton");
 	}

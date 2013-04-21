@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.User;
 import com.entrecine4.persistence.UserDAO;
 
@@ -48,7 +49,7 @@ public class UserJdbcDAO implements UserDAO {
 		if(rs.next())
 			user = new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
 					rs.getString("PASSWORD"));
-		ps.close(); rs.close(); //this will be closed from de JdbcHelper
+		Jdbc.close(rs, ps);
 		return user;
 	}
 
@@ -64,7 +65,7 @@ public class UserJdbcDAO implements UserDAO {
 		if(rs.next())
 			user = new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
 					rs.getString("PASSWORD"));
-		ps.close(); rs.close(); //this will be closed from de JdbcHelper
+		Jdbc.close(rs, ps);
 		return user;
 	}
 
@@ -79,7 +80,7 @@ public class UserJdbcDAO implements UserDAO {
 		while(rs.next())
 			users.add(new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
 					rs.getString("PASSWORD")));
-		ps.close(); rs.close(); //this will be closed from de JdbcHelper
+		Jdbc.close(rs, ps);
 		return users;
 	}
 	
@@ -92,7 +93,7 @@ public class UserJdbcDAO implements UserDAO {
 		ps.setString(1, user.getUsername());
 		ps.setString(2, user.getPassword());
 		ps.executeUpdate();
-		ps.close();
+		Jdbc.close(ps);
 	}
 	
 	/* (non-Javadoc)
@@ -105,7 +106,7 @@ public class UserJdbcDAO implements UserDAO {
 		ps.setString(2, user.getPassword());
 		ps.setLong(3, user.getId());
 		ps.executeUpdate();
-		ps.close();
+		Jdbc.close(ps);
 	}
 
 	/* (non-Javadoc)
@@ -116,7 +117,7 @@ public class UserJdbcDAO implements UserDAO {
 		ps = con.prepareStatement(DELETE_USER);
 		ps.setLong(1, user.getId());
 		ps.executeUpdate();
-		ps.close();
+		Jdbc.close(ps);
 	}
 
 
