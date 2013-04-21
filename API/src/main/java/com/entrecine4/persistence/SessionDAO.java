@@ -1,10 +1,5 @@
 package com.entrecine4.persistence;
 
-<<<<<<< HEAD
-public interface SessionDAO {
-
-}
-=======
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -60,4 +55,4 @@ public interface SessionDAO
 	 */
 	public void delete(Session session) throws SQLException;
 }
->>>>>>> branch 'API' of https://github.com/Arquisoft/Entrecine4.git
+

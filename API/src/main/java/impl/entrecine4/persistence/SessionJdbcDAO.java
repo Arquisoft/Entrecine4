@@ -1,12 +1,5 @@
 package impl.entrecine4.persistence;
 
-<<<<<<< HEAD
-import com.entrecine4.persistence.SessionDAO;
-
-public class SessionJdbcDAO implements SessionDAO {
-
-}
-=======
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,4 +86,3 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.executeUpdate();
 	}
 }
->>>>>>> branch 'API' of https://github.com/Arquisoft/Entrecine4.git

@@ -1,10 +1,5 @@
 package com.entrecine4.model;
 
-<<<<<<< HEAD
-public class Session {
-
-}
-=======
 import java.util.Date;
 
 @SuppressWarnings("unused")
@@ -123,4 +118,3 @@ public class Session
 		this.room = room;
 	}
 }
->>>>>>> branch 'API' of https://github.com/Arquisoft/Entrecine4.git
