@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registro - Entrecine</title>
+<link rel="stylesheet" type="text/css" href="registro.css">
+</head>
+<body>
+	<div id="wrapper">
+	<div id="cabecera">
+		<div id="bloqueCabeceraIzq">
+		<h1> Entrecines </h1>
+		<h2> Experimenta el realismo y la emoción </h2>
+		</div>
+		<div id="bloqueCabeceraDcha">
+            <div id="login">
+            <a href="#openModal">Iniciar Sesion</a>
+
+
+            </div>
+			 <h3>Registro</h3>
+		</div>
+	</div>
+	<div id="cuerpo" >
+		<div class="main">
+                <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
+                <div id="openModal" class="modalDialog">
+                <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Inicio de Sesión</h2>
+                <form method="POST" action="#">
+                    <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
+                <div  class="formularioAlineado">
+                <input type="text" class="rounded" name="username" size="30" /><br />
+                <input type="password" class="rounded" name="passwort" size="30" /><br />
+                </div>
+                <div align="center">
+                <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
+                </div>
+
+                </form>
+                <div align=center>
+                    <button id="registrarse" type="button">Registrarse</button>
+                </div>
+             </div>
+            </div>
+                <!--FIN MODAL LOGIN -->
+
+                <div id="contenedorFormReg" >
+                    <form action="registrar" method="post" id="registro">
+<div class="row requiredRow">
+    <label for="txt_Nombre" id="Nombre-ariaLabel">Nombre:</label>
+    <input id="txt_Nombre" name="txt_Nombre" type="text" aria-labelledby="Nombre-ariaLabel" class="required" title="Nombre:. Es necesario que complete este campo" />
+</div>
+<div class="row requiredRow">
+    <label for="txt_Apellidos" id="Apellidos-ariaLabel">Apellidos:</label>
+    <input id="txt_Apellidos" name="txt_Apellidos" type="text" aria-labelledby="Apellidos-ariaLabel" class="required" title="Apellidos:. Es necesario que complete este campo" />
+</div>
+<div class="row requiredRow">
+    <label for="txt_NombredeUsuario" id="NombredeUsuario-ariaLabel">Nombre de Usuario:</label>
+    <input id="txt_NombredeUsuario" name="txt_NombredeUsuario" type="text" aria-labelledby="NombredeUsuario-ariaLabel" class="required" title="Nombre de Usuario:. Es necesario que complete este campo" />
+</div>
+<div class="row requiredRow">
+    <label for="Email" id="Email-ariaLabel">Email:</label>
+    <input id="Email" name="Email" type="email" aria-labelledby="Email-ariaLabel" class="required" title="Nombre de Usuario:. Es necesario que complete este campo" />
+</div>
+<div class="row requiredRow">
+    <label for="pwd_Contraseña" id="Contraseña-ariaLabel">Contraseña:</label>
+    <input id="pwd_Contraseña" name="pwd_Contraseña" type="password" aria-labelledby="Contraseña-ariaLabel" class="required" title="Contraseña:. Es necesario que complete este campo" />
+</div>
+<div class="row requiredRow">
+    <label for="pwd_Repitalacontraseña" id="Repitalacontraseña-ariaLabel">Repita la contraseña:</label>
+    <input id="pwd_Repitalacontraseña" name="pwd_Repitalacontraseña" type="password" aria-labelledby="Repitalacontraseña-ariaLabel" class="required" title="Repita la contraseña:. Es necesario que complete este campo" />
+</div>
+<div class="row">
+<input id="botonEnviar" type="submit" value="Enviar" />
+</div>
+</form>
+
+
+                </div>
+                    
+                 
+            </div>
+	</div>
+
+</div>
+	<footer>
+		<h2>Entrecines</h2>
+	</footer>
+
+	
+
+</body>
+</html>
