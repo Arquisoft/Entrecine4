@@ -2,8 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Página Principal - Entrecine</title>
+<title>Entrecines</title>
 <link rel="stylesheet" type="text/css" href="index.css">
+<script type="text/javascript">
+window.onload = function(){
+var a = document.getElementById("linkCartelera");
+a.onclick = function open_in_new_tab()
+{
+  var win=window.open("index.html", '_blank');
+  win.focus();
+}
+}
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -18,7 +28,7 @@
 
 
             </div>
-			 <h3>Cartelera</h3>
+			 <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
 		</div>
 	</div>
 	<div id="cuerpo" >

@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <title>Registro - Entrecine</title>
 <link rel="stylesheet" type="text/css" href="reservaButacas.css">
+
+<script type="text/javascript">
+window.onload = function(){
+var a = document.getElementById("linkCartelera");
+a.onclick = function open_in_new_tab()
+{
+  var win=window.open("index.html", '_blank');
+  win.focus();
+}
+}
+</script>
 <script type="text/javascript">
     
     function muestraButacas(filas, columnas){
@@ -37,7 +48,7 @@
 
 
             </div>
-			 <h3>Registro</h3>
+			  <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
 		</div>
 	</div> </div>
 	<div id="cuerpo" >

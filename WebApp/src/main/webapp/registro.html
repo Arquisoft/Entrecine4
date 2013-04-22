@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <title>Registro - Entrecine</title>
 <link rel="stylesheet" type="text/css" href="registro.css">
+
+<script type="text/javascript">
+window.onload = function(){
+var a = document.getElementById("linkCartelera");
+a.onclick = function open_in_new_tab()
+{
+  var win=window.open("index.html", '_blank');
+  win.focus();
+}
+}
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -18,7 +29,7 @@
 
 
             </div>
-			 <h3>Registro</h3>
+			  <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
 		</div>
 	</div>
 	<div id="cuerpo" >
@@ -81,6 +92,10 @@
                 </div>
                     
                  
+            </div>
+
+            <div id="LogoDcha">
+                <img src="images/palomitas.png" alt="palomitas">
             </div>
 	</div>
 

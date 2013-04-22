@@ -238,3 +238,15 @@ border: 1px solid #ccc;
    text-align: center;
    padding-bottom: 100px;
 }
+
+/* COMO SERÍA LO DEL FONDO PARA LAS BUTACAS EMULANDO UN CINE
+
+html {
+        background: url(imagenes/fondo.png) no-repeat center center fixed;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+}
+
+*/

@@ -25,7 +25,7 @@ src: url('impregnable.ttf');
 	min-height:100%;
 	position:relative;
 }
-
+ 
 
 
 html,body{
@@ -70,7 +70,6 @@ footer h2{
 #cabecera{
   display: inline;
  }
-
 
 #bloqueCabeceraIzq *{
    display: block;

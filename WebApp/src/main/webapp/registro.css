@@ -241,9 +241,15 @@ border: 1px solid #ccc;
 }
 
 
+#LogoDcha{
+   display: inline-block;
+   margin-left: 100px;
+}
 
-
-
+.main {
+   width: 350px;
+   display: inline-block;
+}
 
 
  
