@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class Incidence
 {
+	private long id;
 	private long roomId;
 	private Date day;
-	private Session session;
+	private long sessionId;
 	private String description;
 	
 	/**
@@ -19,19 +20,39 @@ public class Incidence
 	/**
 	 * Constructor with parameters using all the fields
 	 * 
+	 * @param id The incidence's identification number
 	 * @param roomId The room's identification number
 	 * @param day The incidence's day
-	 * @param session The session affected by the incidence
+	 * @param sessionId The session's identification number affected by the incidence
 	 * @param description A description of the incidence
 	 */
-	public Incidence(long roomId, Date day, Session session, String description)
+	public Incidence(long id, long roomId, Date day, long sessionId, String description)
 	{
+		this.id=id;
 		this.roomId = roomId;
 		this.day = day;
-		this.session = session;
+		this.sessionId = sessionId;
 		this.description = description;
 	}
 	
+	/**
+	 * Getter for the incidence's identification number
+	 * 
+	 * @return The incidence's identification number
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * Setter for the incidence's identification number
+	 * 
+	 * @param id The new incidence's identification number
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	/**
 	 * Getter for the room's identification number
 	 * 
@@ -75,21 +96,21 @@ public class Incidence
 	/**
 	 * Getter for the session affected by the incidence
 	 * 
-	 * @return The session affected by the incidence
+	 * @return The session's identification number affected by the incidence
 	 */
-	public Session getSession() 
+	public long getSessionId() 
 	{
-		return session;
+		return sessionId;
 	}
 	
 	/**
 	 * Setter for the session affected by the incidence
 	 * 
-	 * @param session The new session affected by the incidence
+	 * @param sessionId The new session's identification number affected by the incidence
 	 */
-	public void setSession(Session session) 
+	public void setSessionId(long sessionId) 
 	{
-		this.session = session;
+		this.sessionId = sessionId;
 	}
 	
 	/**

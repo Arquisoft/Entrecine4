@@ -41,7 +41,7 @@ public class RoomTest
 
 	/**
 	 * Method for test the attributes
-	 * @param The movie to test
+	 * @param The room to test
 	 */
 	private void testAttributes(Room room)
 	{

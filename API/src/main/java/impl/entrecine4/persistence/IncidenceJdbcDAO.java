@@ -11,7 +11,6 @@ import java.util.List;
 import com.entrecine4.model.Incidence;
 import com.entrecine4.persistence.IncidenceDAO;
 
-//TODO:No JUnit yet
 public class IncidenceJdbcDAO implements IncidenceDAO
 {
 	//Variables to use in the class and this way don't be defining all the time the same variables in each method
@@ -19,10 +18,36 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
 	
+	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.IncidenceDAO#setConnection(java.sql.Connection)
+	 */
 	@Override
-	public Incidence get() throws SQLException{
-		// TODO:Not implemented yet 
-		return null;
+	public void setConnection(Connection connection) 
+	{
+		this.connection=connection;
+	}
+
+	@Override
+	public Incidence get(long incidenceId) throws SQLException
+	{
+		Incidence result=null;
+		
+		pst=connection.prepareStatement("SQL using a .properties file");
+		pst.setLong(1, incidenceId);
+		
+		rs=pst.executeQuery();
+		
+		if(rs.next())
+		{
+			result=new Incidence();
+			result.setId(incidenceId);
+			result.setRoomId(rs.getLong("ID_SALA"));
+			result.setDay(rs.getDate("DIA"));
+			result.setSessionId(rs.getLong("SESION"));
+			result.setDescription(rs.getString("MOTIVO"));
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -36,9 +61,10 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		while(rs.next())
 		{
 			Incidence tempIncidence=new Incidence();
+			tempIncidence.setId(rs.getLong("ID"));
 			tempIncidence.setRoomId(rs.getLong("ID_SALA"));
 			tempIncidence.setDay(rs.getDate("DIA"));
-			//TODO:How are we going to save the session in the database?? tempIncidence.setSession()
+			tempIncidence.setSessionId(rs.getLong("SESION"));
 			tempIncidence.setDescription(rs.getString("MOTIVO"));
 			
 			result.add(tempIncidence);
@@ -53,7 +79,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		pst=connection.prepareStatement("SQL using a .properties file");
 		pst.setLong(1, incidence.getRoomId());
 		pst.setDate(2, (Date) incidence.getDay());
-		//TODO:How to save session
+		pst.setLong(3, incidence.getSessionId());
 		pst.setString(4, incidence.getDescription());
 		
 		pst.executeUpdate();
@@ -65,8 +91,9 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		pst=connection.prepareStatement("SQL using a .properties file");
 		pst.setLong(1, incidence.getRoomId());
 		pst.setDate(2, (Date) incidence.getDay());
-		//TODO:How to update session
+		pst.setLong(3, incidence.getSessionId());
 		pst.setString(4, incidence.getDescription());
+		pst.setLong(5, incidence.getId());
 		
 		pst.executeUpdate();
 	}
@@ -75,7 +102,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	public void delete(Incidence incidence) throws SQLException
 	{
 		pst=connection.prepareStatement("SQL using a .properties file");
-		//TODO:How to select an incidence from the database
+		pst.setLong(1, incidence.getId());
 		
 		pst.executeUpdate();
 	}

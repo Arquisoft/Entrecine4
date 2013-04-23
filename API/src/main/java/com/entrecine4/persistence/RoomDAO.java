@@ -1,5 +1,6 @@
 package com.entrecine4.persistence;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -7,6 +8,13 @@ import com.entrecine4.model.Room;
 
 public interface RoomDAO 
 {
+	/**
+	 * Method to set the connection that the DAO will use
+	 * 
+	 * @param connection
+	 */
+	public void setConnection(Connection connection);
+	
 	/**
 	 * Method to get a room from the database using an id
 	 * 

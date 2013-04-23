@@ -10,7 +10,6 @@ import java.util.List;
 import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
-//TODO:No JUnit yet
 public class RoomJdbcDAO implements RoomDAO
 {
 	//Variables to use in the class and this way don't be defining all the time the same variables in each method
@@ -18,6 +17,15 @@ public class RoomJdbcDAO implements RoomDAO
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;	
 	
+	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.RoomDAO#setConnection(java.sql.Connection)
+	 */
+	@Override
+	public void setConnection(Connection connection)
+	{
+		this.connection=connection;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.entrecine4.persistence.RoomDAO#get(long)
 	 */

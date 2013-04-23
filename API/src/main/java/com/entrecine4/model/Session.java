@@ -5,10 +5,11 @@ import java.util.Date;
 @SuppressWarnings("unused")
 public class Session
 {
+	private long id;
 	private String movieTitle;
 	private Date day;
 	private double time;		//Session's hour: 12:00/17:00/20:00/22:00
-	private Room room;
+	private long roomId;
 	
 	private static final double TWELVE=12;
 	private static final double SEVENTEEN=17;
@@ -28,16 +29,35 @@ public class Session
 	 * @param movieTitle Movie's title
 	 * @param day Session's day
 	 * @param time Session's hour
-	 * @param room Room where it's going to be shown the movie
+	 * @param roomId Room's identification number where it's going to be shown the movie
 	 */
-	public Session(String movieTitle, Date day, double time, Room room)
+	public Session(long id, String movieTitle, Date day, double time, long roomId)
 	{
+		this.id=id;
 		this.movieTitle = movieTitle;
 		this.day = day;
 		this.time = time;
-		this.room = room;
+		this.roomId = roomId;
 	}
 	
+	/**
+	 * Getter for the session's identification number
+	 * 
+	 * @return The session's identification number
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * Setter for the session's identification number
+	 * 
+	 * @param id The new session's identification number
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	/**
 	 * Getter for the movie's title
 	 * 
@@ -101,20 +121,20 @@ public class Session
 	/**
 	 * Getter for the room where it's going to be shown the movie
 	 * 
-	 * @return The room where it's going to be shown the movie
+	 * @return The room's identification number where it's going to be shown the movie
 	 */
-	public Room getRoom() 
+	public long getRoomId() 
 	{
-		return room;
+		return roomId;
 	}
 	
 	/**
 	 * Setter for the room where it's going to be shown the movie
 	 * 
-	 * @param room The new room where it's going to be shown the movie
+	 * @param roomId The new room's identification number where it's going to be shown the movie
 	 */
-	public void setRoom(Room room) 
+	public void setRoomId(long roomId) 
 	{
-		this.room = room;
+		this.roomId = roomId;
 	}
 }

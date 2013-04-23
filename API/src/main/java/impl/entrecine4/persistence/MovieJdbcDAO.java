@@ -10,13 +10,21 @@ import java.util.List;
 import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
-//TODO:No JUnit yet
 public class MovieJdbcDAO implements MovieDAO
 {
 	//Variables to use in the class and this way don't be defining all the time the same variables in each method
 	private Connection connection = null;
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
+
+	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.MovieDAO#setConnection(java.sql.Connection)
+	 */
+	@Override
+	public void setConnection(Connection connection)
+	{
+		this.connection=connection;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.entrecine4.persistence.MovieDAO#get(long)

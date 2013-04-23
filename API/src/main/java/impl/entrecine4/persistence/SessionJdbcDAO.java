@@ -5,14 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.entrecine4.model.Room;
 import com.entrecine4.model.Session;
 import com.entrecine4.persistence.SessionDAO;
 
-//TODO:No JUnit yet
 public class SessionJdbcDAO implements SessionDAO
 {
 	//Variables to use in the class and this way don't be defining all the time the same variables in each method
@@ -20,13 +17,36 @@ public class SessionJdbcDAO implements SessionDAO
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
 		
+	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.SessionDAO#setConnection(java.sql.Connection)
+	 */
 	@Override
-	public Session get(String movieTitle, Date day, double time, Room room) throws SQLException 
+	public void setConnection(Connection connection) 
 	{
-		//TODO:Alternatives: Use an id, overload the method a search with [day,time,room]/[movieTitle/day/time]/[movieTitle,time]...
+		this.connection=connection;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.SessionDAO#get(long)
+	 */
+	@Override
+	public Session get(long sessionId) throws SQLException 
+	{
 		Session result=null;
 		
 		pst=connection.prepareStatement("SQL using a .properties file");
+		pst.setLong(1, sessionId);
+		
+		rs=pst.executeQuery();
+		if(rs.next())
+		{
+			result=new Session();
+			result.setId(sessionId);
+			result.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
+			result.setDay(rs.getDate("DIA"));
+			result.setTime(rs.getDouble("HORA"));
+			result.setRoomId(rs.getLong("SALA"));
+		}
 		
 		return result;
 	}
@@ -42,10 +62,11 @@ public class SessionJdbcDAO implements SessionDAO
 		while(rs.next())
 		{
 			Session tempSession = new Session();
+			tempSession.setId(rs.getLong("ID"));
 			tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
 			tempSession.setDay(rs.getDate("DIA"));
 			tempSession.setTime(rs.getDouble("HORA"));
-			//TODO:How are we going to save the room??tempSession.setRoom()
+			tempSession.setRoomId(rs.getLong("SALA"));
 			
 			result.add(tempSession);
 		}
@@ -60,7 +81,7 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.setString(1,session.getMovieTitle());
 		pst.setDate(2,(java.sql.Date) session.getDay());
 		pst.setDouble(3, session.getTime());
-		//TODO: Again how to save the room
+		pst.setLong(4, session.getRoomId());
 		
 		pst.executeUpdate();
 	}
@@ -72,7 +93,8 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.setString(1,session.getMovieTitle());
 		pst.setDate(2,(java.sql.Date) session.getDay());
 		pst.setDouble(3, session.getTime());
-		//TODO: Again how to save the room and how to select the session to update
+		pst.setLong(4, session.getRoomId());
+		pst.setLong(5, session.getId());
 		
 		pst.executeUpdate();
 	}
@@ -81,7 +103,7 @@ public class SessionJdbcDAO implements SessionDAO
 	public void delete(Session session) throws SQLException 
 	{
 		pst=connection.prepareStatement("SQL using a .properties file");
-		//TODO: how to select the session to delete
+		pst.setLong(1, session.getId());
 		
 		pst.executeUpdate();
 	}

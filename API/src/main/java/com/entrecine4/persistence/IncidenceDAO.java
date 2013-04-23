@@ -1,15 +1,28 @@
 package com.entrecine4.persistence;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import com.entrecine4.model.Incidence;
 
-//TODO:No JUnit till all the questions are solved
 public interface IncidenceDAO
 {
-	//TODO:How to find an incidence
-	public Incidence get() throws SQLException;
+	/**
+	 * Method to set the connection that the DAO will use
+	 * 
+	 * @param connection
+	 */
+	public void setConnection(Connection connection);
+	
+	/**
+	 * Method to get an incidence using the incidence's identification number
+	 * 
+	 * @param incidenceId The incidence's identification number
+	 * @return The required incidence
+	 * @throws SQLException
+	 */
+	public Incidence get(long incidenceId) throws SQLException;
 	
 	/**
 	 * Method to get all the incidences from the database

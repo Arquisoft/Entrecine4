@@ -1,27 +1,29 @@
 package com.entrecine4.persistence;
 
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
-import com.entrecine4.model.Room;
 import com.entrecine4.model.Session;
 
-//TODO:No JUnit till the questions are solved
 public interface SessionDAO
 {
 	/**
-	 * Method to get a session from the database using the movie's title,and a day,session's hour
-	 * and room
+	 * Method to set the connection that the DAO will use
 	 * 
-	 * @param movieTitle Movie's title
-	 * @param day Session's day
-	 * @param time Session's hour (12:00/17:00/20:00/22:00)
-	 * @param room An instance of Room
-	 * @return
-	 * @throws SQLException 
+	 * @param connection
 	 */
-	public Session get(String movieTitle, Date day, double time, Room room) throws SQLException;
+	public void setConnection(Connection connection);
+	
+	
+	/**
+	 * Method to get a session using the session's identification number
+	 * 
+	 * @param sessionId The session's identification number
+	 * @return The required session
+	 * @throws SQLException
+	 */
+	public Session get(long sessionId) throws SQLException;
 	
 	/**
 	 * Method to get all the sessions from the database
