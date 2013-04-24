@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
@@ -15,6 +16,13 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	private Connection connection = null;
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
+	
+	
+	private final static String GET_EMPLOYEE_BY_ID = PropertiesReader.get("GET_EMPLOYEE_BY_ID");
+	private final static String GET_ALL_EMPLOYEES = PropertiesReader.get("GET_ALL_EMPLOYEES");
+	private final static String INSERT_EMPLOYEE = PropertiesReader.get("INSERT_EMPLOYEE");
+	private final static String UPDATE_EMPLOYEE = PropertiesReader.get("UPDATE_EMPLOYEE");
+	private final static String DELETE_EMPLOYEE = PropertiesReader.get("DELETE_EMPLOYEE");
 
 	/*
 	 * (non-Javadoc)
@@ -25,7 +33,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	public Employee get(long employeeID) throws SQLException {
 		Employee result = null;
 
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(GET_EMPLOYEE_BY_ID);
 		pst.setLong(1, employeeID);
 
 		rs = pst.executeQuery();
@@ -49,7 +57,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	public List<Employee> getAll() throws SQLException {
 		List<Employee> result = new ArrayList<Employee>();
 
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(GET_ALL_EMPLOYEES);
 
 		rs = pst.executeQuery();
 
@@ -77,7 +85,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	 */
 	@Override
 	public void save(Employee employee) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(INSERT_EMPLOYEE);
 
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
@@ -95,13 +103,15 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	 */
 	@Override
 	public void update(Employee employee) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(UPDATE_EMPLOYEE);
 
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
 		pst.setInt(3, employee.getIsAdmin());
-		pst.setLong(4, employee.getId()); // ID of the user that will be updated
-
+		pst.setString(4, employee.getUsername()); // USERNAME of the user that will be updated
+		// We're using the username instead of the ID_USUARIO because we might not know which is the
+		//current ID_USUARIO since it's generated automatically.
+		
 		pst.executeUpdate();
 	}
 
@@ -114,7 +124,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	 */
 	@Override
 	public void delete(Employee employee) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(DELETE_EMPLOYEE);
 		pst.setLong(1, employee.getId());
 
 		pst.executeUpdate();

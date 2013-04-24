@@ -5,18 +5,20 @@ import impl.entrecine4.persistence.EmployeeJdbcDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
 public class EmployeeDaoTest {
 
 	private static EmployeeDAO dao = new EmployeeJdbcDAO();
-	private static Connection con = null; // we need the connection here
+	private static Connection con = Jdbc.getConnection(); // we need the connection here
 
 	/**
 	 * Method before all test
@@ -50,9 +52,10 @@ public class EmployeeDaoTest {
 	public void testSaveAndDelete() throws SQLException {
 		Employee emp = new Employee(0, "emp01", "emp01", 0);
 		dao.save(emp);
-		Employee recoveredUser = dao.get(1);
-		assertEquals(emp.getUsername(), recoveredUser.getUsername());
-		assertEquals(emp.getPassword(), recoveredUser.getPassword());
+		List<Employee> recoveredEmployees = dao.getAll();
+		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1);
+		assertEquals(emp.getUsername(), recoveredEmployee.getUsername());
+		assertEquals(emp.getPassword(), recoveredEmployee.getPassword());
 		dao.delete(emp);
 		assertEquals(dao.get(1), null);
 	}
@@ -78,8 +81,10 @@ public class EmployeeDaoTest {
 		Employee emp = new Employee(0, "emp02", "emp02", 0);
 		dao.save(emp);
 		emp.setPassword("emp02mod");
-		Employee recoveredUser = dao.get(2);
-		assertEquals(recoveredUser.getPassword(), "emp02mod");
+		dao.update(emp);
+		List<Employee> recoveredEmployees = dao.getAll();
+		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1 );
+		assertEquals(recoveredEmployee.getPassword(), "emp02mod");
 	}
 
 	/**
