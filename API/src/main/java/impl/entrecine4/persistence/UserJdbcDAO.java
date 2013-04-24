@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.User;
 import com.entrecine4.persistence.UserDAO;
 
@@ -18,12 +19,12 @@ import com.entrecine4.persistence.UserDAO;
  */
 public class UserJdbcDAO implements UserDAO {
 	
-	private final static String GET_USER_BY_ID = "select * from DATOS_USUARIOS_WEB where ID_USUARIO = ?";
-	private final static String GET_USER_BY_USERNAME = "select * from DATOS_USUARIOS_WEB where USERNAME = ?";
-	private final static String GET_ALL_USERS = "select * from DATOS_USUARIOS_WEB";
-	private final static String INSERT_USER = "insert into DATOS_USUARIOS_WEB (USERNAME, PASSWORD) values (?, ?)";
-	private final static String DELETE_USER = "delete from DATOS_USUARIOS_WEB where ID_USUARIO = ?";
-	private final static String UPDATE_USER = "update DATOS_USUARIOS_WEB set USERNAME=?, PASSWORD=? where ID_USUARIO = ?";
+	private final static String GET_USER_BY_ID = PropertiesReader.get("GET_USER_BY_ID");
+	private final static String GET_USER_BY_USERNAME = PropertiesReader.get("GET_USER_BY_USERNAME");
+	private final static String GET_ALL_USERS = PropertiesReader.get("GET_ALL_USERS");
+	private final static String INSERT_USER = PropertiesReader.get("INSERT_USER");
+	private final static String DELETE_USER = PropertiesReader.get("DELETE_USER");
+	private final static String UPDATE_USER = PropertiesReader.get("UPDATE_USER");
 	
 	private Connection con;
 	private PreparedStatement ps;

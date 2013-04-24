@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.SessionState;
 import com.entrecine4.persistence.SessionStateDAO;
 
@@ -19,13 +20,11 @@ import com.entrecine4.persistence.SessionStateDAO;
  */
 public class SessionStateJdbcDAO implements SessionStateDAO {
 	
-	private final static String GET_SESSIONSTATE = "select * from SALA where ID_SALA = ? and FILA_OCUPADA = ?" +
-			" and COLUMNA_OCUPADA = ? and DIA = ? and SESION = ?";
-	private final static String GET_SESSIONSTATE_BY_ID_DATE_SESSION = "select * from SALA where ID_SALA = ? and DIA = ? and SESION = ?";
-	private final static String INSERT_SESSIONSTATE = "insert into SALA values (?, ?, ?, ?, ?)";
-	private final static String UPDATE_SESSIONSTATE = "update SALA set and FILA_OCUPADA = ?, COLUMNA_OCUPADA = ? where ID_USUARIO = ? and DIA = ? and SESION = ?";
-	private final static String DELETE_SESSIONSTATE = "delete from SALA where ID_USUARIO = ? and FILA_OCUPADA = ?" +
-			" and COLUMNA_OCUPADA = ? and DIA = ? and SESION = ?";
+	private final static String GET_SESSIONSTATE = PropertiesReader.get("GET_SESSIONSTATE");
+	private final static String GET_SESSIONSTATE_BY_ID_DATE_SESSION = PropertiesReader.get("GET_SESSIONSTATE_BY_ID_DATE_SESSION");
+	private final static String INSERT_SESSIONSTATE = PropertiesReader.get("INSERT_SESSIONSTATE");
+	private final static String UPDATE_SESSIONSTATE = PropertiesReader.get("UPDATE_SESSIONSTATE");
+	private final static String DELETE_SESSIONSTATE = PropertiesReader.get("DELETE_SESSIONSTATE");
 	
 	private Connection con;
 	private PreparedStatement ps;
