@@ -7,10 +7,19 @@ import java.sql.Statement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ * This class provides a simple way to get connections and to close its resources
+ * @author Arquisoft - Entrecine4
+ *
+ */
 public class Jdbc {
 
 	private static ComboPooledDataSource cpds;
 
+	/**
+	 * Retrieves a connection from the pool of connections
+	 * @return a connection
+	 */
 	public static Connection getConnection() {
 		if (cpds == null) {
 			try {
@@ -39,17 +48,32 @@ public class Jdbc {
 		return null;
 	}
 
+	/**
+	 * Closes the result set, the statement and the connection
+	 * @param result set to close
+	 * @param statement to close
+	 * @param connection to close
+	 */
 	public static void close(ResultSet rs, Statement st, Connection c) {
 		close(rs);
 		close(st);
 		close(c);
 	}
 
+	/**
+	 * Closes the result set and the statement
+	 * @param result set to close
+	 * @param statement to close
+	 */
 	public static void close(ResultSet rs, Statement st) {
 		close(rs);
 		close(st);
 	}
 
+	/**
+	 * Closes the result set
+	 * @param result set to close
+	 */
 	protected static void close(ResultSet rs) {
 		if (rs != null)
 			try {
@@ -58,6 +82,10 @@ public class Jdbc {
 			}
 	}
 
+	/**
+	 * Closes the statement
+	 * @param statement to close
+	 */
 	public static void close(Statement st) {
 		if (st != null)
 			try {
@@ -66,6 +94,10 @@ public class Jdbc {
 			}
 	}
 
+	/**
+	 * Closes the connection
+	 * @param connection to close 
+	 */
 	public static void close(Connection c) {
 		if (c != null)
 			try {

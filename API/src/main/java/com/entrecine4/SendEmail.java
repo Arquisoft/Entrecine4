@@ -5,12 +5,20 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
+/**
+ * Class for send an email with the QR code
+ * @author Arquisoft - Entrecine4
+ *
+ */
 public class SendEmail {
 
+	/**
+	 * Method for send the email with the QR code
+	 * @param email to send
+	 * @param fileName of the QR code
+	 */
 	public static void sendNewMail(String to, String fileName) {
-
 		
-
 		final String username = "entrecine4as@gmail.com";
 		final String password = ""; // La contraseña será la que se especifiará en el fichero de Google Drive por temas de seguridad.
 
