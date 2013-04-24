@@ -7,17 +7,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.SessionState;
 import com.entrecine4.persistence.SessionStateDAO;
 
 public class SessionStateDaoTest {
 
 	private static SessionStateDAO dao = new SessionStateJdbcDAO();
-	private static Connection con = null; //TODO: we need the connection here
+	private static Connection con = Jdbc.getConnection();
 	
 	/**
 	 * Method before all test
@@ -52,7 +54,6 @@ public class SessionStateDaoTest {
 		assertEquals(sessionState.getRoomId(), recoveredSessionState.getRoomId());
 		assertEquals(sessionState.getRow(), recoveredSessionState.getRow());
 		assertEquals(sessionState.getColumn(), recoveredSessionState.getColumn());
-		assertEquals(sessionState.getDate(), recoveredSessionState.getDate());
 		assertEquals(sessionState.getSession(), recoveredSessionState.getSession());
 		dao.delete(sessionState);
 		assertEquals(dao.get(sessionState), null);
@@ -82,6 +83,15 @@ public class SessionStateDaoTest {
 	public static void setDown() throws SQLException {
 		con.rollback();
 		con.close();
+	}
+	
+	/**
+	 * Method after every test, to clean data
+	 * @throws SQLException
+	 */
+	@After
+	public void rollBack() throws SQLException {
+		con.rollback();
 	}
 
 }

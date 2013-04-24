@@ -6,6 +6,7 @@ import impl.entrecine4.persistence.UserJdbcDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -56,7 +57,7 @@ public class UserDaoTest {
 		User recoveredUser = dao.get("pepito");
 		assertEquals(user.getUsername(), recoveredUser.getUsername());
 		assertEquals(user.getPassword(), recoveredUser.getPassword());
-		dao.delete(user);
+		dao.delete(recoveredUser);
 		assertEquals(dao.get("pepito"), null);
 	}
 	
@@ -78,6 +79,7 @@ public class UserDaoTest {
 	public void testUpdate() throws SQLException {
 		User user = new User(0,"pepito", "pepito");
 		dao.save(user);
+		user = dao.get("pepito");
 		user.setPassword("pepiton");
 		dao.update(user);
 		User recoveredUser = dao.get("pepito");
@@ -92,6 +94,15 @@ public class UserDaoTest {
 	public static void setDown() throws SQLException {
 		con.rollback();
 		con.close();
+	}
+	
+	/**
+	 * Method after every test, to clean data
+	 * @throws SQLException
+	 */
+	@After
+	public void rollBack() throws SQLException {
+		con.rollback();
 	}
 
 }
