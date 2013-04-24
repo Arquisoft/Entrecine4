@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Purchase;
 import com.entrecine4.persistence.PurchaseDAO;
 
@@ -15,6 +16,13 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	private Connection connection = null;
 	private PreparedStatement pst = null;
 	private ResultSet rs = null;
+	
+	
+	private final static String GET_PURCHASE_BY_ID = PropertiesReader.get("GET_PURCHASE_BY_ID");
+	private final static String GET_ALL_PURCHASES = PropertiesReader.get("GET_ALL_PURCHASES");
+	private final static String INSERT_PURCHASE = PropertiesReader.get("INSERT_PURCHASE");
+	private final static String UPDATE_PURCHASE = PropertiesReader.get("UPDATE_PURCHASE");
+	private final static String DELETE_PURCHASE = PropertiesReader.get("DELETE_PURCHASE");
 
 	/*
 	 * (non-Javadoc)
@@ -34,7 +42,7 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	public Purchase get(long ID) throws SQLException {
 		Purchase result = null;
 
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(GET_PURCHASE_BY_ID);
 		pst.setLong(1, ID);
 
 		rs = pst.executeQuery();
@@ -59,7 +67,7 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	public List<Purchase> getAll() throws SQLException {
 		List<Purchase> result = new ArrayList<Purchase>();
 
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(GET_ALL_PURCHASES);
 
 		rs = pst.executeQuery();
 
@@ -86,7 +94,7 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	 */
 	@Override
 	public void save(Purchase purchase) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(INSERT_PURCHASE);
 
 		pst.setLong(1, purchase.getUser_id());
 		pst.setLong(2, purchase.getMovie_id());
@@ -104,7 +112,7 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	 */
 	@Override
 	public void update(Purchase purchase) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(UPDATE_PURCHASE);
 
 		pst.setLong(1, purchase.getUser_id());
 		pst.setLong(2, purchase.getMovie_id());
@@ -123,7 +131,7 @@ public class PurchaseJdbcDAO implements PurchaseDAO {
 	 */
 	@Override
 	public void delete(Purchase purchase) throws SQLException {
-		pst = connection.prepareStatement("SQL using a .properties file");
+		pst = connection.prepareStatement(DELETE_PURCHASE);
 		pst.setLong(1, purchase.getId());
 
 		pst.executeUpdate();

@@ -5,18 +5,20 @@ import impl.entrecine4.persistence.PurchaseJdbcDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.Purchase;
 import com.entrecine4.persistence.PurchaseDAO;
 
 public class PurchaseDaoTest {
 
 	private static PurchaseDAO dao = new PurchaseJdbcDAO();
-	private static Connection con = null; // we need the connection here
+	private static Connection con = Jdbc.getConnection(); // we need the connection here
 
 	/**
 	 * Method before all test
@@ -30,11 +32,12 @@ public class PurchaseDaoTest {
 	}
 
 	/**
-	 * Insert two purchases with the same ticket_id_code. Expected to fail
+	 * Insert two purchases. Since the ID code is generated automatically
+	 * by the Data Base, it's not expected to fail
 	 * 
 	 * @throws SQLException
 	 */
-	@Test(expected = SQLException.class)
+	@Test
 	public void testInsertTwo() throws SQLException {
 		Purchase purchase = new Purchase(1, 1, 1, "1234asdf", 0, 0);
 		dao.save(purchase);
@@ -50,12 +53,13 @@ public class PurchaseDaoTest {
 	public void testSaveAndDelete() throws SQLException {
 		Purchase purchase = new Purchase(1, 1, 1, "1234asdf", 0, 0);
 		dao.save(purchase);
-		Purchase recoveredPurchase = dao.get(1);
-		assertEquals(purchase.getMovie_id(), recoveredPurchase.getMovie_id());
+		List<Purchase> recoveredPurchases = dao.getAll();
+		Purchase recoveredPurchase = recoveredPurchases.get(recoveredPurchases.size() - 1);
 		assertEquals(purchase.getUser_id(), recoveredPurchase.getUser_id());
 		assertEquals(purchase.getTicket_id_code(), recoveredPurchase.getTicket_id_code());
+		purchase.setId(recoveredPurchase.getId());
 		dao.delete(purchase);
-		assertEquals(dao.get(1), null);
+		assertEquals(dao.get(recoveredPurchase.getId()), null);
 	}
 
 	/**
@@ -78,8 +82,13 @@ public class PurchaseDaoTest {
 	public void testUpdate() throws SQLException {
 		Purchase purchase = new Purchase(1, 1, 1, "1234asdf", 0, 0);
 		dao.save(purchase);
+		List<Purchase> purchasesRecovered = dao.getAll();
+		Purchase purchaseRecovered = purchasesRecovered.get(purchasesRecovered.size() - 1);
+		purchase.setId(purchaseRecovered.getId());
 		purchase.setPaid(1);
-		Purchase purchaseRecovered = dao.get(2);
+		dao.update(purchase);
+		purchasesRecovered = dao.getAll();
+		purchaseRecovered = purchasesRecovered.get(purchasesRecovered.size() - 1);
 		assertEquals(purchaseRecovered.getPaid(), 1);
 	}
 

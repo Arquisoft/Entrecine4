@@ -2,9 +2,9 @@ package com.entrecine4.model;
 
 public class Purchase {
 
-	public long id, user_id, movie_id;
-	public String ticket_id_code;
-	public int paid, collected; // 0 if false, 1 if true
+	private long id, user_id, movie_id;
+	private String ticket_id_code;
+	private int paid, collected; // 0 if false, 1 if true
 
 	/**
 	 * constructor using all the fields
