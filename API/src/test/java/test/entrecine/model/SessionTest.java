@@ -14,7 +14,7 @@ public class SessionTest
 	
 	private static final long ID=1L;
 	private static final String MOVIE_TITLE="Matrix";
-	private static final Date DAY=Date.valueOf("20/04/2013");
+	private static final Date DAY= new Date(System.currentTimeMillis());
 	private static final double TIME=12D;
 	private static final long ROOM_ID=1L;
 	
