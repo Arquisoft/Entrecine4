@@ -14,7 +14,7 @@ public class IncidenceTest
 	
 	private static final long ID=1L;
 	private static final long ROOM_ID=1L;
-	private static final Date DAY=Date.valueOf("20/01/2013");
+	private static final Date DAY= new Date(System.currentTimeMillis());
 	private static final long SESSION_ID=1L;
 	private static final String DESCRIPTION="The lights don't work";
 	
