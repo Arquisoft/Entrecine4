@@ -21,7 +21,7 @@ import com.entrecine4.persistence.UserDAO;
 public class UserDaoTest {
 	
 	private static UserDAO dao = new UserJdbcDAO();
-	private static Connection con = null; //TODO: we need the connection here
+	private static Connection con = null;
 	
 	/**
 	 * Method before all test

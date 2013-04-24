@@ -5,21 +5,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.sql.DataSource;
-
-import com.mchange.v2.c3p0.DataSources;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class Jdbc {
 
-	private static DataSource pooled;
+	private static ComboPooledDataSource cpds;
 
-	public static Connection getConnection() throws SQLException {
-		if (pooled == null) {
-			DataSource unpooled = DataSources.unpooledDataSource(
-					"jdbc:mysql://ip/as", "user", "pass");
-			pooled = DataSources.pooledDataSource(unpooled);
+	public static Connection getConnection() {
+		if (cpds == null) {
+			PropertiesReader.setFile("connection.properties");
+			
+			cpds = new ComboPooledDataSource();
+			cpds.setInitialPoolSize(Integer.parseInt(PropertiesReader.get("INITIAL_POOL_SIZE")));
+			cpds.setMinPoolSize(Integer.parseInt(PropertiesReader.get("MIN_POOL_SIZE")));
+			cpds.setMaxPoolSize(Integer.parseInt(PropertiesReader.get("MAX_POOL_SIZE")));
+			cpds.setJdbcUrl(PropertiesReader.get("DRIVER")+"/"+PropertiesReader.get("DBNAME"));
+			cpds.setUser(PropertiesReader.get("USER"));
+	    	cpds.setPassword(PropertiesReader.get("PASS"));
+			
+			PropertiesReader.setFile("sql.properties");
 		}
-		return pooled.getConnection();
+		try {
+			return cpds.getConnection();
+		} catch (SQLException e) {
+			;
+		}
+		return null;
 	}
 
 	public static void close(ResultSet rs, Statement st, Connection c) {
