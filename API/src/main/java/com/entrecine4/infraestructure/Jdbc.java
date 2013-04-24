@@ -13,22 +13,28 @@ public class Jdbc {
 
 	public static Connection getConnection() {
 		if (cpds == null) {
-			PropertiesReader.setFile("connection.properties");
+			try {
+				PropertiesReader.setFile("connection.properties");		
+				
+				cpds = new ComboPooledDataSource();
+				cpds.setJdbcUrl(PropertiesReader.get("URL")+"/"+PropertiesReader.get("DBNAME"));
+				cpds.setUser(PropertiesReader.get("USER"));
+				cpds.setPassword(PropertiesReader.get("PASS"));
+				cpds.setInitialPoolSize(Integer.parseInt(PropertiesReader.get("INITIAL_POOL_SIZE")));
+				cpds.setMinPoolSize(Integer.parseInt(PropertiesReader.get("MIN_POOL_SIZE")));
+				cpds.setMaxPoolSize(Integer.parseInt(PropertiesReader.get("MAX_POOL_SIZE")));		
+				
+				PropertiesReader.setFile("sql.properties");
+				
+				return cpds.getConnection();
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			cpds = new ComboPooledDataSource();
-			cpds.setInitialPoolSize(Integer.parseInt(PropertiesReader.get("INITIAL_POOL_SIZE")));
-			cpds.setMinPoolSize(Integer.parseInt(PropertiesReader.get("MIN_POOL_SIZE")));
-			cpds.setMaxPoolSize(Integer.parseInt(PropertiesReader.get("MAX_POOL_SIZE")));
-			cpds.setJdbcUrl(PropertiesReader.get("DRIVER")+"/"+PropertiesReader.get("DBNAME"));
-			cpds.setUser(PropertiesReader.get("USER"));
-	    	cpds.setPassword(PropertiesReader.get("PASS"));
-			
-			PropertiesReader.setFile("sql.properties");
-		}
-		try {
-			return cpds.getConnection();
-		} catch (SQLException e) {
-			;
 		}
 		return null;
 	}

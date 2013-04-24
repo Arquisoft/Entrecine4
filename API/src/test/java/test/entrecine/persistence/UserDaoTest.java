@@ -10,6 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.User;
 import com.entrecine4.persistence.UserDAO;
 
@@ -21,7 +22,7 @@ import com.entrecine4.persistence.UserDAO;
 public class UserDaoTest {
 	
 	private static UserDAO dao = new UserJdbcDAO();
-	private static Connection con = null; 
+	private static Connection con = Jdbc.getConnection(); 
 	
 	/**
 	 * Method before all test
