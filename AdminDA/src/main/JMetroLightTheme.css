@@ -663,22 +663,6 @@ src: url('segoeUI.ttf');
 }
 
 
-#btPelicula1 {
-    -fx-background-image: url("images/small/1.jpg");
-    -fx-background-repeat: stretch;  
-    -fx-background-position: center center;
-}
-
-#btPelicula2 {
-    -fx-background-image: url("images/small/2.jpg");
-    -fx-background-repeat: stretch;  
-    -fx-background-position: center center;
-}
-
-#panelPelis{
-    -fx-background-color: linear-gradient(#F4FBF2, #ffffff);
-
-}
 
 .iniciarSesion{
     -fx-background-color: #FAA226;
