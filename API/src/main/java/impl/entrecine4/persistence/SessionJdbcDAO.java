@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Session;
 import com.entrecine4.persistence.SessionDAO;
@@ -46,9 +47,11 @@ public class SessionJdbcDAO implements SessionDAO
 			result.setId(sessionId);
 			result.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
 			result.setDay(rs.getDate("DIA"));
-			result.setTime(rs.getDouble("HORA"));
+			result.setTime(rs.getDouble("SESION"));
 			result.setRoomId(rs.getLong("SALA"));
 		}
+		
+		Jdbc.close(rs, pst);
 		
 		return result;
 	}
@@ -67,11 +70,13 @@ public class SessionJdbcDAO implements SessionDAO
 			tempSession.setId(rs.getLong("ID"));
 			tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
 			tempSession.setDay(rs.getDate("DIA"));
-			tempSession.setTime(rs.getDouble("HORA"));
+			tempSession.setTime(rs.getDouble("SESION"));
 			tempSession.setRoomId(rs.getLong("SALA"));
 			
 			result.add(tempSession);
 		}
+		
+		Jdbc.close(rs, pst);
 		
 		return result;
 	}
@@ -86,6 +91,8 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.setLong(4, session.getRoomId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	@Override
@@ -99,6 +106,8 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.setLong(5, session.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	@Override
@@ -108,5 +117,7 @@ public class SessionJdbcDAO implements SessionDAO
 		pst.setLong(1, session.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 }

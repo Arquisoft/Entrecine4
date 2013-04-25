@@ -5,18 +5,20 @@ import impl.entrecine4.persistence.RoomJdbcDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
 public class RoomDaoTest 
 {
 	private static RoomDAO dao=new RoomJdbcDAO();
-	private static Connection con=null;
+	private static Connection con=Jdbc.getConnection();
 
 	/**
 	 * Method before all test
@@ -29,17 +31,17 @@ public class RoomDaoTest
 		con.setAutoCommit(false);
 	}
 	
-	/**
-	 * Method to test the insertion of the same room twice. It must fail
-	 * 
-	 * @throws SQLException
-	 */
-	@Test(expected = SQLException.class)
-	public void testInsertTwo() throws SQLException {
-		Room room = new Room(1L,5,7);
-		dao.save(room);
-		dao.save(room);
-	}
+//	/**
+//	 * Method to test the insertion of the same room twice. It must fail
+//	 * 
+//	 * @throws SQLException
+//	 */
+//	@Test(expected = SQLException.class)
+//	public void testInsertTwo() throws SQLException {
+//		Room room = new Room(1L,5,7);
+//		dao.save(room);
+//		dao.save(room);
+//	}
 
 	/**
 	 * Method to test the insertion and deletion of a room
@@ -51,7 +53,9 @@ public class RoomDaoTest
 		Room room = new Room(1L,5,7);
 		dao.save(room);
 		
-		Room recoveredRoom = dao.get(1);
+		List<Room> temp=dao.getAll();
+		
+		Room recoveredRoom = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals(room.getRows(), recoveredRoom.getRows());
 		assertEquals(room.getColumns(), recoveredRoom.getColumns());
 		
@@ -80,7 +84,11 @@ public class RoomDaoTest
 		Room room = new Room(1L,5,7);
 		dao.save(room);
 		room.setRows(11);
-		Room recoveredRoom = dao.get(2);
+		dao.update(room);
+		
+		List<Room> temp=dao.getAll();
+		
+		Room recoveredRoom = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals(11,recoveredRoom.getRows());
 	}
 

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Incidence;
 import com.entrecine4.persistence.IncidenceDAO;
@@ -49,6 +50,8 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 			result.setDescription(rs.getString("MOTIVO"));
 		}
 		
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -72,6 +75,8 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 			result.add(tempIncidence);
 		}
 		
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -85,6 +90,8 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		pst.setString(4, incidence.getDescription());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	@Override
@@ -98,6 +105,8 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		pst.setLong(5, incidence.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	@Override
@@ -107,6 +116,8 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 		pst.setLong(1, incidence.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 }

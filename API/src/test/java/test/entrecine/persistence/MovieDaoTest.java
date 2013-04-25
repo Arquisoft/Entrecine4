@@ -6,18 +6,20 @@ import impl.entrecine4.persistence.MovieJdbcDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
 public class MovieDaoTest
 {
 	private static MovieDAO dao=new MovieJdbcDAO();
-	private static Connection con=null;
+	private static Connection con=Jdbc.getConnection();
 
 	/**
 	 * Method before all test
@@ -29,18 +31,18 @@ public class MovieDaoTest
 		dao.setConnection(con);
 		con.setAutoCommit(false);
 	}
-	
-	/**
-	 * Method to test the insertion of the same movie twice. It must fail
-	 * 
-	 * @throws SQLException
-	 */
-	@Test(expected = SQLException.class)
-	public void testInsertTwo() throws SQLException {
-		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
-		dao.save(movie);
-		dao.save(movie);
-	}
+//	
+//	/**
+//	 * Method to test the insertion of the same movie twice. It must fail
+//	 * 
+//	 * @throws SQLException
+//	 */
+//	@Test(expected = SQLException.class)
+//	public void testInsertTwo() throws SQLException {
+//		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
+//		dao.save(movie);
+//		dao.save(movie);
+//	}
 
 	/**
 	 * Method to test the insertion and deletion of a movie
@@ -52,7 +54,9 @@ public class MovieDaoTest
 		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
 		dao.save(movie);
 		
-		Movie recoveredMovie = dao.get(1);
+		List<Movie> temp=dao.getAll();
+		
+		Movie recoveredMovie = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals(movie.getName(), recoveredMovie.getName());
 		assertEquals(movie.getSynopsis(), recoveredMovie.getSynopsis());
 		assertEquals(movie.getImgPath(), recoveredMovie.getImgPath());
@@ -85,7 +89,12 @@ public class MovieDaoTest
 		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
 		dao.save(movie);
 		movie.setName("Movie 2");
-		Movie recoveredMovie = dao.get(2);
+		
+		dao.update(movie);
+		
+		List<Movie> temp=dao.getAll();
+		Movie recoveredMovie = dao.get(temp.get(temp.size()-1).getId());
+
 		assertEquals("Movie 2",recoveredMovie.getName());
 	}
 

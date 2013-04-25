@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
@@ -48,9 +49,11 @@ public class MovieJdbcDAO implements MovieDAO
 			result.setSynopsis(rs.getString("SINOPSIS"));
 			result.setImgPath(rs.getString("RUTA_IMAGEN_CARTEL"));
 			result.setMorningPrice(rs.getDouble("PRECIO_MATUTINO"));
-			result.setDailyPrice(rs.getDouble("PRECIO_DIARIO"));
+			result.setDailyPrice(rs.getDouble("PRECIO_TARDE"));
 			result.setNightPrice(rs.getDouble("PRECIO_NOCHE"));
 		}
+		
+		Jdbc.close(rs, pst);
 		
 		return result;
 	}
@@ -74,11 +77,13 @@ public class MovieJdbcDAO implements MovieDAO
 			tempMovie.setSynopsis(rs.getString("SINOPSIS"));
 			tempMovie.setImgPath(rs.getString("RUTA_IMAGEN_CARTEL"));
 			tempMovie.setMorningPrice(rs.getDouble("PRECIO_MATUTINO"));
-			tempMovie.setDailyPrice(rs.getDouble("PRECIO_DIARIO"));
+			tempMovie.setDailyPrice(rs.getDouble("PRECIO_TARDE"));
 			tempMovie.setNightPrice(rs.getDouble("PRECIO_NOCHE"));
 			
 			result.add(tempMovie);
 		}
+		
+		Jdbc.close(rs, pst);
 		
 		return result;
 	}
@@ -98,6 +103,7 @@ public class MovieJdbcDAO implements MovieDAO
 		pst.setDouble(6, movie.getNightPrice());
 		
 		pst.executeUpdate();
+		Jdbc.close(pst);
 	}
 
 	/* (non-Javadoc)
@@ -116,6 +122,7 @@ public class MovieJdbcDAO implements MovieDAO
 		pst.setLong(7, movie.getId());
 		
 		pst.executeUpdate();
+		Jdbc.close(pst);
 	}
 
 	/* (non-Javadoc)
@@ -128,5 +135,6 @@ public class MovieJdbcDAO implements MovieDAO
 		pst.setLong(1, movie.getId());
 		
 		pst.executeUpdate();
+		Jdbc.close(pst);
 	}
 }

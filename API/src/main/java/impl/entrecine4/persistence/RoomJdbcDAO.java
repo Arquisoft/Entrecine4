@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
@@ -48,6 +49,8 @@ public class RoomJdbcDAO implements RoomDAO
 			result.setColumns(rs.getInt("COLUMNAS"));
 		}
 		
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -72,6 +75,8 @@ public class RoomJdbcDAO implements RoomDAO
 			result.add(room);
 		}
 		
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -86,6 +91,8 @@ public class RoomJdbcDAO implements RoomDAO
 		pst.setInt(2, room.getColumns());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/* (non-Javadoc)
@@ -100,6 +107,8 @@ public class RoomJdbcDAO implements RoomDAO
 		pst.setLong(3,room.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/* (non-Javadoc)
@@ -112,5 +121,7 @@ public class RoomJdbcDAO implements RoomDAO
 		pst.setLong(1, room.getId());
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 }

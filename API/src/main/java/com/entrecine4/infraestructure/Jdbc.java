@@ -34,17 +34,17 @@ public class Jdbc {
 				cpds.setMaxPoolSize(Integer.parseInt(PropertiesReader.get("MAX_POOL_SIZE")));		
 				
 				PropertiesReader.setFile("sql.properties");
-				
-				return cpds.getConnection();
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			}			
 		}
+		
+		try {
+			return cpds.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
