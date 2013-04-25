@@ -90,7 +90,7 @@ public class SessionStateDaoTest {
 	 * @throws SQLException
 	 */
 	@After
-	public void rollBack() throws SQLException {
+	public void rollback() throws SQLException {
 		con.rollback();
 	}
 
