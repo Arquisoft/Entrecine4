@@ -84,9 +84,10 @@ public class RoomDaoTest
 		Room room = new Room(1L,5,7);
 		dao.save(room);
 		room.setRows(11);
-		dao.update(room);
 		
 		List<Room> temp=dao.getAll();
+		room.setId(temp.get(temp.size()-1).getId());
+		dao.update(room);
 		
 		Room recoveredRoom = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals(11,recoveredRoom.getRows());

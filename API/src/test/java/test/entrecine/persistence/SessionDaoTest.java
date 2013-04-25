@@ -88,9 +88,11 @@ public class SessionDaoTest
 		Session session = new Session(1L,"Movie",Date.valueOf("2013-04-20"),12,1L);
 		dao.save(session);
 		session.setMovieTitle("Movie 2");
+
+		List<Session> temp=dao.getAll();
+		session.setId(temp.get(temp.size()-1).getId());
 		dao.update(session);
 		
-		List<Session> temp=dao.getAll();
 		
 		Session recoveredSession = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals("Movie 2",recoveredSession.getMovieTitle());

@@ -86,10 +86,11 @@ public class IncidenceDaoTest
 	public void testUpdate() throws SQLException {
 		Incidence incidence = new Incidence(1L,1L,Date.valueOf("2013-04-20"),1L,"Just an incidence");
 		dao.save(incidence);
-		incidence.setDescription("Just an incidence again");
-		dao.update(incidence);
-		
+
 		List<Incidence> temp=dao.getAll();
+		incidence.setDescription("Just an incidence again");
+		incidence.setId(temp.get(temp.size()-1).getId());
+		dao.update(incidence);
 		
 		Incidence recoveredIncidence = dao.get(temp.get(temp.size()-1).getId());
 		assertEquals("Just an incidence again",recoveredIncidence.getDescription());
