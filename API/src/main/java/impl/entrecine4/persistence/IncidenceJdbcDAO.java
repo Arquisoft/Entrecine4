@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Incidence;
 import com.entrecine4.persistence.IncidenceDAO;
 
@@ -25,6 +26,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	public void setConnection(Connection connection) 
 	{
 		this.connection=connection;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	{
 		Incidence result=null;
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_INCIDENCE_BY_ID"));
 		pst.setLong(1, incidenceId);
 		
 		rs=pst.executeQuery();
@@ -55,7 +57,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	{
 		List<Incidence> result=new ArrayList<Incidence>();
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_ALL_INCIDENCES"));
 		
 		rs=pst.executeQuery();
 		while(rs.next())
@@ -76,7 +78,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	@Override
 	public void save(Incidence incidence) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("INSERT_INCIDENCE"));
 		pst.setLong(1, incidence.getRoomId());
 		pst.setDate(2, (Date) incidence.getDay());
 		pst.setLong(3, incidence.getSessionId());
@@ -88,7 +90,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	@Override
 	public void update(Incidence incidence) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("UPDATE_INCIDENCE"));
 		pst.setLong(1, incidence.getRoomId());
 		pst.setDate(2, (Date) incidence.getDay());
 		pst.setLong(3, incidence.getSessionId());
@@ -101,7 +103,7 @@ public class IncidenceJdbcDAO implements IncidenceDAO
 	@Override
 	public void delete(Incidence incidence) throws SQLException
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("DELETE_INCIDENCE"));
 		pst.setLong(1, incidence.getId());
 		
 		pst.executeUpdate();

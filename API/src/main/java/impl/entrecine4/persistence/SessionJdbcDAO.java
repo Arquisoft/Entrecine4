@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Session;
 import com.entrecine4.persistence.SessionDAO;
 
@@ -24,6 +25,7 @@ public class SessionJdbcDAO implements SessionDAO
 	public void setConnection(Connection connection) 
 	{
 		this.connection=connection;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	/* (non-Javadoc)
@@ -34,7 +36,7 @@ public class SessionJdbcDAO implements SessionDAO
 	{
 		Session result=null;
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSION_BY_ID"));
 		pst.setLong(1, sessionId);
 		
 		rs=pst.executeQuery();
@@ -56,7 +58,7 @@ public class SessionJdbcDAO implements SessionDAO
 	{
 		List<Session> result=new ArrayList<Session>();
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_ALL_SESSIONS"));
 		
 		rs=pst.executeQuery();
 		while(rs.next())
@@ -77,7 +79,7 @@ public class SessionJdbcDAO implements SessionDAO
 	@Override
 	public void save(Session session) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("INSERT_SESSION"));
 		pst.setString(1,session.getMovieTitle());
 		pst.setDate(2,(java.sql.Date) session.getDay());
 		pst.setDouble(3, session.getTime());
@@ -89,7 +91,7 @@ public class SessionJdbcDAO implements SessionDAO
 	@Override
 	public void update(Session session) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("UPDATE_SESSION"));
 		pst.setString(1,session.getMovieTitle());
 		pst.setDate(2,(java.sql.Date) session.getDay());
 		pst.setDouble(3, session.getTime());
@@ -102,7 +104,7 @@ public class SessionJdbcDAO implements SessionDAO
 	@Override
 	public void delete(Session session) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("DELETE_SESSION"));
 		pst.setLong(1, session.getId());
 		
 		pst.executeUpdate();

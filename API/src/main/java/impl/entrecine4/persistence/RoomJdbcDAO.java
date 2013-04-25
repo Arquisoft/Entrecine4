@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
@@ -24,6 +25,7 @@ public class RoomJdbcDAO implements RoomDAO
 	public void setConnection(Connection connection)
 	{
 		this.connection=connection;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	/* (non-Javadoc)
@@ -34,7 +36,7 @@ public class RoomJdbcDAO implements RoomDAO
 	{
 		Room result=null;
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_ROOM_BY_ID"));
 		pst.setLong(1, roomId);
 		
 		rs=pst.executeQuery();		
@@ -57,7 +59,7 @@ public class RoomJdbcDAO implements RoomDAO
 	{
 		List<Room> result=new ArrayList<Room>();
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_ALL_ROOMS"));
 		
 		rs=pst.executeQuery();
 		while(rs.next())
@@ -79,7 +81,7 @@ public class RoomJdbcDAO implements RoomDAO
 	@Override
 	public void save(Room room) throws SQLException
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("INSERT_ROOM"));
 		pst.setInt(1, room.getRows());
 		pst.setInt(2, room.getColumns());
 		
@@ -92,7 +94,7 @@ public class RoomJdbcDAO implements RoomDAO
 	@Override
 	public void update(Room room) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("UPDATE_ROOM"));
 		pst.setInt(1, room.getRows());
 		pst.setInt(2, room.getColumns());
 		pst.setLong(3,room.getId());
@@ -106,7 +108,7 @@ public class RoomJdbcDAO implements RoomDAO
 	@Override
 	public void delete(Room room) throws SQLException
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("DELETE_ROOM"));
 		pst.setLong(1, room.getId());
 		
 		pst.executeUpdate();

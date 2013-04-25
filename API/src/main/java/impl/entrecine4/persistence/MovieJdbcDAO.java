@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
@@ -24,6 +25,7 @@ public class MovieJdbcDAO implements MovieDAO
 	public void setConnection(Connection connection)
 	{
 		this.connection=connection;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	/* (non-Javadoc)
@@ -34,7 +36,7 @@ public class MovieJdbcDAO implements MovieDAO
 	{
 		Movie result=null;
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_MOVIE_BY_ID"));
 		pst.setLong(1, movieId);
 		
 		rs=pst.executeQuery();
@@ -61,7 +63,7 @@ public class MovieJdbcDAO implements MovieDAO
 	{
 		List<Movie> result=new ArrayList<Movie>();
 		
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("GET_ALL_MOVIES"));
 		
 		rs=pst.executeQuery();
 		while(rs.next())
@@ -87,7 +89,7 @@ public class MovieJdbcDAO implements MovieDAO
 	@Override
 	public void save(Movie movie) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("INSERT_MOVIE"));
 		pst.setString(1, movie.getName());
 		pst.setString(2, movie.getSynopsis());
 		pst.setString(3, movie.getImgPath());
@@ -104,7 +106,7 @@ public class MovieJdbcDAO implements MovieDAO
 	@Override
 	public void update(Movie movie) throws SQLException 
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("UPDATE_MOVIE"));
 		pst.setString(1, movie.getName());
 		pst.setString(2, movie.getSynopsis());
 		pst.setString(3, movie.getImgPath());
@@ -122,7 +124,7 @@ public class MovieJdbcDAO implements MovieDAO
 	@Override
 	public void delete(Movie movie) throws SQLException
 	{
-		pst=connection.prepareStatement("SQL using a .properties file");
+		pst=connection.prepareStatement(PropertiesReader.get("DELETE_MOVIE"));
 		pst.setLong(1, movie.getId());
 		
 		pst.executeUpdate();
