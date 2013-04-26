@@ -2,21 +2,24 @@ package com.entrecine4.model;
 
 /**
  * User model class, this class will also work as DTO
+ * 
  * @author Arquisoft - Entrecine 4
  */
 public class User {
-	
+
 	private long id;
 	private String username;
 	private String password;
-	
+
 	/**
 	 * Constructor without parameters
 	 */
-	public User() {}
+	public User() {
+	}
 
 	/**
 	 * Constructor with all parameters
+	 * 
 	 * @param id
 	 * @param username
 	 * @param password
@@ -29,6 +32,7 @@ public class User {
 
 	/**
 	 * Getter for id property
+	 * 
 	 * @return the id
 	 */
 	public long getId() {
@@ -37,7 +41,9 @@ public class User {
 
 	/**
 	 * Setter for id property
-	 * @param id the id to set
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -45,6 +51,7 @@ public class User {
 
 	/**
 	 * Getter for username property
+	 * 
 	 * @return the username
 	 */
 	public String getUsername() {
@@ -53,7 +60,9 @@ public class User {
 
 	/**
 	 * Setter for username property
-	 * @param username the username to set
+	 * 
+	 * @param username
+	 *            the username to set
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -61,6 +70,7 @@ public class User {
 
 	/**
 	 * Getter for password property
+	 * 
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -69,12 +79,23 @@ public class User {
 
 	/**
 	 * Setter for password property
-	 * @param password the password to set
+	 * 
+	 * @param password
+	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+	/**
+	 * Check if any field is empty
+	 * 
+	 * @return true if there's some field empty
+	 */
+	public boolean hasEmptyFields() {
+		if (this.id == 0 || this.username == null || this.password == null)
+			return true;
+		return false;
+	}
 
 }

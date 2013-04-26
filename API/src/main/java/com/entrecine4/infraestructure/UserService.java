@@ -7,6 +7,14 @@ import com.entrecine4.model.User;
 public interface UserService {
 
 	/**
+	 * Returns the user if username exists in the DB and the password is correct
+	 * @param username User's username
+	 * @param password User's password
+	 * @return the user
+	 */
+	public User login(String username, String password);
+	
+	/**
 	 * Returns the user requested by id
 	 * 
 	 * @param id
