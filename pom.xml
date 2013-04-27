@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.uniovi.asw</groupId>
 	<artifactId>Entrecine4</artifactId>
@@ -114,7 +114,7 @@
 									</goals>
 								</pluginExecutionFilter>
 								<action>
-									<ignore />
+									<ignore/>
 								</action>
 							</pluginExecution>
 							<pluginExecution>
@@ -127,7 +127,7 @@
 									</goals>
 								</pluginExecutionFilter>
 								<action>
-									<ignore />
+									<ignore/>
 								</action>
 							</pluginExecution>
 						</pluginExecutions>
@@ -241,7 +241,7 @@
 			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
 			<url>http://www.gnu.org/licenses/lgpl.html</url>
 			<distribution>repo</distribution>
-			<comments />
+			<comments/>
 		</license>
 	</licenses>
 
@@ -258,7 +258,7 @@
 				<role>Developer</role>
 			</roles>
 			<timezone>2</timezone>
-			<properties />
+			<properties/>
 		</developer>
 		<developer>
 			<id>albertolm</id>
@@ -271,7 +271,7 @@
 				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
-			<properties />
+			<properties/>
 		</developer>
 		<developer>
 			<id>AdolfoFernandezSuarez</id>
@@ -284,7 +284,7 @@
 				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
-			<properties />
+			<properties/>
 		</developer>
 		<developer>
 			<id>herminiogg</id>
@@ -297,7 +297,7 @@
 				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
-			<properties />
+			<properties/>
 		</developer>
 		<developer>
 			<id>danielloureda</id>
@@ -310,7 +310,7 @@
 				<role>Student</role>
 			</roles>
 			<timezone>2</timezone>
-			<properties />
+			<properties/>
 		</developer>
 	</developers>
 
@@ -318,5 +318,7 @@
 	<modules>
 		<module>API</module>
 		<module>WebApp</module>
-	</modules>
+    <module>TpvApp</module>
+    <module>AdminDA</module>
+  </modules>
 </project>
