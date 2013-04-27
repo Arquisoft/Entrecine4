@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="fxml.GUI_MAIN_SCREENController">
+  <children>
+    <ScrollPane id="ScrollPane" prefViewportHeight="369.0" prefViewportWidth="438.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="178.0">
+      <content>
+        <TilePane hgap="40.0" minHeight="245.0" prefHeight="369.0" prefWidth="438.0" style="-fx-background-color: #fff;" vgap="40.0">
+          <children>
+            <Button fx:id="btGestionarPeliculas" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Gestionar Películas">
+              <stylesheets>
+                <URL value="@JMetroLightTheme.css" />
+              </stylesheets>
+              <TilePane.margin>
+                <Insets />
+              </TilePane.margin>
+            </Button>
+            <Button fx:id="btGestionarSalas" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Gestionar Salas" />
+            <Button id="btGestionarIncidencias" fx:id="btGestionarPersonal" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Gestionar Personal" />
+            <Button fx:id="btGestionarIncidencias" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Gestionar Incidencias" />
+          </children>
+        </TilePane>
+      </content>
+    </ScrollPane>
+    <Label prefHeight="97.0" prefWidth="628.0" text="Cliente de Administración" AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="43.0">
+      <font>
+        <Font name="Segoe UI Light" size="50.0" />
+      </font>
+    </Label>
+  </children>
+  <stylesheets>
+    <URL value="@JMetroLightTheme.css" />
+  </stylesheets>
+</AnchorPane>

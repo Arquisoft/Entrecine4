@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="fxml.GUI_TPVController">
   <children>
     <Label id="tituloApp" layoutX="14.0" layoutY="14.0" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas">
       <font>
