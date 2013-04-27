@@ -1,11 +1,13 @@
 package es.uniovi.asw.entrecine.cases;
 
 import static org.fest.assertions.Assertions.assertThat;
+
+import com.entrecine4.Reservation;
+
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dada;
 import cucumber.api.java.es.Entonces;
 import cucumber.runtime.PendingException;
-import es.uniovi.asw.entrecine.Reservation;
 
 public class ReservasSteps {
 
