@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 /**
  * FXML Controller class
  *
- * @author Herminio
+ * @author Arquisoft - Entrecine4
  */
 public class MainWindowController implements Initializable {
     @FXML
