@@ -9,15 +9,12 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="fxml.GUI_TPVController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
   <children>
     <Label id="tituloApp" layoutX="14.0" layoutY="14.0" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas">
       <font>
         <Font name="Segoe UI Light" size="40.0" />
       </font>
-      <stylesheets>
-        <URL value="@JMetroLightTheme.css" />
-      </stylesheets>
     </Label>
     <Button fx:id="btSeleccionarPelicula" layoutX="39.0" layoutY="108.0" mnemonicParsing="false" prefWidth="136.0" text="Seleccionar Película" />
     <Label fx:id="peliculaSeleccionada" layoutX="195.0" layoutY="113.0" text="----" />
@@ -70,12 +67,6 @@
           </children>
         </VBox>
       </children>
-      <stylesheets>
-        <URL value="@JMetroLightTheme.css" />
-      </stylesheets>
     </TilePane>
   </children>
-  <stylesheets>
-    <URL value="@JMetroLightTheme.css" />
-  </stylesheets>
 </AnchorPane>

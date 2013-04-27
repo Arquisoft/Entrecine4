@@ -14,11 +14,11 @@ public class MainApp extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        String fxmlFile = "/fxml/GUI_TPV.fxml";
+        String fxmlFile = "/fxml/login.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        Scene scene = new Scene(rootNode, 400, 200);
+        Scene scene = new Scene(rootNode);
         scene.getStylesheets().add("/styles/JMetroLightTheme.css");
 
         stage.setTitle("Login - Entrecine4");

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.entrecine4;
 
 import java.net.URL;
@@ -18,7 +14,7 @@ import javafx.scene.text.Font;
  *
  * @author Herminio
  */
-public class GUI_TPVController implements Initializable {
+public class MainWindowController implements Initializable {
     @FXML
     private Button btSeleccionarPelicula;
     @FXML

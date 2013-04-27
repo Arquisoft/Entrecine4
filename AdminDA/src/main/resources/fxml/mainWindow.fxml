@@ -9,16 +9,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="fxml.GUI_MAIN_SCREENController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
   <children>
     <ScrollPane id="ScrollPane" prefViewportHeight="369.0" prefViewportWidth="438.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="178.0">
       <content>
         <TilePane hgap="40.0" minHeight="245.0" prefHeight="369.0" prefWidth="438.0" style="-fx-background-color: #fff;" vgap="40.0">
           <children>
             <Button fx:id="btGestionarPeliculas" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Gestionar Películas">
-              <stylesheets>
-                <URL value="@JMetroLightTheme.css" />
-              </stylesheets>
               <TilePane.margin>
                 <Insets />
               </TilePane.margin>
@@ -36,7 +33,4 @@
       </font>
     </Label>
   </children>
-  <stylesheets>
-    <URL value="@JMetroLightTheme.css" />
-  </stylesheets>
 </AnchorPane>

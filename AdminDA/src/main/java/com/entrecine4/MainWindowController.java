@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
  *
  * @author Herminio
  */
-public class GUI_MAIN_SCREENController implements Initializable {
+public class MainWindowController implements Initializable {
     @FXML
     private Button btGestionarPeliculas;
     @FXML
