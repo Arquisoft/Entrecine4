@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Reserva - Entrecine4</title>
-<link rel="stylesheet" type="text/css" href="reservaButacas.css">
+<meta HTTP-EQUIV="REFRESH" content="5; url=index.html">
+<title>¡Gracias por realizar su reserva! - Entrecine4</title>
+<link rel="stylesheet" type="text/css" href="finReserva.css">
 
 <script type="text/javascript">
 window.onload = function(){
@@ -15,24 +16,7 @@ a.onclick = function open_in_new_tab()
 }
 }
 </script>
-<script type="text/javascript">
-    
-    function muestraButacas(filas, columnas){
-        
-        var html = "";
-        for(var i = filas; i > 0; i--){
-            for(var j = 1; j <= columnas; j++){
-           
-            html += " <button class=\"butaca\" type=\"button\" title=\"fila " + i + " columna " + j + "\" ><img src=\"images/butaca.png\" /></button>";
-        }
-        html += "<br>"
 
-        }
-        return html;
-    }
-
-    
-</script>
 <script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
 
 </head>
@@ -77,23 +61,10 @@ a.onclick = function open_in_new_tab()
              </div>
             </div>
                 <!--FIN MODAL LOGIN -->
-                <div id="leyendaAyuda">
-                    <img src="images/butaca.png" />   butaca sin reservar  <img src="images/butacaReservada.png" />  butaca ya reservada <img src="images/butacaSeleccionada.png" />    butaca seleccionada
+                <div id="contenedorAgradecimiento">
+                <h1>Gracias por Realizar su reserva con Entrecine4!</h1>
+                <h3>En breve le redigiremos a la página principal...</h3>
                 </div>
-                <div id="elegirSala">
-                    <a href="#" class="botonesSalas">Sala 1</a>
-                    <a href="#" class="botonesSalas">Sala 2</a>
-                </div>
-
-                <div id="estructuraCine">
-                <script type="text/javascript">
-                document.writeln(muestraButacas(10 ,15));
-                </script>
-                </div>
-                <!-- Se pueden ir marcando las butacas reservadas cambiando el color por 
-                la imagen images/butacaSeleccionada.png -->
-                <div id="botonReserva">
-                <a href="#" class="botonReserva">Realizar Reserva</a>
             </div>
             </div>
 
