@@ -16,6 +16,7 @@ public interface StaffService {
 	 * Retrieve a employee
 	 * 
 	 * @param id
+	 * 			Employee ID
 	 * @return the employee
 	 */
 	public Employee findById(Long id);
@@ -23,12 +24,14 @@ public interface StaffService {
 	/**
 	 * Save an employee
 	 * @param employee
+	 * 					Employee to be saved
 	 */
 	public void saveEmployee(Employee employee);
 	
 	/**
 	 * Update an employee
 	 * @param employee
+	 * 					Employee to be updated
 	 */
 	public void updateEmployee(Employee employee);
 	
@@ -36,6 +39,7 @@ public interface StaffService {
 	/**
 	 * Delete an employee
 	 * @param employee
+	 * 					Employee to be deleted
 	 */
 	public void deleteEmployee(Employee employee);
 

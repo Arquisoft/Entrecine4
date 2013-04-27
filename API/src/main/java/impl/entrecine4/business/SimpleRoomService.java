@@ -14,6 +14,9 @@ public class SimpleRoomService implements RoomService {
 	private RoomDAO dao = new SimplePersistenceFactory()
 	.createRoomDAO();
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.RoomService#getRooms()
+	 */
 	@Override
 	public List<Room> getRooms() {
 		try {
@@ -23,6 +26,9 @@ public class SimpleRoomService implements RoomService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.RoomService#findById(java.lang.Long)
+	 */
 	@Override
 	public Room findById(Long id) {
 		try {
@@ -32,6 +38,9 @@ public class SimpleRoomService implements RoomService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.RoomService#saveRoom(com.entrecine4.model.Room)
+	 */
 	@Override
 	public void saveRoom(Room room) {
 		try {
@@ -41,6 +50,9 @@ public class SimpleRoomService implements RoomService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.RoomService#updateRoom(com.entrecine4.model.Room)
+	 */
 	@Override
 	public void updateRoom(Room room) {
 		try {
@@ -50,6 +62,9 @@ public class SimpleRoomService implements RoomService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.RoomService#deleteRoom(com.entrecine4.model.Room)
+	 */
 	@Override
 	public void deleteRoom(Room room) {
 		try {

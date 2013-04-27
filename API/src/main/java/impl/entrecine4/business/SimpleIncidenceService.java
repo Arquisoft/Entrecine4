@@ -14,8 +14,11 @@ public class SimpleIncidenceService implements IncidenceService {
 	private IncidenceDAO dao = new SimplePersistenceFactory()
 			.createIncidenceDAO();
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.IncidenceService#getIncidences()
+	 */
 	@Override
-	public List<Incidence> getInicidences()  {
+	public List<Incidence> getIncidences()  {
 		try {
 			return dao.getAll();
 		} catch (SQLException e) {
@@ -23,6 +26,9 @@ public class SimpleIncidenceService implements IncidenceService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.IncidenceService#findById(java.lang.Long)
+	 */
 	@Override
 	public Incidence findById(Long id) {
 		try {
@@ -32,6 +38,9 @@ public class SimpleIncidenceService implements IncidenceService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.IncidenceService#saveIncidence(com.entrecine4.model.Incidence)
+	 */
 	@Override
 	public void saveIncidence(Incidence incidence) {
 		try {
@@ -41,6 +50,9 @@ public class SimpleIncidenceService implements IncidenceService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.IncidenceService#updateIncidence(com.entrecine4.model.Incidence)
+	 */
 	@Override
 	public void updateIncidence(Incidence incidence) {
 		try {
@@ -50,6 +62,9 @@ public class SimpleIncidenceService implements IncidenceService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.IncidenceService#deleteIncidence(com.entrecine4.model.Incidence)
+	 */
 	@Override
 	public void deleteIncidence(Incidence incidence) {
 		try {

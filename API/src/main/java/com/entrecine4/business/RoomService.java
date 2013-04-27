@@ -15,6 +15,7 @@ public interface RoomService {
 	/**
 	 * Retrieve one room
 	 * @param id
+	 * 			Room ID
 	 * @return the room
 	 */
 	public Room findById(Long id);
@@ -22,18 +23,21 @@ public interface RoomService {
 	/**
 	 * Save a room
 	 * @param room
+	 * 			  Room to be saved
 	 */
 	public void saveRoom(Room room);
 	
 	/**
 	 * Update a room
 	 * @param room
+	 * 			  Room to be updated
 	 */
 	public void updateRoom(Room room);
 	
 	/**
 	 * Delete a room
 	 * @param room
+	 * 				Room to be deleted
 	 */
 	public void deleteRoom(Room room);
 }

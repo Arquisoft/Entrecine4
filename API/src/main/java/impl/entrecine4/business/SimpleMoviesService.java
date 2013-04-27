@@ -13,6 +13,9 @@ public class SimpleMoviesService implements MoviesService {
 
 	private MovieDAO dao = new SimplePersistenceFactory().createMovieDAO();
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#getMovies()
+	 */
 	@Override
 	public List<Movie> getMovies() {
 		try {
@@ -22,6 +25,9 @@ public class SimpleMoviesService implements MoviesService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#findById(java.lang.Long)
+	 */
 	@Override
 	public Movie findById(Long id) {
 		try {
@@ -31,6 +37,9 @@ public class SimpleMoviesService implements MoviesService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#saveMovie(com.entrecine4.model.Movie)
+	 */
 	@Override
 	public void saveMovie(Movie movie) {
 		try {
@@ -40,6 +49,9 @@ public class SimpleMoviesService implements MoviesService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#updateMovie(com.entrecine4.model.Movie)
+	 */
 	@Override
 	public void updateMovie(Movie movie) {
 		try {
@@ -49,6 +61,9 @@ public class SimpleMoviesService implements MoviesService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#deleteMovie(com.entrecine4.model.Movie)
+	 */
 	@Override
 	public void deleteMovie(Movie movie) {
 		try {

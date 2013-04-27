@@ -13,6 +13,9 @@ public class SimpleStaffService implements StaffService {
 
 	EmployeeDAO dao = new SimplePersistenceFactory().createEmployeeDAO();
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.StaffService#getStaff()
+	 */
 	@Override
 	public List<Employee> getStaff() {
 		try {
@@ -22,6 +25,9 @@ public class SimpleStaffService implements StaffService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.StaffService#findById(java.lang.Long)
+	 */
 	@Override
 	public Employee findById(Long id) {
 		try {
@@ -31,6 +37,9 @@ public class SimpleStaffService implements StaffService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.StaffService#saveEmployee(com.entrecine4.model.Employee)
+	 */
 	@Override
 	public void saveEmployee(Employee employee) {
 		try {
@@ -40,6 +49,9 @@ public class SimpleStaffService implements StaffService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.StaffService#updateEmployee(com.entrecine4.model.Employee)
+	 */
 	@Override
 	public void updateEmployee(Employee employee) {
 		try {
@@ -49,6 +61,9 @@ public class SimpleStaffService implements StaffService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.StaffService#deleteEmployee(com.entrecine4.model.Employee)
+	 */
 	@Override
 	public void deleteEmployee(Employee employee) {
 		try {

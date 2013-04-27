@@ -15,6 +15,7 @@ public interface MoviesService {
 	/**
 	 * Retrieve one movie
 	 * @param id
+	 * 			Movie ID	
 	 * @return the movie
 	 */
 	public Movie findById(Long id);
@@ -22,18 +23,21 @@ public interface MoviesService {
 	/**
 	 * Save a move
 	 * @param movie
+	 * 				Movie to be saved
 	 */
 	public void saveMovie(Movie movie);
 	
 	/**
 	 * Update a movie
 	 * @param movie
+	 * 				Movie to be updated
 	 */
 	public void updateMovie(Movie movie);
 	
 	/**
 	 * Delete a movie
 	 * @param movie
+	 * 				Movie to be deleted
 	 */
 	public void deleteMovie(Movie movie);
 
