@@ -1,20 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>es.uniovi.asw</groupId>
-    <artifactId>Entrecine4</artifactId>
-    <version>0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>es.uniovi.asw.webapp</groupId>
-  <artifactId>WebApp</artifactId>
-  <packaging>war</packaging>
-  <name>Webapp</name>
-  <description>Web Application</description>
-  <dependencies>
-  	<dependency>
-  		<groupId>es.uniovi.asw.api</groupId>
-  		<artifactId>API</artifactId>
-  		<version>0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>es.uniovi.asw</groupId>
+		<artifactId>Entrecine4</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>es.uniovi.asw.webapp</groupId>
+	<artifactId>WebApp</artifactId>
+	<packaging>war</packaging>
+	<name>Webapp</name>
+	<description>Web Application</description>
+	<dependencies>
+		<dependency>
+			<groupId>es.uniovi.asw.api</groupId>
+			<artifactId>API</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

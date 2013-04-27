@@ -2,7 +2,8 @@ package es.uniovi.asw.entrecine.cases;
 
 import org.junit.*;
 
-import es.uniovi.asw.entrecine.Reservation;
+import com.entrecine4.Reservation;
+
 
 import static org.fest.assertions.Assertions.*;
 
