@@ -1,0 +1,120 @@
+@(id: Long)
+
+<link rel="stylesheet" type="text/css" href="pelicula.css">
+
+<script type="text/javascript">
+    window.onload = function(){
+    var a = document.getElementById("linkCartelera");
+    a.onclick = function open_in_new_tab()
+    {
+    var win=window.open("index.html", '_blank');
+    win.focus();
+    }
+    }
+</script>
+<script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
+
+@main("Cartelera - Entrecine4"){
+<div id="wrapper">
+    <div id="cabecera">
+        <div id="bloqueCabeceraIzq">
+            <h1> Entrecine </h1>
+            <h2> Experimenta el realismo y la emoción </h2>
+        </div>
+        <div id="bloqueCabeceraDcha">
+            <div id="login">
+                <a href="#openModal">Iniciar Sesion</a>
+
+
+            </div>
+            <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
+        </div>
+    </div>
+    <div id="cuerpo">
+        <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Inicio de Sesión</h2>
+                <form method="POST" action="#">
+                    <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
+                    <div  class="formularioAlineado">
+                        <input type="text" class="rounded" name="username" size="30" /><br />
+                        <input type="password" class="rounded" name="passwort" size="30" /><br />
+                    </div>
+                    <div align="center">
+                        <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
+                    </div>
+
+                </form>
+                <div align=center>
+                    <button id="registrarse" type="button">Registrarse</button>
+                </div>
+            </div>
+        </div>
+        <!--FIN MODAL LOGIN -->
+        <div id="tituloPelicula">
+            <h1>Facebook: La red Social</h1>
+        </div>
+        <div id="imgPelicula" class="centralBloque">
+            <img src="images/big/the_social_network.jpg" height="300" width="240">
+        </div>
+        <div id="infoPelicula" class="centralBloque">
+            <h3>Sinopsis</h3>
+            <p>Una noche de otoño del año 2003, Mark Zuckerberg, alumno de Harvard y genio de la programación, se sienta a su ordenador y con empeño y entusiasmo comienza a desarrollar una nueva idea. En un furor de blogging y programación, lo que comenzó en la habitación de su colegio mayor pronto se convirtió en una red social global y una revolución en la comunicación. Seis años y 500 millones de amigos después, Mark Zuckerberg es el billonario más joven de la historia... pero para este emprendedor, el éxito ha supuesto complicaciones personales y legales. </p>
+        </div>
+        <div id="reserva">
+            <h3>Reserva de entradas</h3>
+            <table id="tablaReserva" >
+                <tr>
+                    <td></td>
+                    <td class="resaltarTabla">día 1</td>
+                    <td class="resaltarTabla">día 2</td>
+                    <td class="resaltarTabla">día 3</td>
+                    <td class="resaltarTabla">día 4</td>
+                    <td class="resaltarTabla">día 5</td>
+                </tr>
+                <tr>
+                    <td class="resaltarTabla">sesión 10</td>
+                    <td><button type="button">s10</button></td>
+                    <td><button type="button">s10</button></td>
+                    <td><button type="button">s10</button></td>
+                    <td><button type="button">s10</button></td>
+                    <td><button type="button">s10</button></td>
+                </tr>
+                <tr>
+                    <td class="resaltarTabla">sesión 17</td>
+                    <td><button type="button">s17</button></td>
+                    <td><button type="button">s17</button></td>
+                    <td><button type="button">s17</button></td>
+                    <td><button type="button">s17</button></td>
+                    <td><button type="button">s17</button></td>
+                </tr>
+                <tr>
+                    <td class="resaltarTabla">sesión 20</td>
+                    <td><button type="button">s20</button></td>
+                    <td><button type="button">s20</button></td>
+                    <td><button type="button">s20</button></td>
+                    <td><button type="button">s20</button></td>
+                    <td><button type="button">s20</button></td>
+                </tr>
+                <tr>
+                    <td class="resaltarTabla">sesión 22</td>
+                    <td><button type="button">s22</button></td>
+                    <td><button type="button">s22</button></td>
+                    <td><button type="button">s22</button></td>
+                    <td><button type="button">s22</button></td>
+                    <td><button type="button">s22</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <h2>Entrecine</h2>
+    </footer>
+</div>
+}
