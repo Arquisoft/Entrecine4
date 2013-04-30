@@ -1,7 +1,6 @@
-@import com.entrecine4.model._
-@(peliculas: List[Movie])
-<link rel="stylesheet" type="text/css" href="index.css">
-<script type="text/javascript">
+@(movies: List[Movie], userForm: Form[User])
+@import helper._
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")"><script type="text/javascript">
     function asignar_Cartelera(){
     var a = document.getElementById("linkCartelera");
     a.onclick = function open_in_new_tab()
@@ -43,7 +42,17 @@
                 <div>
                     <a href="#close" title="Close" class="close">X</a>
                     <h2>Inicio de Sesión</h2>
-                    <form method="POST" action="#">
+             @form(routes.Application.login()){
+                      <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
+                        <div  class="formularioAlineado">
+                            <input type="text" class="rounded" name="username" size="30" /><br />
+                            <input type="password" class="rounded" name="password" size="30" /><br />
+                        </div>
+                        <div align="center">
+                            <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
+                        </div>  
+                } 
+                    <!--<form method="POST" action="#">
                         <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
                         <div  class="formularioAlineado">
                             <input type="text" class="rounded" name="username" size="30" /><br />
@@ -53,7 +62,7 @@
                             <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
                         </div>
 
-                    </form>
+                    </form>-->
                     @form(routes.Application.registro()) {
                         <div align=center>
                             <button id="registrarse" type="submit">Registrarse</button>
@@ -69,11 +78,11 @@
                     Torrente, Combustión</p>
             </div>
 
-            @for( movie <- peliculas){
+            @for( movie <- movies){
             <div class="view view-first">
-                <img src="@movie.getImgPath()" />
+                <img src="@movie.imgPath" />
                 <div class="mask">
-                    <h2>@movie.getName()</h2>
+                    <h2>@movie.name</h2>
                     <p>Género: Acción</p>
                     <a href="http://www.uniovi.es" class="info">Más info</a>
                 </div>
