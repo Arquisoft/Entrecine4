@@ -66,7 +66,7 @@ public class MovieDaoTest
 		assertTrue(movie.getNightPrice()==recoveredMovie.getNightPrice());
 		
 		dao.delete(movie);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class MovieDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Movie movie = dao.get(-1);
-		assertEquals(movie, null);
+		assertEquals(null, movie);
 	}
 
 	/**

@@ -53,11 +53,11 @@ public class SessionStateTest {
 	 * @param the user to test
 	 */
 	private void testAttributes(SessionState sessionState) {
-		assertEquals(sessionState.getRoomId(), ROOM_ID);
-		assertEquals(sessionState.getRow(), ROW);
-		assertEquals(sessionState.getColumn(), COLUMN);
-		assertEquals(sessionState.getDate(), DATE);
-		assertEquals(sessionState.getSession(), SESSION);
+		assertEquals(ROOM_ID, sessionState.getRoomId());
+		assertEquals(ROW, sessionState.getRow());
+		assertEquals(COLUMN, sessionState.getColumn());
+		assertEquals(DATE, sessionState.getDate());
+		assertEquals(SESSION, sessionState.getSession());
 	}
 
 }

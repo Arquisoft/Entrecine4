@@ -64,7 +64,7 @@ public class IncidenceDaoTest
 		assertEquals(incidence.getDescription(), recoveredIncidence.getDescription());
 		
 		dao.delete(incidence);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class IncidenceDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Incidence incidence = dao.get(-1);
-		assertEquals(incidence, null);
+		assertEquals(null, incidence);
 	}
 
 	/**

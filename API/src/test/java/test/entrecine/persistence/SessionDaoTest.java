@@ -65,7 +65,7 @@ public class SessionDaoTest
 		assertEquals(session.getRoomId(), recoveredSession.getRoomId());
 		
 		dao.delete(session);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class SessionDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Session session = dao.get(-1);
-		assertEquals(session, null);
+		assertEquals(null, session);
 	}
 
 	/**
