@@ -52,6 +52,7 @@ public class MovieJdbcDAO implements MovieDAO
 			result.setMorningPrice(rs.getDouble("PRECIO_MATUTINO"));
 			result.setDailyPrice(rs.getDouble("PRECIO_TARDE"));
 			result.setNightPrice(rs.getDouble("PRECIO_NOCHE"));
+			result.setGenre(rs.getString("GENERO"));
 		}
 		
 		Jdbc.close(rs, pst);
@@ -80,6 +81,7 @@ public class MovieJdbcDAO implements MovieDAO
 			tempMovie.setMorningPrice(rs.getDouble("PRECIO_MATUTINO"));
 			tempMovie.setDailyPrice(rs.getDouble("PRECIO_TARDE"));
 			tempMovie.setNightPrice(rs.getDouble("PRECIO_NOCHE"));
+			tempMovie.setGenre(rs.getString("GENERO"));
 			
 			result.add(tempMovie);
 		}
@@ -102,6 +104,7 @@ public class MovieJdbcDAO implements MovieDAO
 		pst.setDouble(4, movie.getMorningPrice());
 		pst.setDouble(5, movie.getDailyPrice());
 		pst.setDouble(6, movie.getNightPrice());
+		pst.setString(7, movie.getGenre());
 		
 		pst.executeUpdate();
 		Jdbc.close(pst);
@@ -120,7 +123,8 @@ public class MovieJdbcDAO implements MovieDAO
 		pst.setDouble(4, movie.getMorningPrice());
 		pst.setDouble(5, movie.getDailyPrice());
 		pst.setDouble(6, movie.getNightPrice());
-		pst.setLong(7, movie.getId());
+		pst.setString(7, movie.getGenre());
+		pst.setLong(8, movie.getId());
 		
 		pst.executeUpdate();
 		Jdbc.close(pst);

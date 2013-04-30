@@ -5,7 +5,8 @@ public class Employee {
 	private long id;
 	private String username;
 	private String password;
-	private int isAdmin; // DB contains 0 or 1 instead of booleans
+	private int isAdmin; // DB contains 0 (no admin) or 1 (admin) instead of booleans
+	private int tpvPrivilege; //0 doesn't have privileges, 1 have privileges
 
 	/**
 	 * Constructor with all the fields
@@ -20,11 +21,14 @@ public class Employee {
 	 *            contains 0 or 1 depending on whether the user is an
 	 *            administrator or not
 	 */
-	public Employee(long id, String username, String password, int isAdmin) {
+	public Employee(long id, String username, String password, int isAdmin
+			, int tpvPrivilege) 
+	{
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.isAdmin = isAdmin;
+		this.tpvPrivilege=tpvPrivilege;
 	}
 
 	/**
@@ -91,6 +95,21 @@ public class Employee {
 	 */
 	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	/**
+	 * @return the tpv privilege
+	 */
+	public int getTpvPrivilege() {
+		return tpvPrivilege;
+	}
+
+	/**
+	 * @param tpvPrivilege
+	 * 				the tpvPrivilege to set
+	 */
+	public void setTpvPrivilege(int tpvPrivilege) {
+		this.tpvPrivilege = tpvPrivilege;
 	}
 
 }

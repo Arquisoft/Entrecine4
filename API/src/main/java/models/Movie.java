@@ -9,6 +9,7 @@ public class Movie
 	private double morningPrice;
 	private double dailyPrice;
 	private double nightPrice;
+	private String genre;
 	
 	/**
 	 * Constructor without parameters
@@ -29,7 +30,7 @@ public class Movie
 	 * @param nightPrice Price of the ticket in the night
 	 */
 	public Movie(long id, String name, String synopsis, String imgPath,
-			double morningPrice, double dailyPrice, double nightPrice)
+			double morningPrice, double dailyPrice, double nightPrice, String genre)
 	{
 		this.id = id;
 		this.name = name;
@@ -38,6 +39,7 @@ public class Movie
 		this.morningPrice = morningPrice;
 		this.dailyPrice = dailyPrice;
 		this.nightPrice = nightPrice;
+		this.genre=genre;
 	}
 
 	/**
@@ -178,5 +180,23 @@ public class Movie
 	public void setNightPrice(double nightPrice)
 	{
 		this.nightPrice = nightPrice;
+	}
+
+	/**
+	 * Getter for the movie's genre
+	 * 
+	 * @return The movie's genre
+	 */
+	public String getGenre() {
+		return genre;
+	}
+
+	/**
+	 * Setter for the movie's genre
+	 * 
+	 * @param genre The new movie's genre
+	 */
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 }

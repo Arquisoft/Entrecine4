@@ -10,6 +10,9 @@ public class User {
 	private long id;
 	private String username;
 	private String password;
+	private String name;
+	private String surnames;
+	private String email;
 
 	/**
 	 * Constructor without parameters
@@ -23,11 +26,18 @@ public class User {
 	 * @param id
 	 * @param username
 	 * @param password
+	 * @param name
+	 * @param surnames
+	 * @param email
 	 */
-	public User(long id, String username, String password) {
+	public User(long id, String username, String password, String name
+			, String surnames, String email) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.name=name;
+		this.surnames=surnames;
+		this.email=email;
 	}
 
 	/**
@@ -96,6 +106,63 @@ public class User {
 		if (this.id == 0 || this.username == null || this.password == null)
 			return true;
 		return false;
+	}
+
+	/**
+	 * Getter for name property
+	 * 
+	 * @return the name of the user
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Setter for name property
+	 * 
+	 * @param name
+	 * 			the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Getter for surnames property
+	 * 
+	 * @return the user's surnames
+	 */
+	public String getSurnames() {
+		return surnames;
+	}
+
+	/**
+	 * Setter for surnames property
+	 * 
+	 * @param surnames
+	 * 			the surnames to set
+	 */
+	public void setSurnames(String surnames) {
+		this.surnames = surnames;
+	}
+
+	/**
+	 * Getter for email property
+	 * 
+	 * @return the user's email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Setter for email property
+	 * 
+	 * @param email
+	 * 			the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

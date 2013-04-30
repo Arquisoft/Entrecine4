@@ -39,7 +39,7 @@ public class EmployeeDaoTest {
 	 */
 	@Test(expected = SQLException.class)
 	public void testInsertTwo() throws SQLException {
-		Employee emp = new Employee(0, "user", "user", 0);
+		Employee emp = new Employee(0, "user", "user", 0, 1);
 		dao.save(emp);
 		dao.save(emp);
 	}
@@ -51,14 +51,14 @@ public class EmployeeDaoTest {
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		Employee emp = new Employee(0, "emp01", "emp01", 0);
+		Employee emp = new Employee(0, "emp01", "emp01", 0, 0);
 		dao.save(emp);
 		List<Employee> recoveredEmployees = dao.getAll();
 		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1);
 		assertEquals(emp.getUsername(), recoveredEmployee.getUsername());
 		assertEquals(emp.getPassword(), recoveredEmployee.getPassword());
 		dao.delete(emp);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class EmployeeDaoTest {
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		Employee emp = new Employee(0, "emp02", "emp02", 0);
+		Employee emp = new Employee(0, "emp02", "emp02", 0, 1);
 		dao.save(emp);
 		emp.setPassword("emp02mod");
 		dao.update(emp);

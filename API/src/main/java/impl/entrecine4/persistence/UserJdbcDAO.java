@@ -50,7 +50,8 @@ public class UserJdbcDAO implements UserDAO {
 		rs = ps.executeQuery();
 		if(rs.next())
 			user = new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
-					rs.getString("PASSWORD"));
+					rs.getString("PASSWORD"),rs.getString("NOMBRE")
+					, rs.getString("APELLIDOS"),rs.getString("EMAIL"));
 		Jdbc.close(rs, ps);
 		return user;
 	}
@@ -66,7 +67,8 @@ public class UserJdbcDAO implements UserDAO {
 		rs = ps.executeQuery();
 		if(rs.next())
 			user = new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
-					rs.getString("PASSWORD"));
+					rs.getString("PASSWORD"),rs.getString("NOMBRE")
+					, rs.getString("APELLIDOS"),rs.getString("EMAIL"));
 		Jdbc.close(rs, ps);
 		return user;
 	}
@@ -81,7 +83,8 @@ public class UserJdbcDAO implements UserDAO {
 		rs = ps.executeQuery();
 		while(rs.next())
 			users.add(new User(rs.getLong("ID_USUARIO"), rs.getString("USERNAME"),
-					rs.getString("PASSWORD")));
+					rs.getString("PASSWORD"),rs.getString("NOMBRE")
+					, rs.getString("APELLIDOS"),rs.getString("EMAIL")));
 		Jdbc.close(rs, ps);
 		return users;
 	}
@@ -94,6 +97,9 @@ public class UserJdbcDAO implements UserDAO {
 		ps = con.prepareStatement(INSERT_USER);
 		ps.setString(1, user.getUsername());
 		ps.setString(2, user.getPassword());
+		ps.setString(3, user.getName());
+		ps.setString(4, user.getSurnames());
+		ps.setString(5, user.getEmail());
 		ps.executeUpdate();
 		Jdbc.close(ps);
 	}
@@ -106,7 +112,10 @@ public class UserJdbcDAO implements UserDAO {
 		ps = con.prepareStatement(UPDATE_USER);
 		ps.setString(1, user.getUsername());
 		ps.setString(2, user.getPassword());
-		ps.setLong(3, user.getId());
+		ps.setString(3, user.getName());
+		ps.setString(4, user.getSurnames());
+		ps.setString(5, user.getEmail());
+		ps.setLong(6, user.getId());
 		ps.executeUpdate();
 		Jdbc.close(ps);
 	}

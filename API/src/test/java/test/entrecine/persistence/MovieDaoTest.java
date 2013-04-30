@@ -52,7 +52,7 @@ public class MovieDaoTest
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D,"Comedy");
 		dao.save(movie);
 		
 		List<Movie> temp=dao.getAll();
@@ -87,7 +87,7 @@ public class MovieDaoTest
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D,"Fiction");
 		dao.save(movie);
 		movie.setName("Movie 2");
 

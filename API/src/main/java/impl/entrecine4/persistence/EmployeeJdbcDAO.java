@@ -44,6 +44,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			result.setUsername(rs.getString("USERNAME"));
 			result.setPassword(rs.getString("PASSWORD"));
 			result.setIsAdmin(rs.getInt("ISADMIN"));
+			result.setTpvPrivilege(rs.getInt("TPV_PRIVILEGIO"));
 		}
 
 		return result;
@@ -68,7 +69,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			emp.setUsername(rs.getString("USERNAME"));
 			emp.setPassword(rs.getString("PASSWORD"));
 			emp.setIsAdmin(rs.getInt("ISADMIN"));
-
+			emp.setTpvPrivilege(rs.getInt("TPV_PRIVILEGIO"));
+			
 			// Finally we add the temporal employee to the list that will be
 			// returned.
 			result.add(emp);
@@ -91,6 +93,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
 		pst.setInt(3, employee.getIsAdmin());
+		pst.setInt(4, employee.getTpvPrivilege());
 
 		pst.executeUpdate();
 	}
@@ -109,7 +112,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
 		pst.setInt(3, employee.getIsAdmin());
-		pst.setString(4, employee.getUsername()); // USERNAME of the user that will be updated
+		pst.setInt(4, employee.getTpvPrivilege());
+		pst.setString(5, employee.getUsername()); // USERNAME of the user that will be updated
 		// We're using the username instead of the ID_USUARIO because we might not know which is the
 		//current ID_USUARIO since it's generated automatically.
 		

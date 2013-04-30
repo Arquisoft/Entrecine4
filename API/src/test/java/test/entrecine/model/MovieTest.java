@@ -19,6 +19,7 @@ public class MovieTest
 	private static double MORNING_PRICE=5.65;
 	private static double DAILY_PRICE=6.65;
 	private static double NIGHT_PRICE=8.65;
+	private static String GENRE="Fiction";
 	
 	
 	/**
@@ -35,6 +36,7 @@ public class MovieTest
 		movie.setMorningPrice(MORNING_PRICE);
 		movie.setDailyPrice(DAILY_PRICE);
 		movie.setNightPrice(NIGHT_PRICE);
+		movie.setGenre(GENRE);
 		
 		testAttributes(movie);
 	}
@@ -45,7 +47,7 @@ public class MovieTest
 	@Test
 	public void testWithParameters()
 	{
-		movie=new Movie(ID, NAME, SYNOPSIS, IMG_PATH, MORNING_PRICE, DAILY_PRICE, NIGHT_PRICE);
+		movie=new Movie(ID, NAME, SYNOPSIS, IMG_PATH, MORNING_PRICE, DAILY_PRICE, NIGHT_PRICE, GENRE);
 		
 		testAttributes(movie);
 	}
@@ -63,6 +65,7 @@ public class MovieTest
 		assertTrue(MORNING_PRICE==movie.getMorningPrice());
 		assertTrue(DAILY_PRICE==movie.getDailyPrice());
 		assertTrue(NIGHT_PRICE==movie.getNightPrice());
+		assertEquals(GENRE, movie.getGenre());
 	}
 
 }

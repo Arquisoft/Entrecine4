@@ -15,6 +15,7 @@ public class EmployeeTest {
 	private final static String USERNAME = "root";
 	private final static String PASSWORD = "123456";
 	private final static int ISADMIN1 = 0, ISADMIN2 = 1;
+	private final static int TPV_PRIVILEGE1=0, TPV_PRIVILEGE2=1;
 	
 	/**
 	 * Test without parameters, this will test setters
@@ -26,6 +27,7 @@ public class EmployeeTest {
 		emp1.setUsername(USERNAME);
 		emp1.setPassword(PASSWORD);
 		emp1.setIsAdmin(ISADMIN1);
+		emp1.setTpvPrivilege(TPV_PRIVILEGE1);
 		testAttributes(emp1, 1);
 	}
 	
@@ -34,7 +36,7 @@ public class EmployeeTest {
 	 */
 	@Test
 	public void testWithParameters() {
-		emp2 = new Employee(ID, USERNAME, PASSWORD, ISADMIN2);
+		emp2 = new Employee(ID, USERNAME, PASSWORD, ISADMIN2, TPV_PRIVILEGE2);
 		testAttributes(emp2, 2);
 	}
 
@@ -44,12 +46,18 @@ public class EmployeeTest {
 	 */
 	private void testAttributes(Employee emp, int num) {
 		assertEquals(emp.getId(), ID);
-		assertEquals(emp.getUsername(), USERNAME);
-		assertEquals(emp.getPassword(), PASSWORD);
+		assertEquals(USERNAME, emp.getUsername());
+		assertEquals(PASSWORD, emp.getPassword());
 		if(num == 1)
-			assertEquals(emp.getIsAdmin(), ISADMIN1);
+		{
+			assertEquals(ISADMIN1, emp.getIsAdmin());
+			assertEquals(TPV_PRIVILEGE1, emp.getTpvPrivilege());
+		}
 		else
-			assertEquals(emp.getIsAdmin(), ISADMIN2);
+		{
+			assertEquals(ISADMIN2, emp.getIsAdmin());
+			assertEquals(TPV_PRIVILEGE2, emp.getTpvPrivilege());
+		}
 
 	}
 
