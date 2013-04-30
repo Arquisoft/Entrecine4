@@ -1,3 +1,5 @@
+@(peliculas: List[Movie])
+@import com.entrecine4.model.Movie
 <link rel="stylesheet" type="text/css" href="index.css">
 <script type="text/javascript">
     function asignar_Cartelera(){
@@ -67,46 +69,17 @@
                     Torrente, Combustión</p>
             </div>
 
+            @for( movie <- peliculas){
             <div class="view view-first">
-                <img src="images/small/1.jpg" />
+                <img src="@movie.getImgPath()" />
                 <div class="mask">
-                    <h2>Título Película</h2>
+                    <h2>@movie.getName()</h2>
                     <p>Género: Acción</p>
                     <a href="http://www.uniovi.es" class="info">Más info</a>
                 </div>
             </div>
-            <div class="view view-first">
-                <img src="images/small/2.jpg" />
-                <div class="mask">
-                    <h2>Título Película</h2>
-                    <p>Género: Acción</p>
-                    <a href="http://www.uniovi.es" class="info">Más info</a>
-                </div>
-            </div>
-            <div class="view view-first">
-                <img src="images/small/3.jpg" />
-                <div class="mask">
-                    <h2>Título Película</h2>
-                    <p>Género: Acción</p>
-                    <a href="http://www.uniovi.es" class="info">Más info</a>
-                </div>
-            </div>
-            <div class="view view-first">
-                <img src="images/small/4.jpg" />
-                <div class="mask">
-                    <h2>Título Película</h2>
-                    <p>Género: Acción</p>
-                    <a href="http://www.uniovi.es" class="info">Más info</a>
-                </div>
-            </div>
-            <div class="view view-first">
-                <img src="images/small/5.jpg" />
-                <div class="mask">
-                    <h2>Título Película</h2>
-                    <p>Género: Acción</p>
-                    <a href="http://www.uniovi.es" class="info">Más info</a>
-                </div>
-            </div>
+        }
+        
 
 
 
