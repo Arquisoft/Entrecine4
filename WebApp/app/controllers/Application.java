@@ -46,4 +46,8 @@ public class Application extends Controller {
     	System.out.println(filledForm.toString());
     	return ok(index.render(new ArrayList<Movie>(), userForm));
     }
+    
+    public static Result plataformaPago(){
+    	return ok(plataformaPago.render(userForm));
+    }
 }

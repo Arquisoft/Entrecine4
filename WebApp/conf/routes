@@ -10,6 +10,7 @@ GET     /index.html                 controllers.Application.index()
 GET     /registro                   controllers.Application.registro()
 GET     /pelicula/:id               controllers.Application.pelicula(id: Long)
 POST    /login                      controllers.Application.login()
+GET		/plataformaPago				controllers.Application.plataformaPago()
 
 
 # Map static resources from the /public folder to the /assets URL path
