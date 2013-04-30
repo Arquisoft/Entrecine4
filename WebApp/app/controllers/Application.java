@@ -18,8 +18,18 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
   
     public static Result index() {
+<<<<<<< HEAD
     	List<Movie> movies = Factories.services.createMoviesService().getMovies();
         return ok(index.render(movies, userForm));
+=======
+//    	Descomentar esta línea cuando este terminada la API. Ahora "casca" por que no
+//    	está sobreescrito el método createMoviesServie de servicesfactory con la implementación
+//    	List<Movie> movies = Factories.services.createMoviesService().getMovies();
+//    	El formato de la película debe ser el siguiente (path de imágenes correcto)
+//    	movies.add(new Movie(1, "Spiderman", "Está muy bien", "/assets/stylesheets/images/small/1.jpg", 5, 4, 6));
+//        return ok(index.render(movies, userForm));
+    	return ok(index.render(new ArrayList<Movie>(), userForm));
+>>>>>>> Añadido ejemplo de funcionalidad para mostrar la cartelera y comentarios
     }
 
     public static Result registro() {
