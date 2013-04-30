@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import com.entrecine4.model.SessionState;
+import models.SessionState;
+
 
 /**
  * Session's state dao interface

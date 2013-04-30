@@ -3,9 +3,10 @@ package test.entrecine.model;
 import static org.junit.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
+import models.Movie;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Movie;
 
 public class MovieTest 
 {

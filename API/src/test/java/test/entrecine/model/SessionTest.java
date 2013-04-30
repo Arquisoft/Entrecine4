@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Date;
 
+import models.Session;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Session;
 
 public class SessionTest
 {

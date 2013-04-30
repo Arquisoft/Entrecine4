@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Room;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
 public class RoomDaoTest 

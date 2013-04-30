@@ -3,10 +3,11 @@ package impl.entrecine4.business;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Employee;
+
 import impl.entrecine4.persistence.SimplePersistenceFactory;
 
 import com.entrecine4.business.StaffService;
-import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
 public class SimpleStaffService implements StaffService {

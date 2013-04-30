@@ -1,4 +1,4 @@
-package com.entrecine4.model;
+package models;
 
 /**
  * User model class, this class will also work as DTO

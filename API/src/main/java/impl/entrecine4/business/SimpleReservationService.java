@@ -5,12 +5,13 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 import java.sql.SQLException;
 import java.util.Date;
 
+import models.SessionState;
+import models.User;
+
 import com.entrecine4.GenerateQR;
 import com.entrecine4.PaymentGateway;
 import com.entrecine4.SendEmail;
 import com.entrecine4.business.ReservationService;
-import com.entrecine4.model.SessionState;
-import com.entrecine4.model.User;
 import com.entrecine4.persistence.SessionStateDAO;
 
 public class SimpleReservationService implements ReservationService {

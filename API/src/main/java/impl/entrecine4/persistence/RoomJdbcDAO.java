@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Room;
+
 import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
 public class RoomJdbcDAO implements RoomDAO

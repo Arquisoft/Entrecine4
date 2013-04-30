@@ -80,9 +80,9 @@
 
             @for( movie <- movies){
             <div class="view view-first">
-                <img src="@movie.imgPath" />
+                <img src="@movie.getImgPath()" />
                 <div class="mask">
-                    <h2>@movie.name</h2>
+                    <h2>@movie.getName()</h2>
                     <p>Género: Acción</p>
                     <a href="http://www.uniovi.es" class="info">Más info</a>
                 </div>

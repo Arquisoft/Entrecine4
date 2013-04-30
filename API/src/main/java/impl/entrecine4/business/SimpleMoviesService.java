@@ -5,8 +5,9 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Movie;
+
 import com.entrecine4.business.MoviesService;
-import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
 public class SimpleMoviesService implements MoviesService {

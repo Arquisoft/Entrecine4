@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Purchase;
+
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Purchase;
 import com.entrecine4.persistence.PurchaseDAO;
 
 public class PurchaseJdbcDAO implements PurchaseDAO {

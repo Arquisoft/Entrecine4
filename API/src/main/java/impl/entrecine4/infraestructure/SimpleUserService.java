@@ -5,8 +5,9 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.User;
+
 import com.entrecine4.infraestructure.UserService;
-import com.entrecine4.model.User;
 import com.entrecine4.persistence.UserDAO;
 
 public class SimpleUserService implements UserService {

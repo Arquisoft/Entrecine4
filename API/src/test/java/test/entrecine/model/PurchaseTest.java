@@ -3,9 +3,10 @@ package test.entrecine.model;
 import static org.junit.Assert.*;
 
 
+import models.Purchase;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Purchase;
 
 
 public class PurchaseTest {

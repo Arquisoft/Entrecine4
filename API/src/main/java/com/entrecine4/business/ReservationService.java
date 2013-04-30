@@ -2,8 +2,9 @@ package com.entrecine4.business;
 
 import java.util.Date;
 
-import com.entrecine4.model.SessionState;
-import com.entrecine4.model.User;
+import models.SessionState;
+import models.User;
+
 
 public interface ReservationService {
 

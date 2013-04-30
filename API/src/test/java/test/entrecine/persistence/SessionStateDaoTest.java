@@ -7,13 +7,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+import models.SessionState;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.SessionState;
 import com.entrecine4.persistence.SessionStateDAO;
 
 public class SessionStateDaoTest {

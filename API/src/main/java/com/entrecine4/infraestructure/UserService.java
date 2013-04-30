@@ -2,7 +2,8 @@ package com.entrecine4.infraestructure;
 
 import java.util.List;
 
-import com.entrecine4.model.User;
+import models.User;
+
 
 public interface UserService {
 

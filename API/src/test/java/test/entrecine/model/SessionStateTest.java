@@ -2,8 +2,11 @@ package test.entrecine.model;
 
 import static org.junit.Assert.assertEquals;
 import java.util.Date;
+
+import models.SessionState;
+
 import org.junit.Test;
-import com.entrecine4.model.SessionState;
+
 
 
 /**

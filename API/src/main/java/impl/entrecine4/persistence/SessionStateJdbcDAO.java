@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import models.SessionState;
+
 import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.SessionState;
 import com.entrecine4.persistence.SessionStateDAO;
 
 /**

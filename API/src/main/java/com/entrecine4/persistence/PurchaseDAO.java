@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.entrecine4.model.Purchase;
+import models.Purchase;
+
 
 public interface PurchaseDAO {
 	

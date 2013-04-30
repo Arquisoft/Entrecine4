@@ -9,12 +9,13 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Session;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Session;
 import com.entrecine4.persistence.SessionDAO;
 
 public class SessionDaoTest

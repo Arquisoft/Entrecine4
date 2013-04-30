@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Employee;
+
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
 public class EmployeeJdbcDAO implements EmployeeDAO {

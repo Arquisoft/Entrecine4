@@ -1,4 +1,4 @@
-package com.entrecine4.model;
+package models;
 
 public class Movie
 {

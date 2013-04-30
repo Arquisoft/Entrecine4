@@ -8,12 +8,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Movie;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
 public class MovieDaoTest

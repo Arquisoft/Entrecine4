@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Date;
 
+import models.Incidence;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Incidence;
 
 public class IncidenceTest 
 {

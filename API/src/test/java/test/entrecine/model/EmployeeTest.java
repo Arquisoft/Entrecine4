@@ -2,9 +2,10 @@ package test.entrecine.model;
 
 import static org.junit.Assert.*;
 
+import models.Employee;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Employee;;
 
 public class EmployeeTest {
 	

@@ -1,8 +1,10 @@
 package test.entrecine.model;
 
 import static org.junit.Assert.assertEquals;
+import models.User;
+
 import org.junit.Test;
-import com.entrecine4.model.User;
+
 
 /**
  * Test for User in model

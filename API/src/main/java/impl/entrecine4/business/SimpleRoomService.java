@@ -5,8 +5,9 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Room;
+
 import com.entrecine4.business.RoomService;
-import com.entrecine4.model.Room;
 import com.entrecine4.persistence.RoomDAO;
 
 public class SimpleRoomService implements RoomService {

@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Movie;
+
 import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
 public class MovieJdbcDAO implements MovieDAO
