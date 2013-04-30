@@ -1,6 +1,6 @@
-@(id: Long)
+@(movie: Movie)
 
-<link rel="stylesheet" type="text/css" href="pelicula.css">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pelicula.css")">
 
 <script type="text/javascript">
     window.onload = function(){
@@ -54,14 +54,14 @@
         </div>
         <!--FIN MODAL LOGIN -->
         <div id="tituloPelicula">
-            <h1>Facebook: La red Social</h1>
+            <h1>@movie.getName()</h1>
         </div>
         <div id="imgPelicula" class="centralBloque">
-            <img src="images/big/the_social_network.jpg" height="300" width="240">
+            <img src="@movie.getImgPath()" height="300" width="240">
         </div>
         <div id="infoPelicula" class="centralBloque">
             <h3>Sinopsis</h3>
-            <p>Una noche de otoño del año 2003, Mark Zuckerberg, alumno de Harvard y genio de la programación, se sienta a su ordenador y con empeño y entusiasmo comienza a desarrollar una nueva idea. En un furor de blogging y programación, lo que comenzó en la habitación de su colegio mayor pronto se convirtió en una red social global y una revolución en la comunicación. Seis años y 500 millones de amigos después, Mark Zuckerberg es el billonario más joven de la historia... pero para este emprendedor, el éxito ha supuesto complicaciones personales y legales. </p>
+            <p>@movie.getSynopsis() </p>
         </div>
         <div id="reserva">
             <h3>Reserva de entradas</h3>

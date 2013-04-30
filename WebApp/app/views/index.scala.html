@@ -83,8 +83,8 @@
                 <img src="@movie.getImgPath()" />
                 <div class="mask">
                     <h2>@movie.getName()</h2>
-                    <p>Género: Acción</p>
-                    <a href="http://www.uniovi.es" class="info">Más info</a>
+                    <p>Género: @movie.getGenre()</p>
+                    <a href="/pelicula/@movie.getId()" class="info">Más info</a>
                 </div>
             </div>
         }

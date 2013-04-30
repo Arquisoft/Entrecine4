@@ -1,7 +1,9 @@
 package impl.entrecine4.business;
 
+import com.entrecine4.infraestructure.Jdbc;
 import impl.entrecine4.persistence.SimplePersistenceFactory;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,23 +21,31 @@ public class SimpleMoviesService implements MoviesService {
 	 */
 	@Override
 	public List<Movie> getMovies() {
+        Connection con = Jdbc.getConnection();
 		try {
+            dao.setConnection(con);
 			return dao.getAll();
 		} catch (SQLException e) {
 			throw new RuntimeException();
-		}
-	}
+		} finally {
+            Jdbc.close(con);
+        }
+    }
 
 	/* (non-Javadoc)
 	 * @see com.entrecine4.business.MoviesService#findById(java.lang.Long)
 	 */
 	@Override
 	public Movie findById(Long id) {
-		try {
-			return dao.get(id);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            return dao.get(id);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -43,11 +53,15 @@ public class SimpleMoviesService implements MoviesService {
 	 */
 	@Override
 	public void saveMovie(Movie movie) {
-		try {
-			dao.save(movie);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.save(movie);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -55,11 +69,15 @@ public class SimpleMoviesService implements MoviesService {
 	 */
 	@Override
 	public void updateMovie(Movie movie) {
-		try {
-			dao.update(movie);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.update(movie);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -67,11 +85,15 @@ public class SimpleMoviesService implements MoviesService {
 	 */
 	@Override
 	public void deleteMovie(Movie movie) {
-		try {
-			dao.delete(movie);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.delete(movie);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 }

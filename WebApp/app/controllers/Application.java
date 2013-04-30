@@ -18,8 +18,8 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
   
     public static Result index() {
-    		List<Movie> movies = Factories.services.createMoviesService().getMovies();
-        return ok(index.render(new ArrayList<Movie>(), userForm));
+    	List<Movie> movies = Factories.services.createMoviesService().getMovies();
+        return ok(index.render(movies, userForm));
     }
 
     public static Result registro() {
@@ -27,7 +27,8 @@ public class Application extends Controller {
     }
 
     public static Result pelicula(Long id) {
-        return ok(pelicula.render(id));
+        Movie movie = Factories.services.createMoviesService().findById(id);
+        return ok(pelicula.render(movie));
     }
     
     public static Result login() {
