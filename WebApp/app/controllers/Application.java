@@ -7,11 +7,13 @@ import com.entrecine4.infraestructure.*;
 import com.entrecine4.*;
 
 import play.*;
+import play.api.libs.Crypto;
 import play.mvc.*;
 import play.data.Form;
 import models.*;
 
 import views.html.*;
+
 
 public class Application extends Controller {
 	
@@ -19,8 +21,15 @@ public class Application extends Controller {
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
   
     public static Result index() {
-    	List<Movie> movies = Factories.services.createMoviesService().getMovies();
-        return ok(index.render(movies, userForm));
+        Http.Cookie cookie = request().cookies().get("user"); //must be decrypted
+        String user = null;
+        List<Movie> movies = Factories.services.createMoviesService().getMovies();
+        if(cookie != null) {
+            user = Crypto.decryptAES(cookie.value()); //if not null decrypt
+        }
+        if(Factories.services.createUserService().get(user) == null) // user exists?
+            return ok(index.render(null,movies, userForm));
+        return ok(index.render(user,movies, userForm));
     }
 
     public static Result registro() 
@@ -67,19 +76,25 @@ public class Application extends Controller {
     public static Result login() {
     	Form<User> filledForm = userForm.bindFromRequest();
         if(filledForm.hasErrors()) {
-            return redirect(routes.Application.registro());
+            filledForm.reject("password", "Los datos de login están mal");
         } else {
             String username = filledForm.field("username").value();
             String password = filledForm.field("password").value();
             User user = Factories.services.createUserService().login(username, password);
             if(user == null) {
-                return redirect(routes.Application.registro());
+                filledForm.reject("password", "Los datos de login están mal");
             } else {
-                session().put("user", username);
+      //          session().put("user", username); // this doesn´t work, FUCKING BUG
+                response().setCookie("user", Crypto.encryptAES(username), -1);
                 List<Movie> movies = Factories.services.createMoviesService().getMovies();
                 return redirect(routes.Application.index());
             }
-        }
+        } return redirect(routes.Application.index());
+    }
+
+    public static Result logout() {
+        response().discardCookie("user");
+        return redirect(routes.Application.index());
     }
     
     public static Result plataformaPago(){
