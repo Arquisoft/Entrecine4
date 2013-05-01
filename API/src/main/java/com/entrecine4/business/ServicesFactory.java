@@ -5,6 +5,7 @@ import com.entrecine4.business.MoviesService;
 import com.entrecine4.business.ReservationService;
 import com.entrecine4.business.RoomService;
 import com.entrecine4.business.StaffService;
+import com.entrecine4.infraestructure.UserService;
 
 public interface ServicesFactory {
 
@@ -33,4 +34,9 @@ public interface ServicesFactory {
 	 * @return An instance of StaffService
 	 */
 	public StaffService createStaffService();
+    /**
+     * Method to get an instance of UserService and get access to the business layer
+     * @return An instance of UserService
+     */
+    public UserService createUserService();
 }

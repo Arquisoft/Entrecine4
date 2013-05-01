@@ -16,6 +16,7 @@ import views.html.*;
 public class Application extends Controller {
 	
 	static Form<User> userForm = Form.form(User.class);
+
   
     public static Result index() {
     	List<Movie> movies = Factories.services.createMoviesService().getMovies();
@@ -33,7 +34,19 @@ public class Application extends Controller {
     
     public static Result login() {
     	Form<User> filledForm = userForm.bindFromRequest();
-    	System.out.println(filledForm.toString());
-    	return ok(index.render(new ArrayList<Movie>(), userForm));
+        if(filledForm.hasErrors()) {
+            return redirect(routes.Application.registro());
+        } else {
+            String username = filledForm.field("username").value();
+            String password = filledForm.field("password").value();
+            User user = Factories.services.createUserService().login(username, password);
+            if(user == null) {
+                return redirect(routes.Application.registro());
+            } else {
+                session().put("user", username);
+                List<Movie> movies = Factories.services.createMoviesService().getMovies();
+                return redirect(routes.Application.index());
+            }
+        }
     }
 }

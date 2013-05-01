@@ -6,6 +6,8 @@ import com.entrecine4.business.ReservationService;
 import com.entrecine4.business.RoomService;
 import com.entrecine4.business.ServicesFactory;
 import com.entrecine4.business.StaffService;
+import com.entrecine4.infraestructure.UserService;
+import impl.entrecine4.infraestructure.SimpleUserService;
 
 public class SimpleServicesFactory implements ServicesFactory {
 
@@ -49,4 +51,11 @@ public class SimpleServicesFactory implements ServicesFactory {
 		return new SimpleStaffService();
 	}
 
+    /* (non-Javadoc)
+     * @see com.entrecine4.business.ServicesFactory#createUserService()
+     */
+    @Override
+    public UserService createUserService() {
+        return new SimpleUserService();
+    }
 }
