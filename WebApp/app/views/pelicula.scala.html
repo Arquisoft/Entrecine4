@@ -1,5 +1,5 @@
-@(movie: Movie)
-
+@(movie: Movie, userForm: Form[User])
+@import snippets._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pelicula.css")">
 
 <script type="text/javascript">
@@ -16,42 +16,10 @@
 
 @main("Cartelera - Entrecine4"){
 <div id="wrapper">
-    <div id="cabecera">
-        <div id="bloqueCabeceraIzq">
-            <h1> Entrecine </h1>
-            <h2> Experimenta el realismo y la emoción </h2>
-        </div>
-        <div id="bloqueCabeceraDcha">
-            <div id="login">
-                <a href="#openModal">Iniciar Sesion</a>
-
-
-            </div>
-            <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
-        </div>
-    </div>
+    @header(null)
     <div id="cuerpo">
         <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
-        <div id="openModal" class="modalDialog">
-            <div>
-                <a href="#close" title="Close" class="close">X</a>
-                <h2>Inicio de Sesión</h2>
-                <form method="POST" action="#">
-                    <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
-                    <div  class="formularioAlineado">
-                        <input type="text" class="rounded" name="username" size="30" /><br />
-                        <input type="password" class="rounded" name="passwort" size="30" /><br />
-                    </div>
-                    <div align="center">
-                        <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
-                    </div>
-
-                </form>
-                <div align=center>
-                    <button id="registrarse" type="button">Registrarse</button>
-                </div>
-            </div>
-        </div>
+        @loginWindow(userForm)
         <!--FIN MODAL LOGIN -->
         <div id="tituloPelicula">
             <h1>@movie.getName()</h1>
@@ -113,8 +81,6 @@
 
 
 
-    <footer>
-        <h2>Entrecine</h2>
-    </footer>
+    @footer()
 </div>
 }

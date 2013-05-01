@@ -1,0 +1,20 @@
+@(username: String)
+
+<div id="cabecera">
+        <div id="bloqueCabeceraIzq">
+            <h1> Entrecine </h1>
+            <h2> Experimenta el realismo y la emoción </h2>
+        </div>
+        <div id="bloqueCabeceraDcha">
+            <div id="login">
+
+                @if(username==null) {
+                    <a href="#openModal" onclick="gainFocus();">Iniciar Sesion</a>
+                } else {
+                    <a href="/logout" id="hola"  onmouseover="changetext();" onmouseout="changetext();">Hola, @username.toString()</a>
+                }
+
+            </div>
+            <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
+        </div>
+    </div>

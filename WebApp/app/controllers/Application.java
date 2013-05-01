@@ -20,6 +20,7 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
   
+	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
         Http.Cookie cookie = request().cookies().get("user"); //must be decrypted
         String user = null;
@@ -27,7 +28,7 @@ public class Application extends Controller {
         if(cookie != null) {
             user = Crypto.decryptAES(cookie.value()); //if not null decrypt
         }
-        if(Factories.services.createUserService().get(user) == null) // user exists?
+        if(Factories.services.createUserService().get(user) == null) // user !exists?
             return ok(index.render(null,movies, userForm));
         return ok(index.render(user,movies, userForm));
     }
@@ -46,6 +47,7 @@ public class Application extends Controller {
     	}
     	else
     	{
+    		//Getting form data
     		String name=filledForm.field("txt_Nombre").value();
     		String surnames=filledForm.field("txt_Apellidos").value();
     		String username=filledForm.field("txt_NombreDeUsuario").value();
@@ -53,24 +55,25 @@ public class Application extends Controller {
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
     		
+    		//Provisional: if fails again to /registro
+    		//TODO: Change for better validation
     		if(!password.equals(repass))
     			return redirect(routes.Application.registro());
     		else
     		{
-    			User user=new User(0, username, password, name, surnames, email);
+    			//TODO: validateUserData is wrong
+    			User user=new User(-1, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
     					.validateUserData(user)==null)
     				return redirect(routes.Application.registro());
     		}
-    		
-    		System.out.println(filledForm.toString());
     	}
     	return redirect(routes.Application.index());
     }
 
     public static Result pelicula(Long id) {
         Movie movie = Factories.services.createMoviesService().findById(id);
-        return ok(pelicula.render(movie));
+        return ok(pelicula.render(movie, userForm));
     }
     
     public static Result login() {

@@ -1,4 +1,5 @@
 @(username: String, movies: List[Movie], userForm: Form[User])
+@import snippets._
 @import helper._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")"><script type="text/javascript">
 
@@ -35,9 +36,9 @@
 @import helper._
 
 @main("Cartelera - Entrecine") {
-
 <div id="wrapper">
-    <div id="cabecera">
+@header(username)
+    <!-- <div id="cabecera">
         <div id="bloqueCabeceraIzq">
             <h1> Entrecine </h1>
             <h2> Experimenta el realismo y la emoción </h2>
@@ -54,11 +55,13 @@
             </div>
             <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
         </div>
-    </div>
+    </div>-->
     <div id="cuerpo" >
         <div class="main">
             <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
-            <div id="openModal" class="modalDialog">
+            
+            @loginWindow(userForm)
+            <!-- <div id="openModal" class="modalDialog">
                 <div>
                     <a href="#close" title="Close" class="close">X</a>
                     <h2>Inicio de Sesión</h2>
@@ -72,7 +75,7 @@
                             <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
                         </div>  
                 } 
-                    <!--<form method="POST" action="#">
+                    <form method="POST" action="#">
                         <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
                         <div  class="formularioAlineado">
                             <input type="text" class="rounded" name="username" size="30" /><br />
@@ -82,7 +85,7 @@
                             <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
                         </div>
 
-                    </form>-->
+                    </form>
                     @form(routes.Application.registro()) {
                         <div align=center>
                             <button id="registrarse" type="submit">Registrarse</button>
@@ -90,7 +93,7 @@
                     }
 
                 </div>
-            </div>
+            </div> -->
             <!--FIN MODAL LOGIN -->
 
             <div id="recomendadas">
@@ -114,11 +117,8 @@
 
         </div>
     </div>
-
-
-    <footer>
-        <h2>Entrecine</h2>
-    </footer>
+    
+    @footer()
 </div>
 
 
