@@ -32,7 +32,7 @@ public interface ReservationService {
 	 * @return
 	 */
 	public boolean goToPaymentGategay(String cardNumber, String type,
-			String SecurityCode, Date expirationDate);
+			String SecurityCode, String expirationDate);
 
 	/**
 	 * Method for send the email with the QR code

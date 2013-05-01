@@ -6,11 +6,14 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /index.html                 controllers.Application.index()
+#GET     /index.html                 controllers.Application.index()
 GET     /registro                   controllers.Application.registro()
 GET     /pelicula/:id               controllers.Application.pelicula(id: Long)
 POST    /login                      controllers.Application.login()
 GET		/plataformaPago				controllers.Application.plataformaPago()
+POST	/pay						controllers.Application.pay()
+GET		/finReservaOk				controllers.Application.finReservaOk()
+GET		/finReservaWrong			controllers.Application.finReservaWrong()
 
 
 # Map static resources from the /public folder to the /assets URL path

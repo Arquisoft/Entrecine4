@@ -16,6 +16,7 @@ import views.html.*;
 public class Application extends Controller {
 	
 	static Form<User> userForm = Form.form(User.class);
+	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
   
     public static Result index() {
 <<<<<<< HEAD
@@ -49,5 +50,37 @@ public class Application extends Controller {
     
     public static Result plataformaPago(){
     	return ok(plataformaPago.render(userForm));
+    }
+    
+    public static Result pay(){
+    	Form filledForm = paymentForm.bindFromRequest();
+    	System.out.println("FORMULARIO:\n" + filledForm.toString());
+    	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
+    	si ha sido posible completar la transacción o no, en función de lo cual
+    	redirijo a la página de error o a la de agradecimiento */
+    	String numeroTarjeta = filledForm.field("numeroTarjeta").value();
+//    	System.out.println("Numero Tarjeta: "+ numeroTarjeta);
+    	String tipoTarjeta  = filledForm.field("tipoTarjeta").value();
+//    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
+    	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
+//    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
+    	String fechaNacimiento = filledForm.field("fechaNacimiento").value();
+//    	System.out.println("Fecha de nacimiento: "+ fechaNacimiento);
+    	
+    	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
+    	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
+//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaNacimiento))
+    		return redirect(routes.Application.finReservaOk());
+//    	else
+//    		return redirect(routes.Application.finReservaWrong());
+
+    }
+    
+    public static Result finReservaOk(){
+    	return ok(finReservaOk.render());
+    }
+    
+    public static Result finReservaWrong(){
+    	return ok(finReservaWrong.render());
     }
 }

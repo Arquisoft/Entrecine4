@@ -46,7 +46,6 @@ a.onclick = function open_in_new_tab()
                             <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
                         </div>  
                 } 
-                    
                     @form(routes.Application.registro()) {
                         <div align=center>
                             <button id="registrarse" type="submit">Registrarse</button>
@@ -59,30 +58,35 @@ a.onclick = function open_in_new_tab()
                 <!-- Inicio Formulario  de Pago -->
                 <div id="formularioPago" >
                     <h1>Formulario de Pago</h1>
-                    <form name="input" action="#" method="get">
+
+                    @form(routes.Application.pay()){
+
                     <div id="textos" class=".formularioAlineado" >
                         <p>Tipo de tarjeta:</p><br><p>Numero de la tarjeta:</p><br><p>Código de Seguridad:</p><br><p>Fecha de nacimiento (dd/mm/aaaa)</p>
                     </div>
                     <div id="inputs" class=".formularioAlineado" >
                         <!-- El primer elemento es un combobox con los tipos de tarjeta admitidos -->
-                        <p><select id="tipoTarjeta">
+                        <p><select id="tipoTarjeta" name="tipoTarjeta">
                             <option value="Visa">Visa</option>
                             <option value="Mastercard">Mastercard</option>
                             <option value="American Express">American Express </option>
                         </select></p>
                         <!-- FIN del combobox -->
                         <br>
-                        <p><input id="numeroTarjeta" type="text" class="rounded" size="30"/></p>
+                        <p><input id="numeroTarjeta" type="text" class="rounded" size="30" name="numeroTarjeta" /></p>
                         <br>
-                        <p><input id="Código de Seguridad" type="text" class="rounded" size="10"/></p>
+                        <p><input id="Código de Seguridad" type="text" class="rounded" size="10" name="codigoSeguridad" /></p>
                         <br>
-                        <p><input id"fechaNacimiento" type="date" class="rounded"/></p>
+                        <p><input id"fechaNacimiento" type="date" class="rounded" name="fechaNacimiento" /></p>
                         
                     </div>
                     <div id="confirmarPago">
-                <a href="#" class="botonConfirmarPago">Confirmar Pago</a>
+                <input  type="submit" value="Confirmar Pago" class="botonConfirmarPago"></input>
                 </div>
-                </form>
+                }
+                    
+                    
+                
 
                 </div>
                 <!-- FIN formulario de Pago -->

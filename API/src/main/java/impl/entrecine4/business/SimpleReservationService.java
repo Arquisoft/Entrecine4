@@ -31,7 +31,7 @@ public class SimpleReservationService implements ReservationService {
 	 */
 	@Override
 	public boolean goToPaymentGategay(String cardNumber, String type,
-			String SecurityCode, Date expirationDate) {
+			String SecurityCode, String expirationDate) {
 		return PaymentGateway.pay(cardNumber, type, SecurityCode, expirationDate);
 	}
 
