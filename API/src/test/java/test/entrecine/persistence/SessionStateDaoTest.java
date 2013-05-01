@@ -57,7 +57,7 @@ public class SessionStateDaoTest {
 		assertEquals(sessionState.getColumn(), recoveredSessionState.getColumn());
 		assertEquals(sessionState.getSession(), recoveredSessionState.getSession());
 		dao.delete(sessionState);
-		assertEquals(dao.get(sessionState), null);
+		assertEquals(null, dao.get(sessionState));
 	}
 	
 	/**
@@ -72,8 +72,8 @@ public class SessionStateDaoTest {
 		sessionState.setColumn(10);
 		dao.update(sessionState);
 		SessionState recoveredSessionState = dao.get(sessionState);
-		assertEquals(recoveredSessionState.getRow(), 5);
-		assertEquals(recoveredSessionState.getColumn(), 10);
+		assertEquals(5, recoveredSessionState.getRow());
+		assertEquals(10, recoveredSessionState.getColumn());
 	}
 	
 	/**

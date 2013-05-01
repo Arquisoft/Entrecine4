@@ -72,7 +72,7 @@ public class RoomDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Room room = dao.get(-1);
-		assertEquals(room, null);
+		assertEquals(null, room);
 	}
 
 	/**

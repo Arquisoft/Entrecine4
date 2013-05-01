@@ -19,7 +19,7 @@ public class PaymentGateway {
 	 * @param expirationDate Expiration Date of the Credit/Debit Card. For security reasons.
 	 * @return
 	 */
-	public static boolean pay(String cardNumber, String type, String SecurityCode, Date expirationDate){
+	public static boolean pay(String cardNumber, String type, String SecurityCode, String expirationDate){
 		Random r = new Random();
 		if(r.nextInt(10) < 1)
 			return false;

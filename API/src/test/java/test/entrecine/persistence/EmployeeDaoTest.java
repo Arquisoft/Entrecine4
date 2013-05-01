@@ -69,7 +69,7 @@ public class EmployeeDaoTest {
 	@Test
 	public void testGetBadId() throws SQLException {
 		Employee emp = dao.get(-1);
-		assertEquals(emp, null);
+		assertEquals(null, emp);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class EmployeeDaoTest {
 		dao.update(emp);
 		List<Employee> recoveredEmployees = dao.getAll();
 		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1 );
-		assertEquals(recoveredEmployee.getPassword(), "emp02mod");
+		assertEquals("emp02mod", recoveredEmployee.getPassword());
 	}
 
 	/**

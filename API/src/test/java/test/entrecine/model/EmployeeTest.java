@@ -45,7 +45,7 @@ public class EmployeeTest {
 	 * @param the employee to test
 	 */
 	private void testAttributes(Employee emp, int num) {
-		assertEquals(emp.getId(), ID);
+		assertEquals(ID, emp.getId());
 		assertEquals(USERNAME, emp.getUsername());
 		assertEquals(PASSWORD, emp.getPassword());
 		if(num == 1)

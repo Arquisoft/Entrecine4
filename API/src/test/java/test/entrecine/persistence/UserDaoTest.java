@@ -59,7 +59,7 @@ public class UserDaoTest {
 		assertEquals(user.getUsername(), recoveredUser.getUsername());
 		assertEquals(user.getPassword(), recoveredUser.getPassword());
 		dao.delete(recoveredUser);
-		assertEquals(dao.get("pepito"), null);
+		assertEquals(null, dao.get("pepito"));
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class UserDaoTest {
 	@Test
 	public void testGetBadId() throws SQLException {
 		User user = dao.get(-1);
-		assertEquals(user, null);
+		assertEquals(null, user);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class UserDaoTest {
 		user.setPassword("pepiton");
 		dao.update(user);
 		User recoveredUser = dao.get("pepito");
-		assertEquals(recoveredUser.getPassword(), "pepiton");
+		assertEquals("pepiton", recoveredUser.getPassword());
 	}
 	
 	/**

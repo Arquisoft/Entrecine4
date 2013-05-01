@@ -128,7 +128,6 @@ color: #999;
 }
 
 
-
 /* INICIO LOGIN */
 .modalDialog {
    position: fixed;
@@ -219,6 +218,7 @@ border: 1px solid #ccc;
 
 /* FIN LOGIN  */
 
+
 #formularioPago {
 font-family: Arial;
 width: 600px;
@@ -242,11 +242,11 @@ margin: 0 auto;
 margin-bottom:0px;
 }
 
-form {
+#formularioPago form {
 width: 500px;
 float:left;
 }
-form div {
+#formularioPago form div {
   float:left;
 }
 
