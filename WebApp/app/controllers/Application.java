@@ -23,8 +23,40 @@ public class Application extends Controller {
         return ok(index.render(movies, userForm));
     }
 
-    public static Result registro() {
-        return ok(registro.render());
+    public static Result registro() 
+    {
+        return ok(registro.render(userForm));
+    }
+    
+    public static Result register()
+    {
+    	Form<User> filledForm = userForm.bindFromRequest();
+    	if(filledForm.hasErrors()) 
+    	{
+    		return redirect(routes.Application.registro());
+    	}
+    	else
+    	{
+    		String name=filledForm.field("txt_Nombre").value();
+    		String surnames=filledForm.field("txt_Apellidos").value();
+    		String username=filledForm.field("txt_NombreDeUsuario").value();
+    		String email=filledForm.field("email").value();
+    		String password=filledForm.field("pwd_Contraseña").value();
+    		String repass=filledForm.field("pwd_Repitalacontraseña").value();
+    		
+    		if(!password.equals(repass))
+    			return redirect(routes.Application.registro());
+    		else
+    		{
+    			User user=new User(0, username, password, name, surnames, email);
+    			if(Factories.services.createReservationService()
+    					.validateUserData(user)==null)
+    				return redirect(routes.Application.registro());
+    		}
+    		
+    		System.out.println(filledForm.toString());
+    	}
+    	return redirect(routes.Application.index());
     }
 
     public static Result pelicula(Long id) {
