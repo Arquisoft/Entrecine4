@@ -146,4 +146,8 @@ public class Application extends Controller {
     public static Result finReservaWrong(){
     	return ok(finReservaWrong.render());
     }
+    
+    public static Result error(){
+    	return ok(error404.render());
+    }
 }

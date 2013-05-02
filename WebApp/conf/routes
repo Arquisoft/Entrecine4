@@ -16,6 +16,7 @@ GET		/plataformaPago				controllers.Application.plataformaPago()
 POST	/pay						controllers.Application.pay()
 GET		/finReservaOk				controllers.Application.finReservaOk()
 GET		/finReservaWrong			controllers.Application.finReservaWrong()
+GET		/error404					controllers.Application.error()
 
 
 # Map static resources from the /public folder to the /assets URL path
