@@ -127,12 +127,12 @@ public class Application extends Controller {
 //    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
     	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
 //    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
-    	String fechaNacimiento = filledForm.field("fechaNacimiento").value();
-//    	System.out.println("Fecha de nacimiento: "+ fechaNacimiento);
+    	String fechaNacimiento = filledForm.field("fechaCaducidad").value();
+//    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
     	
     	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
     	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
-//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaNacimiento))
+//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
     		return redirect(routes.Application.finReservaOk());
 //    	else
 //    		return redirect(routes.Application.finReservaWrong());
