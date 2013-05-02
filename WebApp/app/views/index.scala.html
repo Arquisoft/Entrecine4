@@ -10,21 +10,9 @@
     var a = document.getElementById("linkCartelera");
     a.onclick = function open_in_new_tab()
     {
-    var win=window.open("index.html", '_blank');
+    var win=window.open("/index", '_blank');
     win.focus();
     }
-    }
-
-    function gainFocus() {
-       document.getElementById("usernameInput").focus();
-    }
-
-    function changetext()
-    {
-        var textchange2 = textchange;
-        var id = document.getElementById("hola");
-        textchange = id.innerHTML;
-        id.innerHTML=textchange2;
     }
 
 

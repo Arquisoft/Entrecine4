@@ -1,5 +1,16 @@
 @(username: String)
-
+<script type="text/javascript">
+function gainFocus() {
+       document.getElementById("usernameInput").focus();
+    }
+function changetext()
+{
+    var textchange2 = textchange;
+    var id = document.getElementById("hola");
+    textchange = id.innerHTML;
+    id.innerHTML=textchange2;
+}
+</script>
 <div id="cabecera">
         <div id="bloqueCabeceraIzq">
             <h1> Entrecine </h1>
@@ -8,13 +19,14 @@
         <div id="bloqueCabeceraDcha">
             <div id="login">
 
-                @if(username==null) {
+                @if(username==null || username.length()==0) {
                     <a href="#openModal" onclick="gainFocus();">Iniciar Sesion</a>
+                    <a href="/registro">Registro</a>
                 } else {
                     <a href="/logout" id="hola"  onmouseover="changetext();" onmouseout="changetext();">Hola, @username.toString()</a>
                 }
 
             </div>
-            <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
+            <h3><a id="linkCartelera" href="">Cartelera</a></h3>
         </div>
     </div>

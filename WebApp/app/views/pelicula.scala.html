@@ -1,4 +1,4 @@
-@(movie: Movie, userForm: Form[User])
+@(username: String, movie: Movie, userForm: Form[User])
 @import snippets._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pelicula.css")">
 
@@ -7,7 +7,7 @@
     var a = document.getElementById("linkCartelera");
     a.onclick = function open_in_new_tab()
     {
-    var win=window.open("index.html", '_blank');
+    var win=window.open("/index", '_blank');
     win.focus();
     }
     }
@@ -16,7 +16,7 @@
 
 @main("Cartelera - Entrecine4"){
 <div id="wrapper">
-    @header(null)
+    @header(username)
     <div id="cuerpo">
         <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
         @loginWindow(userForm)

@@ -22,19 +22,30 @@ public class Application extends Controller {
   
 	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
-        Http.Cookie cookie = request().cookies().get("user"); //must be decrypted
-        String user = null;
+        String username = getLoggedUser();
         List<Movie> movies = Factories.services.createMoviesService().getMovies();
+        if(Factories.services.createUserService().get(username) == null) // user !exists?
+            return ok(index.render(null,movies, userForm));
+        return ok(index.render(username,movies, userForm));
+    }
+    
+    private static String getLoggedUser()
+    {
+    	String user = null;
+    	
+    	//Get cookie and decrypt it
+    	Http.Cookie cookie = request().cookies().get("user");
         if(cookie != null) {
             user = Crypto.decryptAES(cookie.value()); //if not null decrypt
         }
-        if(Factories.services.createUserService().get(user) == null) // user !exists?
-            return ok(index.render(null,movies, userForm));
-        return ok(index.render(user,movies, userForm));
+         
+         return user;
     }
 
     public static Result registro() 
     {
+    	if(Factories.services.createUserService().get(getLoggedUser()) != null)
+    		return redirect(routes.Application.index());
         return ok(registro.render(userForm));
     }
     
@@ -73,7 +84,7 @@ public class Application extends Controller {
 
     public static Result pelicula(Long id) {
         Movie movie = Factories.services.createMoviesService().findById(id);
-        return ok(pelicula.render(movie, userForm));
+        return ok(pelicula.render(getLoggedUser(),movie, userForm));
     }
     
     public static Result login() {

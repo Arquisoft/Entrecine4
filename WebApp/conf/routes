@@ -6,7 +6,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-#GET    /index.html                 controllers.Application.index()
+GET    	/index		                controllers.Application.index()
 GET     /registro                   controllers.Application.registro()
 POST	/register					controllers.Application.register()
 GET     /pelicula/:id               controllers.Application.pelicula(id: Long)
