@@ -1,18 +1,17 @@
 package impl.entrecine4.business;
 
-import impl.entrecine4.persistence.SimplePersistenceFactory;
-
-import java.sql.SQLException;
-import java.util.Date;
-
-import models.SessionState;
-import models.User;
-
 import com.entrecine4.GenerateQR;
 import com.entrecine4.PaymentGateway;
 import com.entrecine4.SendEmail;
 import com.entrecine4.business.ReservationService;
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.persistence.SessionStateDAO;
+import impl.entrecine4.persistence.SimplePersistenceFactory;
+import models.SessionState;
+import models.User;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class SimpleReservationService implements ReservationService {
 	
@@ -59,11 +58,15 @@ public class SimpleReservationService implements ReservationService {
 	 */
 	@Override
 	public void lockSeat(SessionState sessionState) {
-		try {
-			dao.save(sessionState);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.save(sessionState);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 }

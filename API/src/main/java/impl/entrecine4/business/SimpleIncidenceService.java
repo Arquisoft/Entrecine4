@@ -1,7 +1,9 @@
 package impl.entrecine4.business;
 
+import com.entrecine4.infraestructure.Jdbc;
 import impl.entrecine4.persistence.SimplePersistenceFactory;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,11 +22,15 @@ public class SimpleIncidenceService implements IncidenceService {
 	 */
 	@Override
 	public List<Incidence> getIncidences()  {
-		try {
-			return dao.getAll();
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            return dao.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -32,11 +38,15 @@ public class SimpleIncidenceService implements IncidenceService {
 	 */
 	@Override
 	public Incidence findById(Long id) {
-		try {
-			return dao.get(id);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            return dao.get(id);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -44,11 +54,15 @@ public class SimpleIncidenceService implements IncidenceService {
 	 */
 	@Override
 	public void saveIncidence(Incidence incidence) {
-		try {
-			dao.save(incidence);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.save(incidence);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -56,11 +70,15 @@ public class SimpleIncidenceService implements IncidenceService {
 	 */
 	@Override
 	public void updateIncidence(Incidence incidence) {
-		try {
-			dao.update(incidence);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.update(incidence);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 	/* (non-Javadoc)
@@ -68,11 +86,15 @@ public class SimpleIncidenceService implements IncidenceService {
 	 */
 	@Override
 	public void deleteIncidence(Incidence incidence) {
-		try {
-			dao.delete(incidence);
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            dao.delete(incidence);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
 	}
 
 }
