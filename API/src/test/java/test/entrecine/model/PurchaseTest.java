@@ -3,9 +3,10 @@ package test.entrecine.model;
 import static org.junit.Assert.*;
 
 
+import models.Purchase;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Purchase;
 
 
 public class PurchaseTest {
@@ -46,12 +47,12 @@ public final static int PAID = 1, COLLECTED = 0;
 	 * @param the employee to test
 	 */
 	private void testAttributes(Purchase p) {
-		assertEquals(p.getId(), ID);
-		assertEquals(p.getUser_id(), USER_ID);
-		assertEquals(p.getMovie_id(), MOVIE_ID);
-		assertEquals(p.getTicket_id_code(), TICKET_ID_CODE);
-		assertEquals(p.getPaid(), PAID);
-		assertEquals(p.getCollected(), COLLECTED);
+		assertEquals(ID, p.getId());
+		assertEquals(USER_ID, p.getUser_id());
+		assertEquals(MOVIE_ID, p.getMovie_id());
+		assertEquals(TICKET_ID_CODE, p.getTicket_id_code());
+		assertEquals(PAID, p.getPaid());
+		assertEquals(COLLECTED, p.getCollected());
 		
 		
 	}

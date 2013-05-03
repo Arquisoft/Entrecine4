@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Employee;
+
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
 public class EmployeeJdbcDAO implements EmployeeDAO {
@@ -23,6 +25,16 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	private final static String INSERT_EMPLOYEE = PropertiesReader.get("INSERT_EMPLOYEE");
 	private final static String UPDATE_EMPLOYEE = PropertiesReader.get("UPDATE_EMPLOYEE");
 	private final static String DELETE_EMPLOYEE = PropertiesReader.get("DELETE_EMPLOYEE");
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.entrecine4.persistence.EmployeeDAO#setConnection(java.sql.Connection)
+	 */
+	@Override
+	public void setConnection(Connection con) {
+		this.connection = con;
+		PropertiesReader.setFile("sql.properties");
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -43,7 +55,10 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			result.setUsername(rs.getString("USERNAME"));
 			result.setPassword(rs.getString("PASSWORD"));
 			result.setIsAdmin(rs.getInt("ISADMIN"));
+			result.setTpvPrivilege(rs.getInt("TPV_PRIVILEGIO"));
 		}
+		
+		Jdbc.close(rs, pst);
 
 		return result;
 	}
@@ -67,12 +82,15 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			emp.setUsername(rs.getString("USERNAME"));
 			emp.setPassword(rs.getString("PASSWORD"));
 			emp.setIsAdmin(rs.getInt("ISADMIN"));
-
+			emp.setTpvPrivilege(rs.getInt("TPV_PRIVILEGIO"));
+			
 			// Finally we add the temporal employee to the list that will be
 			// returned.
 			result.add(emp);
 		}
 
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -90,8 +108,11 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
 		pst.setInt(3, employee.getIsAdmin());
+		pst.setInt(4, employee.getTpvPrivilege());
 
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/*
@@ -108,11 +129,14 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		pst.setString(1, employee.getUsername());
 		pst.setString(2, employee.getPassword());
 		pst.setInt(3, employee.getIsAdmin());
-		pst.setString(4, employee.getUsername()); // USERNAME of the user that will be updated
+		pst.setInt(4, employee.getTpvPrivilege());
+		pst.setString(5, employee.getUsername()); // USERNAME of the user that will be updated
 		// We're using the username instead of the ID_USUARIO because we might not know which is the
 		//current ID_USUARIO since it's generated automatically.
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/*
@@ -129,16 +153,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 
 		pst.executeUpdate();
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.entrecine4.persistence.EmployeeDAO#setConnection(java.sql.Connection)
-	 */
-	@Override
-	public void setConnection(Connection con) {
-		this.connection = con;
-		
+		Jdbc.close(pst);
 	}
 
 }

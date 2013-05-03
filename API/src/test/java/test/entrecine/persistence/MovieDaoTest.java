@@ -8,12 +8,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Movie;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Movie;
 import com.entrecine4.persistence.MovieDAO;
 
 public class MovieDaoTest
@@ -31,18 +32,18 @@ public class MovieDaoTest
 		dao.setConnection(con);
 		con.setAutoCommit(false);
 	}
-//	
-//	/**
-//	 * Method to test the insertion of the same movie twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
-//		dao.save(movie);
-//		dao.save(movie);
-//	}
+	
+	/**
+	 * Method to test the insertion of the same movie twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png"
+				,1D, 1D, 1D, "Fiction");
+		dao.save(movie);
+		dao.save(movie);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of a movie
@@ -51,7 +52,7 @@ public class MovieDaoTest
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D,"Comedy");
 		dao.save(movie);
 		
 		List<Movie> temp=dao.getAll();
@@ -65,7 +66,7 @@ public class MovieDaoTest
 		assertTrue(movie.getNightPrice()==recoveredMovie.getNightPrice());
 		
 		dao.delete(movie);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class MovieDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Movie movie = dao.get(-1);
-		assertEquals(movie, null);
+		assertEquals(null, movie);
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class MovieDaoTest
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D,"Fiction");
 		dao.save(movie);
 		movie.setName("Movie 2");
 

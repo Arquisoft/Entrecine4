@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Employee;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Employee;
 import com.entrecine4.persistence.EmployeeDAO;
 
 public class EmployeeDaoTest {
@@ -38,7 +39,7 @@ public class EmployeeDaoTest {
 	 */
 	@Test(expected = SQLException.class)
 	public void testInsertTwo() throws SQLException {
-		Employee emp = new Employee(0, "user", "user", 0);
+		Employee emp = new Employee(0, "user", "user", 0, 1);
 		dao.save(emp);
 		dao.save(emp);
 	}
@@ -50,14 +51,14 @@ public class EmployeeDaoTest {
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		Employee emp = new Employee(0, "emp01", "emp01", 0);
+		Employee emp = new Employee(0, "emp01", "emp01", 0, 0);
 		dao.save(emp);
 		List<Employee> recoveredEmployees = dao.getAll();
 		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1);
 		assertEquals(emp.getUsername(), recoveredEmployee.getUsername());
 		assertEquals(emp.getPassword(), recoveredEmployee.getPassword());
 		dao.delete(emp);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class EmployeeDaoTest {
 	@Test
 	public void testGetBadId() throws SQLException {
 		Employee emp = dao.get(-1);
-		assertEquals(emp, null);
+		assertEquals(null, emp);
 	}
 
 	/**
@@ -78,13 +79,13 @@ public class EmployeeDaoTest {
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		Employee emp = new Employee(0, "emp02", "emp02", 0);
+		Employee emp = new Employee(0, "emp02", "emp02", 0, 1);
 		dao.save(emp);
 		emp.setPassword("emp02mod");
 		dao.update(emp);
 		List<Employee> recoveredEmployees = dao.getAll();
 		Employee recoveredEmployee = recoveredEmployees.get(recoveredEmployees.size() - 1 );
-		assertEquals(recoveredEmployee.getPassword(), "emp02mod");
+		assertEquals("emp02mod", recoveredEmployee.getPassword());
 	}
 
 	/**
