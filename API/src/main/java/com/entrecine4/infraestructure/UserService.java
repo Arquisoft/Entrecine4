@@ -2,10 +2,10 @@ package com.entrecine4.infraestructure;
 
 import java.util.List;
 
-import com.entrecine4.model.User;
+import models.User;
 
-public interface UserService {
-
+public interface UserService 
+{
 	/**
 	 * Returns the user if username exists in the DB and the password is correct
 	 * @param username User's username

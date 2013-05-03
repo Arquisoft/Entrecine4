@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Purchase;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Purchase;
 import com.entrecine4.persistence.PurchaseDAO;
 
 public class PurchaseDaoTest {
@@ -59,7 +60,7 @@ public class PurchaseDaoTest {
 		assertEquals(purchase.getTicket_id_code(), recoveredPurchase.getTicket_id_code());
 		purchase.setId(recoveredPurchase.getId());
 		dao.delete(purchase);
-		assertEquals(dao.get(recoveredPurchase.getId()), null);
+		assertEquals(null, dao.get(recoveredPurchase.getId()));
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class PurchaseDaoTest {
 	@Test
 	public void testGetBadId() throws SQLException {
 		Purchase p = dao.get(-1);
-		assertEquals(p, null);
+		assertEquals(null, p);
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class PurchaseDaoTest {
 		dao.update(purchase);
 		purchasesRecovered = dao.getAll();
 		purchaseRecovered = purchasesRecovered.get(purchasesRecovered.size() - 1);
-		assertEquals(purchaseRecovered.getPaid(), 1);
+		assertEquals(1, purchaseRecovered.getPaid());
 	}
 
 	/**

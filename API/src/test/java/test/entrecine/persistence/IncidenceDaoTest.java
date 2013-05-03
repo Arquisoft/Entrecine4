@@ -8,12 +8,13 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Incidence;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Incidence;
 import com.entrecine4.persistence.IncidenceDAO;
 
 public class IncidenceDaoTest
@@ -32,17 +33,16 @@ public class IncidenceDaoTest
 		con.setAutoCommit(false);
 	}
 
-//	/**
-//	 * Method to test the insertion of the same incidence twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Incidence incidence = new Incidence(1L,1L,Date.valueOf("2013-04-20"),1L,"Just an incidence");
-//		dao.save(incidence);
-//		dao.save(incidence);
-//	}
+	/**
+	 * Method to test the insertion of the same incidence twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Incidence incidence = new Incidence(1L,1L,Date.valueOf("2013-04-20"),1L,"Just an incidence");
+		dao.save(incidence);
+		dao.save(incidence);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of an incidence
@@ -63,7 +63,7 @@ public class IncidenceDaoTest
 		assertEquals(incidence.getDescription(), recoveredIncidence.getDescription());
 		
 		dao.delete(incidence);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class IncidenceDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Incidence incidence = dao.get(-1);
-		assertEquals(incidence, null);
+		assertEquals(null, incidence);
 	}
 
 	/**

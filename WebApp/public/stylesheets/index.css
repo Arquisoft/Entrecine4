@@ -1,0 +1,384 @@
+@charset "UTF-8";
+
+@font-face
+{
+font-family: magnum;
+src: url('magnum.ttf');
+}
+
+@font-face
+{
+font-family: oswaldRegular;
+src: url('oswaldRegular.ttf');
+}
+
+@font-face
+{
+font-family: impregnable;
+src: url('impregnable.ttf');
+}
+
+#wrapper {
+
+	margin: 0 auto;
+	max-width: 680px;
+	min-height:100%;
+	position:relative;
+}
+
+
+
+html,body{
+height:100%;
+width: 100%;
+}
+
+
+body {
+	background-image:url('fondo.png');
+	margin: 0 auto;
+
+}
+
+#cuerpo {
+	padding-bottom:100px;
+}
+
+
+footer {
+	width: 100%;
+	height: 100px;
+	background: #38658C;
+	clear:both;
+	position:static;
+	left:0;
+	margin-bottom: 0px;	
+}
+
+footer h2{
+	color: #fff;
+	text-align: center;
+	padding-top: 20px;
+	font-family: magnum;
+}
+
+#cabecera *{
+	display: inline-block;
+	margin-top: 10px;
+}
+
+#cabecera {
+   display: inline;
+}
+
+#bloqueCabeceraIzq *{
+   display: block;
+}
+
+#bloqueCabeceraIzq h1 {
+	color: #333;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: magnum;
+	font-size: 3em;		
+}
+
+#bloqueCabeceraIzq h2 {
+	color: #333;
+	margin-top: 0;
+	font-family: impregnable;
+	font-size: 1.5em;
+}
+
+#bloqueCabeceraDcha  {
+float: right;
+display: inherit;
+font-size: 1em;
+font-family: magnum;
+border-width: 2px;
+ color: #333;
+
+}
+
+#bloqueCabeceraDcha a:link, a:visited, a:active {
+   text-decoration: none;
+   color:#333;
+
+}
+
+
+
+#bloqueCabeceraDcha a:hover, h3:hover {
+color: #999;
+}
+
+
+.view {
+   width: 300px;
+   height: 200px;
+   margin: 10px;
+   float: left;
+   border: 10px solid #fff;
+   overflow: hidden;
+   position: relative;
+   text-align: center;
+   -webkit-box-shadow: 1px 1px 2px #e6e6e6;
+   -moz-box-shadow: 1px 1px 2px #e6e6e6;
+   box-shadow: 1px 1px 2px #e6e6e6;
+   cursor: default;
+   background: #fff url(../images/bgimg.jpg) no-repeat center center;
+}
+.view .mask,.view .content {
+   width: 300px;
+   height: 200px;
+   position: absolute;
+   overflow: hidden;
+   top: 0;
+   left: 0;
+}
+.view img {
+   display: block;
+   position: relative;
+}
+.view h2 {
+   text-transform: uppercase;
+   color: #fff;
+   text-align: center;
+   position: relative;
+   font-family: Tahoma, Verdana, Arial;
+   font-size: 17px;
+   padding: 10px;
+   background: rgba(0, 0, 0, 0.8);
+   margin: 20px 0 0 0;
+}
+.view p {
+   font-family: Georgia, serif;
+   font-style: italic;
+   font-size: 12px;
+   font-family: Tahoma, Verdana, Arial;
+   position: relative;
+   color: #fff;
+   padding: 10px 20px 20px;
+   text-align: center;
+}
+.view a.info {
+   display: inline-block;
+   text-decoration: none;
+   padding: 7px 14px;
+   background: #000;
+   color: #fff;
+   font-family: Tahoma, Verdana, Arial;
+   text-transform: uppercase;
+   -webkit-box-shadow: 0 0 1px #000;
+   -moz-box-shadow: 0 0 1px #000;
+   box-shadow: 0 0 1px #000;
+}
+.view a.info: hover {
+   -webkit-box-shadow: 0 0 5px #000;
+   -moz-box-shadow: 0 0 5px #000;
+   box-shadow: 0 0 5px #000;
+}
+
+.view-first img {
+   -webkit-transition: all 0.2s linear;
+   -moz-transition: all 0.2s linear;
+   -o-transition: all 0.2s linear;
+   -ms-transition: all 0.2s linear;
+   transition: all 0.2s linear;
+}
+.view-first .mask {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   background-color: rgba(219,127,8, 0.7);
+   -webkit-transition: all 0.4s ease-in-out;
+   -moz-transition: all 0.4s ease-in-out;
+   -o-transition: all 0.4s ease-in-out;
+   -ms-transition: all 0.4s ease-in-out;
+   transition: all 0.4s ease-in-out;
+}
+.view-first h2 {
+   -webkit-transform: translateY(-100px);
+   -moz-transform: translateY(-100px);
+   -o-transform: translateY(-100px);
+   -ms-transform: translateY(-100px);
+   transform: translateY(-100px);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+   transition: all 0.2s ease-in-out;
+}
+.view-first p {
+   -webkit-transform: translateY(100px);
+   -moz-transform: translateY(100px);
+   -o-transform: translateY(100px);
+   -ms-transform: translateY(100px);
+   transform: translateY(100px);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.2s linear;
+   -moz-transition: all 0.2s linear;
+   -o-transition: all 0.2s linear;
+   -ms-transition: all 0.2s linear;
+   transition: all 0.2s linear;
+}
+.view-first:hover img {
+   -webkit-transform: scale(1.1,1.1);
+   -moz-transform: scale(1.1,1.1);
+   -o-transform: scale(1.1,1.1);
+   -ms-transform: scale(1.1,1.1);
+   transform: scale(1.1,1.1);
+}
+.view-first a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+   transition: all 0.2s ease-in-out;
+}
+.view-first:hover .mask {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+}
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: translateY(0px);
+   -moz-transform: translateY(0px);
+   -o-transform: translateY(0px);
+   -ms-transform: translateY(0px);
+   transform: translateY(0px);
+}
+.view-first:hover p {
+   -webkit-transition-delay: 0.1s;
+   -moz-transition-delay: 0.1s;
+   -o-transition-delay: 0.1s;
+   -ms-transition-delay: 0.1s;
+   transition-delay: 0.1s;
+}
+.view-first:hover a.info {
+   -webkit-transition-delay: 0.2s;
+   -moz-transition-delay: 0.2s;
+   -o-transition-delay: 0.2s;
+   -ms-transition-delay: 0.2s;
+   transition-delay: 0.2s;
+}
+
+
+
+
+/* INICIO LOGIN */
+.modalDialog {
+   position: fixed;
+   font-family: Arial, Helvetica, sans-serif;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: rgba(0,0,0,0.8);
+   z-index: 99999;
+   opacity:0;
+   -webkit-transition: opacity 400ms ease-in;
+   -moz-transition: opacity 400ms ease-in;
+   transition: opacity 400ms ease-in;
+   pointer-events: none;
+}
+
+.modalDialog:target {
+   opacity:1;
+   pointer-events: auto;
+}
+
+.modalDialog > div {
+   width: 400px;
+   position: relative;
+   margin: 10% auto;
+   padding: 5px 20px 13px 20px;
+   border-radius: 10px;
+   background-color:#ccc;
+  background-image: -moz-radial-gradient(center 45deg,circle cover, #ccc, #333);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#ccc), to(#333));
+  background-image: radial-gradient(center 45deg,circle cover, #ccc, #333);
+}
+
+.close {
+   background: #606061;
+   color: #FFFFFF;
+   line-height: 25px;
+   position: absolute;
+   right: -12px;
+   text-align: center;
+   top: -10px;
+   width: 24px;
+   text-decoration: none;
+   font-weight: bold;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+   -moz-box-shadow: 1px 1px 3px #000;
+   -webkit-box-shadow: 1px 1px 3px #000;
+   box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+.formularioAlineado {
+   display: inline-block;
+}
+
+#iniciarSesion {
+   margin-top: 10px;
+}
+
+#registrarse {
+   margin-top: 10px;
+}
+
+input.rounded {
+   border: 1px solid #ccc;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+
+}
+input.rounded:focus {
+   border-color: #339933;
+}
+
+#iniciarSesion, #registrarse{
+color: #ccc;
+background: #6f7a76;
+border: 1px solid #ccc;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+}
+
+
+/* FIN LOGIN  */
+
+#recomendadas {
+   clear:both;
+   background-image:url('fondo2.png');
+   border-radius:7px;
+   -moz-border-radius:7px;
+   -webkit-border-radius:7px;
+
+}
+
+#recomendadas p{
+   padding: 10px;
+   font-family: Tahoma;
+}

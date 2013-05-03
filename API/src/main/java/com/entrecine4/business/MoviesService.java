@@ -2,7 +2,7 @@ package com.entrecine4.business;
 
 import java.util.List;
 
-import com.entrecine4.model.Movie;
+import models.Movie;
 
 public interface MoviesService {
 	
@@ -40,5 +40,4 @@ public interface MoviesService {
 	 * 				Movie to be deleted
 	 */
 	public void deleteMovie(Movie movie);
-
 }

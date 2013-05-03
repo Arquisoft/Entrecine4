@@ -1,12 +1,14 @@
 package test.entrecine.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 
+import models.Session;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Session;
 
 public class SessionTest
 {
@@ -53,5 +55,9 @@ public class SessionTest
 	private void testAttributes(Session session)
 	{
 		assertEquals(ID, session.getId());
+		assertEquals(MOVIE_TITLE, session.getMovieTitle());
+		assertEquals(DAY, session.getDay());
+		assertTrue(TIME==session.getTime());
+		assertEquals(ROOM_ID, session.getRoomId());
 	}
 }

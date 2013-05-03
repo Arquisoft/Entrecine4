@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.entrecine4.model.Incidence;
+import models.Incidence;
+
 
 public interface IncidenceDAO
 {
