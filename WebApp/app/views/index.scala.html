@@ -88,7 +88,7 @@
 
             @for( movie <- movies){
             <div class="view view-first">
-                <img src="@movie.getImgPath()" />
+                <img src="@routes.Assets.at("stylesheets/images/small/")@movie.getImgPath()" />
                 <div class="mask">
                     <h2>@movie.getName()</h2>
                     <p>Género: @movie.getGenre()</p>
