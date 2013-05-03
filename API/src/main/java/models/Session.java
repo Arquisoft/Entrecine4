@@ -2,7 +2,6 @@ package models;
 
 import java.util.Date;
 
-@SuppressWarnings("unused")
 public class Session
 {
 	private long id;
@@ -11,10 +10,10 @@ public class Session
 	private double time;		//Session's hour: 12:00/17:00/20:00/22:00
 	private long roomId;
 	
-	private static final double TWELVE=12;
-	private static final double SEVENTEEN=17;
-	private static final double TWENTY=20;
-	private static final double TWENTY_TWO=22;
+	public static final double TWELVE=12;
+	public static final double SEVENTEEN=17;
+	public static final double TWENTY=20;
+	public static final double TWENTY_TWO=22;
 	
 	/**
 	 * Constructor without parameters

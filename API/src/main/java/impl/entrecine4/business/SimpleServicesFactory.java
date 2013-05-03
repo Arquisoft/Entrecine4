@@ -2,9 +2,12 @@ package impl.entrecine4.business;
 
 import com.entrecine4.business.IncidenceService;
 import com.entrecine4.business.MoviesService;
+import com.entrecine4.business.PurchasesService;
 import com.entrecine4.business.ReservationService;
 import com.entrecine4.business.RoomService;
 import com.entrecine4.business.ServicesFactory;
+import com.entrecine4.business.SessionService;
+import com.entrecine4.business.SessionStateService;
 import com.entrecine4.business.StaffService;
 import com.entrecine4.infraestructure.UserService;
 import impl.entrecine4.infraestructure.SimpleUserService;
@@ -28,6 +31,15 @@ public class SimpleServicesFactory implements ServicesFactory {
 	}
 
 	/* (non-Javadoc)
+	 * @see com.entrecine4.business.ServicesFactory#createPurchasesService()
+	 */
+	@Override
+	public PurchasesService createPurchasesService() 
+	{
+		return new SimplePurchasesService();
+	}
+
+	/* (non-Javadoc)
 	 * @see com.entrecine4.business.ServicesFactory#createReservationService()
 	 */
 	@Override
@@ -41,6 +53,24 @@ public class SimpleServicesFactory implements ServicesFactory {
 	@Override
 	public RoomService createRoomService() {
 		return new SimpleRoomService();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.ServicesFactory#createSessionService()
+	 */
+	@Override
+	public SessionService createSessionService() 
+	{
+		return new SimpleSessionService();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.entrecine4.business.ServicesFactory#createSessionStateService()
+	 */
+	@Override
+	public SessionStateService createSessionStateService() 
+	{
+		return new SimpleSessionStateService();
 	}
 
 	/* (non-Javadoc)

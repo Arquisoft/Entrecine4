@@ -3,28 +3,32 @@ package com.entrecine4.persistence;
 public interface PersistenceFactory 
 {
 	/**
-	 * Method to get an instance of EmployeeDAO and get access to the database's employees table
+	 * Method to get an instance of EmployeeDAO and get access to the database's
+	 * employees table
 	 * 
 	 * @return An instance of EmployeeDAO
 	 */
 	public EmployeeDAO createEmployeeDAO();
 	
 	/**
-	 * Method to get an instance of IncidenceDAO and get access to the database's incidences table
+	 * Method to get an instance of IncidenceDAO and get access to the database's
+	 * incidences table
 	 * 
 	 * @return
 	 */
 	public IncidenceDAO createIncidenceDAO();
 	
 	/**
-	 * Method to get an instance of MovieDAO and get access to the database's movies table
+	 * Method to get an instance of MovieDAO and get access to the database's movies
+	 * table
 	 * 
 	 * @return An instance of MovieDAO
 	 */
 	public MovieDAO createMovieDAO();
 	
 	/**
-	 * Method to get an instance of PurchaseDAO and get access to the database's purchases table
+	 * Method to get an instance of PurchaseDAO and get access to the database's
+	 * purchases table
 	 * 
 	 * @return An instance of PurchaseDAO
 	 */
@@ -38,15 +42,16 @@ public interface PersistenceFactory
 	public RoomDAO createRoomDAO();
 	
 	/**
-	 * Method to get an instance of SessionDAO and get access to the database's sessions table
+	 * Method to get an instance of SessionDAO and get access to the database's
+	 * sessions table
 	 * 
 	 * @return An instance of SessionDAO
 	 */
 	public SessionDAO createSessionDAO();
 	
 	/**
-	 * Method to get an instance of SessionStateDAO and get access to the database's session 
-	 * states table
+	 * Method to get an instance of SessionStateDAO and get access to the database's
+	 * session's states table
 	 * 
 	 * @return An instance of SessionStateDAO
 	 */

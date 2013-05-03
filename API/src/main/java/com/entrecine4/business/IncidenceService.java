@@ -4,10 +4,8 @@ import java.util.List;
 
 import models.Incidence;
 
-
-public interface IncidenceService {
-
-	
+public interface IncidenceService 
+{
 	/**
 	 * Retrieve all the incidences
 	 * @return the incidences

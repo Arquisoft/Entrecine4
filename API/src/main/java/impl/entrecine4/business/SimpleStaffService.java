@@ -12,9 +12,9 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 import com.entrecine4.business.StaffService;
 import com.entrecine4.persistence.EmployeeDAO;
 
-public class SimpleStaffService implements StaffService {
-
-	EmployeeDAO dao = new SimplePersistenceFactory().createEmployeeDAO();
+public class SimpleStaffService implements StaffService 
+{
+	private EmployeeDAO dao = new SimplePersistenceFactory().createEmployeeDAO();
 
 	/* (non-Javadoc)
 	 * @see com.entrecine4.business.StaffService#getStaff()

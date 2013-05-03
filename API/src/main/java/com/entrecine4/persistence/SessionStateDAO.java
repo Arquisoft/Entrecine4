@@ -41,6 +41,23 @@ public interface SessionStateDAO {
 	List<SessionState> get(long roomId, Date date, long session) throws SQLException;
 	
 	/**
+	 * Return a list with all the session's states for the supplied session
+	 * 
+	 * @param sessionId The session's identification number
+	 * @return A list with all the session's states for the supplied session
+	 * @throws SQLException
+	 */
+	List<SessionState> getBySession(long sessionId) throws SQLException;
+	
+	/**
+	 * Returns a list with all session's states
+	 * 
+	 * @return A list with the session's states
+	 * @throws SQLException
+	 */
+	List<SessionState> getAll() throws SQLException;
+	
+	/**
 	 * Save the given Session's state
 	 * @param ss the session's state
 	 * @throws SQLException

@@ -14,8 +14,7 @@ import com.entrecine4.persistence.RoomDAO;
 
 public class SimpleRoomService implements RoomService {
 	
-	private RoomDAO dao = new SimplePersistenceFactory()
-	.createRoomDAO();
+	private RoomDAO dao = new SimplePersistenceFactory().createRoomDAO();
 
 	/* (non-Javadoc)
 	 * @see com.entrecine4.business.RoomService#getRooms()

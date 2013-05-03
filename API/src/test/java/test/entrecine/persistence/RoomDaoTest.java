@@ -32,17 +32,16 @@ public class RoomDaoTest
 		con.setAutoCommit(false);
 	}
 	
-//	/**
-//	 * Method to test the insertion of the same room twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Room room = new Room(1L,5,7);
-//		dao.save(room);
-//		dao.save(room);
-//	}
+	/**
+	 * Method to test the insertion of the same room twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Room room = new Room(1L,5,7);
+		dao.save(room);
+		dao.save(room);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of a room

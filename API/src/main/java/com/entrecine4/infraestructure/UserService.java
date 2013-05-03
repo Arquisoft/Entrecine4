@@ -4,9 +4,8 @@ import java.util.List;
 
 import models.User;
 
-
-public interface UserService {
-
+public interface UserService 
+{
 	/**
 	 * Returns the user if username exists in the DB and the password is correct
 	 * @param username User's username

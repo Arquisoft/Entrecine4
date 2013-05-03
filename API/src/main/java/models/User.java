@@ -100,10 +100,11 @@ public class User {
 	/**
 	 * Check if any field is empty
 	 * 
-	 * @return true if there's some field empty
+	 * @return true if there's any empty field
 	 */
 	public boolean hasEmptyFields() {
-		if (this.id == 0 || this.username == null || this.password == null)
+		if (id <0  || username == null || password == null
+				|| name == null || surnames == null || email == null)
 			return true;
 		return false;
 	}

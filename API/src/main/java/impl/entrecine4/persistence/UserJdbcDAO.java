@@ -37,6 +37,7 @@ public class UserJdbcDAO implements UserDAO {
 	@Override
 	public void setConnection(Connection con) {
 		this.con = con;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	/* (non-Javadoc)

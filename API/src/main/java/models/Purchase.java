@@ -14,7 +14,16 @@ public class Purchase {
 	 * @param paid
 	 * @param collected
 	 */
-	
+	public Purchase(long id, long user_id, long movie_id,
+			String ticket_id_code, int paid, int collected) {
+		super();
+		this.id = id;
+		this.user_id = user_id;
+		this.movie_id = movie_id;
+		this.ticket_id_code = ticket_id_code;
+		this.paid = paid;
+		this.collected = collected;
+	}
 
 	/**
 	 * Constructor without parameters
@@ -34,17 +43,6 @@ public class Purchase {
 	 */
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Purchase(long id, long user_id, long movie_id,
-			String ticket_id_code, int paid, int collected) {
-		super();
-		this.id = id;
-		this.user_id = user_id;
-		this.movie_id = movie_id;
-		this.ticket_id_code = ticket_id_code;
-		this.paid = paid;
-		this.collected = collected;
 	}
 
 	/**

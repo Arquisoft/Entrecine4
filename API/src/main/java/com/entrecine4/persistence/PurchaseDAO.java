@@ -24,12 +24,29 @@ public interface PurchaseDAO {
 	public Purchase get(long ID) throws SQLException;
 	
 	/**
+	 * Returns a purchase using the generated ticket for that purchase
+	 * @param ticketCode The generated ticket code
+	 * @return The purchase for that ticket code if exists
+	 * @throws SQLException
+	 */
+	public Purchase get(String ticketCode) throws SQLException;
+	
+	/**
 	 * Returns a list of all the purchases
 	 * @return
 	 * @throws SQLException
 	 */
 	public List<Purchase> getAll() throws SQLException;
 	
+	/**
+	 * Returns all the purchases of the supplied user
+	 * 
+	 * @param userId The user's identification number
+	 * @return A list with the purchases for that user
+	 * @throws SQLException
+	 */
+	public List<Purchase> getByUser(long userId) throws SQLException;
+		
 	/**
 	 * Saves a new Purchase in the Database
 	 * @param purchase

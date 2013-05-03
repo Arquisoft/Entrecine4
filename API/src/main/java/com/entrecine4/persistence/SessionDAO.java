@@ -2,6 +2,7 @@ package com.entrecine4.persistence;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import models.Session;
@@ -33,6 +34,34 @@ public interface SessionDAO
 	 * @throws SQLException 
 	 */
 	public List<Session> getAll() throws SQLException;
+	
+	/**
+	 * Method to get all the sessions for a movie from the database
+	 * 
+	 * @param movieTitle The movie's title
+	 * @return A list with all the sessions for that movie
+	 * @throws SQLException
+	 */
+	public List<Session> getByMovie(String movieTitle) throws SQLException;
+	
+	/**
+	 * Method to get all the sessions for the supplied day
+	 * 
+	 * @param day The day
+	 * @return A list with all the sessions for that day
+	 * @throws SQLException
+	 */
+	public List<Session> getByDay(Date day) throws SQLException;
+	
+	/**
+	 * Method to get all the sessions for a specific day and session's time
+	 * 
+	 * @param day The day
+	 * @param time The session's time (12, 17, 20, 22)
+	 * @return A list with all the sessions for that day and session's time
+	 * @throws SQLException
+	 */
+	public List<Session> getByDayAndTime(Date day, double time) throws SQLException;
 	
 	/**
 	 * Method to save a session in the database

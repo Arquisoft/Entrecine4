@@ -34,17 +34,16 @@ public class SessionDaoTest
 		con.setAutoCommit(false);
 	}
 	
-//	/**
-//	 * Method to test the insertion of the same session twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Session session = new Session(1L,"Movie",Date.valueOf("20/04/2013"),12,1L);
-//		dao.save(session);
-//		dao.save(session);
-//	}
+	/**
+	 * Method to test the insertion of the same session twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Session session = new Session(1L,"Movie",Date.valueOf("20/04/2013"),12,1L);
+		dao.save(session);
+		dao.save(session);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of a session

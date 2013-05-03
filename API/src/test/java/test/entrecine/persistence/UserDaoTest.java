@@ -53,13 +53,13 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		User user = new User(0,"pepito", "pepito","pepe","pe pe","pepe@pepito.com");
+		User user = new User(0,"pepit0", "pepito","pepe","pe pe","pepe@pepito.com");
 		dao.save(user);
-		User recoveredUser = dao.get("pepito");
+		User recoveredUser = dao.get("pepit0");
 		assertEquals(user.getUsername(), recoveredUser.getUsername());
 		assertEquals(user.getPassword(), recoveredUser.getPassword());
 		dao.delete(recoveredUser);
-		assertEquals(null, dao.get("pepito"));
+		assertEquals(null, dao.get("pepit0"));
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		User user = new User(0,"pepito", "pepito","pepe","pe pe","pepe@pepito.com");
+		User user = new User(0,"pepit0", "pepito","pepe","pe pe","pepe@pepito.com");
 		dao.save(user);
 		user = dao.get("pepito");
 		user.setPassword("pepiton");

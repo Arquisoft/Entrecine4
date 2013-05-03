@@ -32,18 +32,18 @@ public class MovieDaoTest
 		dao.setConnection(con);
 		con.setAutoCommit(false);
 	}
-//	
-//	/**
-//	 * Method to test the insertion of the same movie twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png", 1D, 1D, 1D);
-//		dao.save(movie);
-//		dao.save(movie);
-//	}
+	
+	/**
+	 * Method to test the insertion of the same movie twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Movie movie = new Movie(1L, "Movie", "Just a movie", "/img/movie.png"
+				,1D, 1D, 1D, "Fiction");
+		dao.save(movie);
+		dao.save(movie);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of a movie

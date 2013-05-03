@@ -116,9 +116,4 @@ public class SessionState {
 	public void setSession(long session) {
 		this.session = session;
 	}
-
-	
-
-	
-	
 }

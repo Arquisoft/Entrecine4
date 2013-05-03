@@ -33,17 +33,16 @@ public class IncidenceDaoTest
 		con.setAutoCommit(false);
 	}
 
-//	/**
-//	 * Method to test the insertion of the same incidence twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Incidence incidence = new Incidence(1L,1L,Date.valueOf("2013-04-20"),1L,"Just an incidence");
-//		dao.save(incidence);
-//		dao.save(incidence);
-//	}
+	/**
+	 * Method to test the insertion of the same incidence twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Incidence incidence = new Incidence(1L,1L,Date.valueOf("2013-04-20"),1L,"Just an incidence");
+		dao.save(incidence);
+		dao.save(incidence);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of an incidence

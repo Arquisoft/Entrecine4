@@ -7,6 +7,13 @@ import impl.entrecine4.persistence.SimplePersistenceFactory;
 
 public class Factories
 {
+	/**
+	 * Instance of services factory
+	 */
 	public static ServicesFactory services=new SimpleServicesFactory();
+	
+	/**
+	 * Instance of persistence factory
+	 */
 	public static PersistenceFactory persistence= new SimplePersistenceFactory();
 }

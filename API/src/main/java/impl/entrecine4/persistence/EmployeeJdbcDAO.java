@@ -9,6 +9,7 @@ import java.util.List;
 
 import models.Employee;
 
+import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
 import com.entrecine4.persistence.EmployeeDAO;
 
@@ -24,6 +25,16 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 	private final static String INSERT_EMPLOYEE = PropertiesReader.get("INSERT_EMPLOYEE");
 	private final static String UPDATE_EMPLOYEE = PropertiesReader.get("UPDATE_EMPLOYEE");
 	private final static String DELETE_EMPLOYEE = PropertiesReader.get("DELETE_EMPLOYEE");
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.entrecine4.persistence.EmployeeDAO#setConnection(java.sql.Connection)
+	 */
+	@Override
+	public void setConnection(Connection con) {
+		this.connection = con;
+		PropertiesReader.setFile("sql.properties");
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -46,6 +57,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			result.setIsAdmin(rs.getInt("ISADMIN"));
 			result.setTpvPrivilege(rs.getInt("TPV_PRIVILEGIO"));
 		}
+		
+		Jdbc.close(rs, pst);
 
 		return result;
 	}
@@ -76,6 +89,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 			result.add(emp);
 		}
 
+		Jdbc.close(rs, pst);
+		
 		return result;
 	}
 
@@ -96,6 +111,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		pst.setInt(4, employee.getTpvPrivilege());
 
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/*
@@ -118,6 +135,8 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 		//current ID_USUARIO since it's generated automatically.
 		
 		pst.executeUpdate();
+		
+		Jdbc.close(pst);
 	}
 
 	/*
@@ -134,16 +153,7 @@ public class EmployeeJdbcDAO implements EmployeeDAO {
 
 		pst.executeUpdate();
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.entrecine4.persistence.EmployeeDAO#setConnection(java.sql.Connection)
-	 */
-	@Override
-	public void setConnection(Connection con) {
-		this.connection = con;
-		
+		Jdbc.close(pst);
 	}
 
 }

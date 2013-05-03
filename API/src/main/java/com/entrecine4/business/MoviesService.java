@@ -4,7 +4,6 @@ import java.util.List;
 
 import models.Movie;
 
-
 public interface MoviesService {
 	
 	/**
@@ -41,5 +40,4 @@ public interface MoviesService {
 	 * 				Movie to be deleted
 	 */
 	public void deleteMovie(Movie movie);
-
 }

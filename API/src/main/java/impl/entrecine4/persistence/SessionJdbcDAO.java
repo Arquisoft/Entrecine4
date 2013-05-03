@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import models.Session;
@@ -63,6 +64,85 @@ public class SessionJdbcDAO implements SessionDAO
 		List<Session> result=new ArrayList<Session>();
 		
 		pst=connection.prepareStatement(PropertiesReader.get("GET_ALL_SESSIONS"));
+		
+		rs=pst.executeQuery();
+		while(rs.next())
+		{
+			Session tempSession = new Session();
+			tempSession.setId(rs.getLong("ID"));
+			tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
+			tempSession.setDay(rs.getDate("DIA"));
+			tempSession.setTime(rs.getDouble("SESION"));
+			tempSession.setRoomId(rs.getLong("SALA"));
+			
+			result.add(tempSession);
+		}
+		
+		Jdbc.close(rs, pst);
+		
+		return result;
+	}
+	
+	@Override
+	public List<Session> getByMovie(String movieTitle) throws SQLException 
+	{
+		List<Session> result=new ArrayList<Session>();
+		
+		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_MOVIE"));
+		pst.setString(1, movieTitle);
+		
+		rs=pst.executeQuery();
+		while(rs.next())
+		{
+			Session tempSession = new Session();
+			tempSession.setId(rs.getLong("ID"));
+			tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
+			tempSession.setDay(rs.getDate("DIA"));
+			tempSession.setTime(rs.getDouble("SESION"));
+			tempSession.setRoomId(rs.getLong("SALA"));
+			
+			result.add(tempSession);
+		}
+		
+		Jdbc.close(rs, pst);
+		
+		return result;
+	}
+
+	@Override
+	public List<Session> getByDay(Date day) throws SQLException 
+	{
+		List<Session> result=new ArrayList<Session>();
+		
+		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY"));
+		pst.setDate(0, (java.sql.Date) day);
+		
+		rs=pst.executeQuery();
+		while(rs.next())
+		{
+			Session tempSession = new Session();
+			tempSession.setId(rs.getLong("ID"));
+			tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
+			tempSession.setDay(rs.getDate("DIA"));
+			tempSession.setTime(rs.getDouble("SESION"));
+			tempSession.setRoomId(rs.getLong("SALA"));
+			
+			result.add(tempSession);
+		}
+		
+		Jdbc.close(rs, pst);
+		
+		return result;
+	}
+
+	@Override
+	public List<Session> getByDayAndTime(Date day, double time) throws SQLException 
+	{
+		List<Session> result=new ArrayList<Session>();
+		
+		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY_AND_TIME"));
+		pst.setDate(1, (java.sql.Date) day);
+		pst.setDouble(2, time);
 		
 		rs=pst.executeQuery();
 		while(rs.next())
