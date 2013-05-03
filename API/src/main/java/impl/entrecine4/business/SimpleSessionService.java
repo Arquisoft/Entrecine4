@@ -102,14 +102,24 @@ public class SimpleSessionService implements SessionService
 		try {
 			dao.setConnection(con);
 			return dao.getByDayAndTime(day, time);
-		} catch (SQLException e) 
-		{
+		} catch (SQLException e) {
 			throw new RuntimeException();
-		} finally
-		{
+		} finally {
 			Jdbc.close(con);
 		}
 	}
+
+    public List<Session> findByDateTimeAndFilmName(Date date, double session, String filmName) {
+        Connection con = Jdbc.getConnection();
+        try {
+            dao.setConnection(con);
+            return dao.getByDayTimeAndFilmName(date, session, filmName);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            Jdbc.close(con);
+        }
+    }
 
 	/* (non-Javadoc)
 	 * @see com.entrecine4.business.SessionService#saveSession(models.Session)

@@ -28,41 +28,50 @@ public interface SessionService
 	 * @return A list with all the sessions for that movie
 	 */
 	public List<Session> findByMovie(String movieTitle);
-	
+
 	/**
 	 * Find all sessions of a day
-	 * 
+	 *
 	 * @param day The day
 	 * @return A list with the sessions for that day
 	 */
 	public List<Session> findByDay(Date day);
-	
+
 	/**
 	 * Find sessions using the day and session's time
-	 * 
+	 *
 	 * @param day The day
 	 * @param time The session's time (12, 17, 20, 22)
 	 * @return A list with the sessions for that day and session's time
 	 */
 	public List<Session> findByDayAndTime(Date day, double time);
-	
+
+    /**
+     * The list of session for this three params, useful to know the room
+     * @param date The day
+     * @param session The session's time (12, 17, 20, 22)
+     * @param filmName The name of the film
+     * @return A list of sessions
+     */
+    public List<Session> findByDateTimeAndFilmName(Date date, double session, String filmName);
+
 	/**
 	 * Save a session in the system
-	 * 
+	 *
 	 * @param session The session to save
 	 */
 	public void saveSession(Session session);
-	
+
 	/**
 	 * Update the data of a session in the system
-	 * 
+	 *
 	 * @param session The session to update
 	 */
 	public void updateSession(Session session);
 
 	/**
 	 * Delete a session from the database
-	 * 
+	 *
 	 * @param session The session to delete
 	 */
 	public void deleteSession(Session session);
