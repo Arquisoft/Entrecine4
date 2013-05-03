@@ -9,12 +9,13 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+import models.Session;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.Session;
 import com.entrecine4.persistence.SessionDAO;
 
 public class SessionDaoTest
@@ -33,17 +34,16 @@ public class SessionDaoTest
 		con.setAutoCommit(false);
 	}
 	
-//	/**
-//	 * Method to test the insertion of the same session twice. It must fail
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test(expected = SQLException.class)
-//	public void testInsertTwo() throws SQLException {
-//		Session session = new Session(1L,"Movie",Date.valueOf("20/04/2013"),12,1L);
-//		dao.save(session);
-//		dao.save(session);
-//	}
+	/**
+	 * Method to test the insertion of the same session twice. It must fail
+	 * 
+	 * @throws SQLException
+	 */
+	public void testInsertTwo() throws SQLException {
+		Session session = new Session(1L,"Movie",Date.valueOf("20/04/2013"),12,1L);
+		dao.save(session);
+		dao.save(session);
+	}
 
 	/**
 	 * Method to test the insertion and deletion of a session
@@ -64,7 +64,7 @@ public class SessionDaoTest
 		assertEquals(session.getRoomId(), recoveredSession.getRoomId());
 		
 		dao.delete(session);
-		assertEquals(dao.get(1), null);
+		assertEquals(null, dao.get(1));
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class SessionDaoTest
 	@Test
 	public void testGetBadId() throws SQLException {
 		Session session = dao.get(-1);
-		assertEquals(session, null);
+		assertEquals(null, session);
 	}
 
 	/**

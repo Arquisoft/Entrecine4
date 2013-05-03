@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import models.SessionState;
+
 import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.SessionState;
 import com.entrecine4.persistence.SessionStateDAO;
 
 /**
@@ -22,6 +23,8 @@ public class SessionStateJdbcDAO implements SessionStateDAO {
 	
 	private final static String GET_SESSIONSTATE = PropertiesReader.get("GET_SESSIONSTATE");
 	private final static String GET_SESSIONSTATE_BY_ID_DATE_SESSION = PropertiesReader.get("GET_SESSIONSTATE_BY_ID_DATE_SESSION");
+	private final static String GET_SESSIONSTATE_BY_SESSION = PropertiesReader.get("GET_SESSIONSTATE_BY_SESSION");
+	private final static String GET_ALL_SESSIONSTATE = PropertiesReader.get("GET_ALL_SESSIONSTATE");
 	private final static String INSERT_SESSIONSTATE = PropertiesReader.get("INSERT_SESSIONSTATE");
 	private final static String UPDATE_SESSIONSTATE = PropertiesReader.get("UPDATE_SESSIONSTATE");
 	private final static String DELETE_SESSIONSTATE = PropertiesReader.get("DELETE_SESSIONSTATE");
@@ -33,6 +36,7 @@ public class SessionStateJdbcDAO implements SessionStateDAO {
 	@Override
 	public void setConnection(Connection con) {
 		this.con = con;
+		PropertiesReader.setFile("sql.properties");
 	}
 
 	@Override
@@ -65,6 +69,42 @@ public class SessionStateJdbcDAO implements SessionStateDAO {
 			sessionStates.add(new SessionState(rs.getLong("ID_SALA"), rs.getInt("FILA_OCUPADA"),
 					rs.getInt("COLUMNA_OCUPADA"), rs.getDate("DIA"), rs.getLong("SESION")));
 		Jdbc.close(rs, ps);
+		return sessionStates;
+	}
+	
+
+	@Override
+	public List<SessionState> getBySession(long sessionId) throws SQLException 
+	{	
+		List<SessionState> sessionStates = new ArrayList<SessionState>();
+		
+		ps = con.prepareStatement(GET_SESSIONSTATE_BY_SESSION);
+		ps.setLong(1, sessionId);
+		
+		rs = ps.executeQuery();
+		while(rs.next())
+			sessionStates.add(new SessionState(rs.getLong("ID_SALA"), rs.getInt("FILA_OCUPADA"),
+					rs.getInt("COLUMNA_OCUPADA"), rs.getDate("DIA"), rs.getLong("SESION")));
+		
+		Jdbc.close(rs, ps);
+		
+		return sessionStates;
+	}
+
+	@Override
+	public List<SessionState> getAll() throws SQLException 
+	{
+		List<SessionState> sessionStates = new ArrayList<SessionState>();
+		
+		ps = con.prepareStatement(GET_ALL_SESSIONSTATE);
+		
+		rs = ps.executeQuery();
+		while(rs.next())
+			sessionStates.add(new SessionState(rs.getLong("ID_SALA"), rs.getInt("FILA_OCUPADA"),
+					rs.getInt("COLUMNA_OCUPADA"), rs.getDate("DIA"), rs.getLong("SESION")));
+		
+		Jdbc.close(rs, ps);
+		
 		return sessionStates;
 	}
 
@@ -103,5 +143,4 @@ public class SessionStateJdbcDAO implements SessionStateDAO {
 		ps.executeUpdate();
 		Jdbc.close(ps);
 	}
-
 }

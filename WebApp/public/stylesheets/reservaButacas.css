@@ -1,0 +1,315 @@
+@charset "UTF-8";
+
+
+@font-face
+{
+font-family: magnum;
+src: url('magnum.ttf');
+}
+
+@font-face
+{
+font-family: oswaldRegular;
+
+src: url('oswaldRegular.ttf');
+}
+
+@font-face
+{
+font-family: impregnable;
+src: url('impregnable.ttf');
+}
+
+#wrapper {
+
+	margin: 0 auto;
+	min-height:100%;
+	position:relative;
+}
+
+
+
+
+html,body{
+height:100%;
+width: 100%;
+}
+
+
+body {
+	background-image:url('fondo.png');
+	margin: 0 auto;
+
+}
+
+#cuerpo {
+	padding-bottom:100px;
+}
+
+#wrapper:after{
+width: 100%;
+height:100px;
+display:block;
+clear:both;
+}
+
+
+footer {
+   
+   margin: -100px auto 0;
+	width: 100%;
+	height: 100px;
+	background: #38658C;
+	clear:both;
+	
+}
+
+footer h2{
+	color: #fff;
+	text-align: center;
+	padding-top: 20px;
+	font-family: magnum;
+}
+
+#cabecera *{
+	display: inline-block;
+	margin-top: 10px;
+}
+
+#cabecera {
+   display: inline;
+}
+
+#bloqueCabeceraIzq *{
+   display: block;
+}
+
+#bloqueCabeceraIzq h1 {
+	color: #333;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: magnum;
+	font-size: 3em;		
+}
+
+#bloqueCabeceraIzq h2 {
+	color: #333;
+	margin-top: 0;
+	font-family: impregnable;
+	font-size: 1.5em;
+}
+
+#bloqueCabeceraDcha  {
+float: right;
+display: inherit;
+font-size: 1em;
+font-family: magnum;
+border-width: 2px;
+ color: #333;
+
+}
+
+#bloqueCabeceraDcha a:link, a:visited, a:active {
+   text-decoration: none;
+   color:#333;
+
+}
+
+
+
+#bloqueCabeceraDcha a:hover, h3:hover {
+color: #999;
+}
+
+
+#contCabecera{
+   max-width: 680px;
+   margin: 0 auto;
+}
+
+
+
+/* INICIO LOGIN */
+.modalDialog {
+   position: fixed;
+   font-family: Arial, Helvetica, sans-serif;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: rgba(0,0,0,0.8);
+   z-index: 99999;
+   opacity:0;
+   -webkit-transition: opacity 400ms ease-in;
+   -moz-transition: opacity 400ms ease-in;
+   transition: opacity 400ms ease-in;
+   pointer-events: none;
+}
+
+.modalDialog:target {
+   opacity:1;
+   pointer-events: auto;
+}
+
+.modalDialog > div {
+   width: 400px;
+   position: relative;
+   margin: 10% auto;
+   padding: 5px 20px 13px 20px;
+   border-radius: 10px;
+   background-color:#ccc;
+  background-image: -moz-radial-gradient(center 45deg,circle cover, #ccc, #333);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#ccc), to(#333));
+  background-image: radial-gradient(center 45deg,circle cover, #ccc, #333);
+}
+
+.close {
+   background: #606061;
+   color: #FFFFFF;
+   line-height: 25px;
+   position: absolute;
+   right: -12px;
+   text-align: center;
+   top: -10px;
+   width: 24px;
+   text-decoration: none;
+   font-weight: bold;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+   -moz-box-shadow: 1px 1px 3px #000;
+   -webkit-box-shadow: 1px 1px 3px #000;
+   box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+.formularioAlineado {
+   display: inline-block;
+}
+
+#iniciarSesion {
+   margin-top: 10px;
+}
+
+#registrarse {
+   margin-top: 10px;
+}
+
+input.rounded {
+   border: 1px solid #ccc;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+
+}
+input.rounded:focus {
+   border-color: #339933;
+}
+
+#iniciarSesion, #registrarse{
+color: #ccc;
+background: #6f7a76;
+border: 1px solid #ccc;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+}
+
+
+/* FIN LOGIN  */
+
+
+/* Cambiamos el estilo de los botones por butacas */
+
+.butaca {
+   background: transparent;
+   border: 0px;
+   margin: 0;
+} 
+
+.butaca:hover {
+   border:1px solid #ccc;
+}
+
+#cuerpo {
+   max-width: 1000px;
+   margin: 0 auto;
+   text-align: center;
+   padding-bottom: 100px;
+}
+
+
+
+#estructuraCine {
+        background: url(images/fondoCine.png);
+        background-size: 100%;
+        padding-bottom: 25px;
+        padding-left:10px;
+        padding-right: 10px;
+        padding-top: 50px;
+}
+
+
+#elegirSala {
+  clear:both;
+}
+
+/* Inicio del estilo para los botones de elección de la sala */
+.botonesSalas {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  -moz-border-radius:14px;
+  -webkit-border-radius:14px;
+  border-radius:14px;
+  border:3px solid #dcdcdc;
+  display:inline-block;
+  color:#777777;
+  font-family:arial;
+  font-size:28px;
+  font-weight:bold;
+  padding:10px 23px;
+  text-decoration:none;
+}.botonesSalas:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+  background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+  background-color:#dfdfdf;
+}.botonesSalas:active {
+  position:relative;
+  top:1px;
+}
+
+/* FIN del estilo para los botones de elección de la sala */
+
+#leyendaAyuda{
+  clear:both;
+  float: right;
+  font-family: impregnable;
+  font-size: 2em;
+}
+
+/* Boton realizar reserva */
+.botonReserva {
+  background-color:#ededed;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#777777;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+}.botonReserva:hover {
+  background-color:#dfdfdf;
+}.botonReserva:active {
+  position:relative;
+  top:1px;
+}
+
+/* FIN botón realizar reserva */

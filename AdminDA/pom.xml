@@ -80,6 +80,12 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>es.uniovi.asw.api</groupId>
+			<artifactId>API</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
