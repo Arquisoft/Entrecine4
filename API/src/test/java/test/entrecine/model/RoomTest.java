@@ -2,9 +2,10 @@ package test.entrecine.model;
 
 import static org.junit.Assert.assertEquals;
 
+import models.Room;
+
 import org.junit.Test;
 
-import com.entrecine4.model.Room;
 
 public class RoomTest
 {

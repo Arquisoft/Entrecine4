@@ -2,7 +2,8 @@ package com.entrecine4.business;
 
 import java.util.List;
 
-import com.entrecine4.model.Room;
+import models.Room;
+
 
 public interface RoomService {
 	

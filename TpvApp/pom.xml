@@ -79,6 +79,12 @@
 			<scope>system</scope>
 			<systemPath>${java.home}/lib/jfxrt.jar</systemPath>
 		</dependency>
+		
+		<dependency>
+			<groupId>es.uniovi.asw.api</groupId>
+			<artifactId>API</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 

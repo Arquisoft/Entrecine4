@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Incidence;
+
 import com.entrecine4.infraestructure.Jdbc;
 import com.entrecine4.infraestructure.PropertiesReader;
-import com.entrecine4.model.Incidence;
 import com.entrecine4.persistence.IncidenceDAO;
 
 public class IncidenceJdbcDAO implements IncidenceDAO

@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main class on program
+ * @author Arquisoft - Entrecine4
+ *
+ */
 public class MainApp extends Application {
 
 
@@ -14,15 +19,15 @@ public class MainApp extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        String fxmlFile = "/fxml/hello.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+    	 String fxmlFile = "/fxml/login.fxml";
+         FXMLLoader loader = new FXMLLoader();
+         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        Scene scene = new Scene(rootNode, 400, 200);
-        scene.getStylesheets().add("/styles/styles.css");
+         Scene scene = new Scene(rootNode);
+         scene.getStylesheets().add("/styles/JMetroLightTheme.css");
 
-        stage.setTitle("Hello JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();
+         stage.setTitle("Login - Entrecine4");
+         stage.setScene(scene);
+         stage.show();
     }
 }

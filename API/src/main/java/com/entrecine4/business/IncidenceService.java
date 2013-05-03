@@ -2,11 +2,10 @@ package com.entrecine4.business;
 
 import java.util.List;
 
-import com.entrecine4.model.Incidence;
+import models.Incidence;
 
-public interface IncidenceService {
-
-	
+public interface IncidenceService 
+{
 	/**
 	 * Retrieve all the incidences
 	 * @return the incidences

@@ -6,13 +6,14 @@ import impl.entrecine4.persistence.UserJdbcDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import models.User;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.entrecine4.infraestructure.Jdbc;
-import com.entrecine4.model.User;
 import com.entrecine4.persistence.UserDAO;
 
 /**
@@ -41,7 +42,7 @@ public class UserDaoTest {
 	 */
 	@Test(expected = SQLException.class)
 	public void testInsertTwo() throws SQLException {
-		User user = new User(0,"pepito", "pepito");
+		User user = new User(0,"pepito", "pepito","pepe","pe pe","pepe@pepito.com");
 		dao.save(user);
 		dao.save(user);
 	}
@@ -52,13 +53,13 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		User user = new User(0,"pepito", "pepito");
+		User user = new User(0,"pepit0", "pepito","pepe","pe pe","pepe@pepito.com");
 		dao.save(user);
-		User recoveredUser = dao.get("pepito");
+		User recoveredUser = dao.get("pepit0");
 		assertEquals(user.getUsername(), recoveredUser.getUsername());
 		assertEquals(user.getPassword(), recoveredUser.getPassword());
 		dao.delete(recoveredUser);
-		assertEquals(dao.get("pepito"), null);
+		assertEquals(null, dao.get("pepit0"));
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public class UserDaoTest {
 	@Test
 	public void testGetBadId() throws SQLException {
 		User user = dao.get(-1);
-		assertEquals(user, null);
+		assertEquals(null, user);
 	}
 	
 	/**
@@ -77,13 +78,13 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		User user = new User(0,"pepito", "pepito");
+		User user = new User(0,"pepit0", "pepito","pepe","pe pe","pepe@pepito.com");
 		dao.save(user);
 		user = dao.get("pepito");
 		user.setPassword("pepiton");
 		dao.update(user);
 		User recoveredUser = dao.get("pepito");
-		assertEquals(recoveredUser.getPassword(), "pepiton");
+		assertEquals("pepiton", recoveredUser.getPassword());
 	}
 	
 	/**

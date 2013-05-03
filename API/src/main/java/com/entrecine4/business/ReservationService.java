@@ -1,9 +1,6 @@
 package com.entrecine4.business;
 
-import java.util.Date;
-
-import com.entrecine4.model.SessionState;
-import com.entrecine4.model.User;
+import models.User;
 
 public interface ReservationService {
 
@@ -31,7 +28,7 @@ public interface ReservationService {
 	 * @return
 	 */
 	public boolean goToPaymentGategay(String cardNumber, String type,
-			String SecurityCode, Date expirationDate);
+			String securityCode, String expirationDate);
 
 	/**
 	 * Method for send the email with the QR code
@@ -51,10 +48,4 @@ public interface ReservationService {
 	 * @return the user that is going to be checked
 	 */
 	public User validateUserData(User user);
-	
-	/**
-	 * Method for lock a seat
-	 * @param sessionState
-	 */
-	public void lockSeat(SessionState sessionState);
 }
