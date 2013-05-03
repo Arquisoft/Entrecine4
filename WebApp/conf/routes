@@ -16,6 +16,8 @@ GET		/plataformaPago				controllers.Application.plataformaPago()
 POST	/pay						controllers.Application.pay()
 GET		/finReservaOk				controllers.Application.finReservaOk()
 GET		/finReservaWrong			controllers.Application.finReservaWrong()
+# date as long because date is not supported
+GET     /butacas/:date/:session/:nombre controllers.Application.butacas(date: Long, session: Double, nombre: String)
 GET		/error404					controllers.Application.error()
 
 
