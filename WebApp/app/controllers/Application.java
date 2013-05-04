@@ -76,8 +76,8 @@ public class Application extends Controller {
     		{
     			User user=new User(0, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
-    					.validateUserData(user)==null){System.err.println("hola "+ username + password+ name+ surnames+email);
-    				return redirect(routes.Application.registro());}
+    					.validateUserData(user)==null)
+    				return redirect(routes.Application.registro());
     			Factories.services.createUserService().save(user);
     		}
     	}
