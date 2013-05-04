@@ -313,3 +313,8 @@ border: 1px solid #ccc;
 }
 
 /* FIN botón realizar reserva */
+
+/* Forms mostrados en linea */
+#estructuraCine form {
+    display: inline;
+}

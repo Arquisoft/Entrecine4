@@ -20,6 +20,7 @@ public class Application extends Controller {
 	
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
+    static Form<LockSeat> lockSeatForm = Form.form(LockSeat.class);
   
 	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
@@ -113,7 +114,15 @@ public class Application extends Controller {
     }
     
     public static Result plataformaPago(){
-    	return ok(plataformaPago.render(userForm));
+        Form filledForm = paymentForm.bindFromRequest();
+        Long sessionId = Long.valueOf(filledForm.field("sessionId").value());
+        int row = Integer.valueOf(filledForm.field("row").value());
+        int column = Integer.valueOf(filledForm.field("column").value());
+        Session session = Factories.services.createSessionService().findById(sessionId);
+        SessionState sessionState = new SessionState(session.getRoomId(),
+                row, column, session.getDay(), (long) session.getTime());
+        Factories.services.createSessionStateService().saveSessionState(sessionState); //lock seat
+        return ok(plataformaPago.render(userForm));
     }
     
     public static Result pay(){
@@ -149,17 +158,16 @@ public class Application extends Controller {
     }
 
     public static Result butacas(Long date, Long session, String nombre) {
-        System.out.print(new Date(date));
         List<Session> sessions = Factories.services.createSessionService().findByDateTimeAndFilmName(new Date(date), session, nombre);
-
+        List<Room> rooms = new ArrayList<Room>();
+        List<SessionStateHelper> states = new ArrayList<SessionStateHelper>();
+        for(Session s : sessions) {
+            rooms.add(Factories.services.createRoomService().findById(s.getRoomId()));
         }
         if(rooms.size()>0) {
             SessionStateHelper ssh = new SessionStateHelper();
-            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, ssh));
+            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, ssh, lockSeatForm));
         }
-        else
-        if(rooms.size()>0)
-            return ok(butacas.render(getLoggedUser(), rooms, userForm));
         else
             return error();
     }

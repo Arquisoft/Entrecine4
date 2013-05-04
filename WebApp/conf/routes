@@ -5,19 +5,19 @@
 
 
 # Home page
-GET     /                           controllers.Application.index()
-GET    	/index		                controllers.Application.index()
-GET     /registro                   controllers.Application.registro()
-POST	/register					controllers.Application.register()
-GET     /pelicula/:id               controllers.Application.pelicula(id: Long)
-POST    /login                      controllers.Application.login()
-GET     /logout                     controllers.Application.logout()
-GET		/plataformaPago				controllers.Application.plataformaPago()
-POST	/pay						controllers.Application.pay()
-GET		/finReservaOk				controllers.Application.finReservaOk()
-GET		/finReservaWrong			controllers.Application.finReservaWrong()
+GET     /                                   controllers.Application.index()
+GET    	/index		                        controllers.Application.index()
+GET     /registro                           controllers.Application.registro()
+POST	/register					        controllers.Application.register()
+GET     /pelicula/:id                       controllers.Application.pelicula(id: Long)
+POST    /login                              controllers.Application.login()
+GET     /logout                             controllers.Application.logout()
+POST    /plataformaPago				        controllers.Application.plataformaPago()
+POST	/pay						        controllers.Application.pay()
+GET		/finReservaOk				        controllers.Application.finReservaOk()
+GET		/finReservaWrong			        controllers.Application.finReservaWrong()
 # date as long because date is not supported
-GET     /butacas/:date/:session/:nombre controllers.Application.butacas(date: Long, session: Long, nombre: String)
+GET     /butacas/:date/:session/:nombre     controllers.Application.butacas(date: Long, session: Long, nombre: String)
 GET		/error404					controllers.Application.error()
 
 
