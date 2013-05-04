@@ -98,6 +98,7 @@ public class SimplePurchasesService implements PurchasesService
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.save(purchase);
 		} catch (SQLException e) 
 		{
@@ -116,6 +117,7 @@ public class SimplePurchasesService implements PurchasesService
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.update(purchase);
 		} catch (SQLException e) 
 		{
@@ -130,10 +132,11 @@ public class SimplePurchasesService implements PurchasesService
 	 * @see com.entrecine4.business.PurchasesService#deletePurchae(models.Purchase)
 	 */
 	@Override
-	public void deletePurchae(Purchase purchase) 
+	public void deletePurchase(Purchase purchase) 
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.delete(purchase);
 		} catch (SQLException e) 
 		{

@@ -49,6 +49,23 @@ public class SimpleMoviesService implements MoviesService {
 	}
 
 	/* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#findByTitle(java.lang.String)
+	 */
+	@Override
+	public Movie findByTitle(String title) 
+	{
+		Connection con = Jdbc.getConnection();
+		try {
+			dao.setConnection(con);
+			return dao.get(title);
+		} catch (SQLException e) {
+			throw new RuntimeException();
+		} finally {
+			Jdbc.close(con);
+	    }
+	}
+
+	/* (non-Javadoc)
 	 * @see com.entrecine4.business.MoviesService#saveMovie(com.entrecine4.model.Movie)
 	 */
 	@Override

@@ -28,6 +28,7 @@ public class Movie
 	 * @param morningPrice Price of the ticket in the morning
 	 * @param dailyPrice Price of the ticket in the afternoon
 	 * @param nightPrice Price of the ticket in the night
+	 * @param genre Movie's genre
 	 */
 	public Movie(long id, String name, String synopsis, String imgPath,
 			double morningPrice, double dailyPrice, double nightPrice, String genre)

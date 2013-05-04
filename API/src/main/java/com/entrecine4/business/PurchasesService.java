@@ -56,5 +56,5 @@ public interface PurchasesService
 	 * 
 	 * @param purchase The purchase to delete
 	 */
-	public void deletePurchae(Purchase purchase);
+	public void deletePurchase(Purchase purchase);
 }

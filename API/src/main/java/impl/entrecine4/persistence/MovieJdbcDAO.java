@@ -61,6 +61,36 @@ public class MovieJdbcDAO implements MovieDAO
 	}
 
 	/* (non-Javadoc)
+	 * @see com.entrecine4.persistence.MovieDAO#get(java.lang.String)
+	 */
+	@Override
+	public Movie get(String movieName) throws SQLException 
+	{
+		Movie result=null;
+		
+		pst=connection.prepareStatement(PropertiesReader.get("GET_MOVIE_BY_NAME"));
+		pst.setString(1, movieName);
+		
+		rs=pst.executeQuery();
+		if(rs.next())
+		{
+			result=new Movie();
+			result.setId(rs.getLong("ID_PELICULA"));
+			result.setName(movieName);
+			result.setSynopsis(rs.getString("SINOPSIS"));
+			result.setImgPath(rs.getString("RUTA_IMAGEN_CARTEL"));
+			result.setMorningPrice(rs.getDouble("PRECIO_MATUTINO"));
+			result.setDailyPrice(rs.getDouble("PRECIO_TARDE"));
+			result.setNightPrice(rs.getDouble("PRECIO_NOCHE"));
+			result.setGenre(rs.getString("GENERO"));
+		}
+		
+		Jdbc.close(rs, pst);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
 	 * @see com.entrecine4.persistence.MovieDAO#getAll()
 	 */
 	@Override

@@ -19,6 +19,13 @@ public interface MoviesService {
 	 * @return the movie
 	 */
 	public Movie findById(Long id);
+	
+	/**
+	 * Retrieve on movie using its title
+	 * @param title Movie's name
+	 * @return
+	 */
+	public Movie findByTitle(String title);
 
 	/**
 	 * Save a move
