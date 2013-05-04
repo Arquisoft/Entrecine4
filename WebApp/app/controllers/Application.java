@@ -120,7 +120,7 @@ public class Application extends Controller {
         int column = Integer.valueOf(filledForm.field("column").value());
         Session session = Factories.services.createSessionService().findById(sessionId);
         SessionState sessionState = new SessionState(session.getRoomId(),
-                row, column, session.getDay(), (long) session.getTime());
+                row, column, session.getDay(), sessionId);
         Factories.services.createSessionStateService().saveSessionState(sessionState); //lock seat
         return ok(plataformaPago.render(userForm));
     }
