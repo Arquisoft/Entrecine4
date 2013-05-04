@@ -148,30 +148,19 @@ public class Application extends Controller {
     	return ok(finReservaWrong.render());
     }
 
-<<<<<<< HEAD
     public static Result butacas(Long date, Long session, String nombre) {
         System.out.print(new Date(date));
         List<Session> sessions = Factories.services.createSessionService().findByDateTimeAndFilmName(new Date(date), session, nombre);
-=======
-    public static Result butacas(Long date, Double session, String nombre) {
-        /*List<Session> sessions = Factories.services.createSessionService().findByDateTimeAndFilmName(new Date(date), session, nombre);
->>>>>>> applications problema en git con método de  butacas. revisar que es
-        List<Room> rooms = new ArrayList<Room>();
-        List<SessionStateHelper> states = new ArrayList<SessionStateHelper>();
-        for(Session s : sessions) {
-            rooms.add(Factories.services.createRoomService().findById(s.getRoomId()));
-<<<<<<< HEAD
+
         }
         if(rooms.size()>0) {
             SessionStateHelper ssh = new SessionStateHelper();
             return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, ssh));
         }
         else
-=======
         if(rooms.size()>0)
             return ok(butacas.render(getLoggedUser(), rooms, userForm));
-        else*/
->>>>>>> applications problema en git con método de  butacas. revisar que es
+        else
             return error();
     }
     
