@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="1024.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.ConfirmationViewController">
+  <children>
+    <Pane id="panelConfirmacion" prefHeight="498.0" prefWidth="1280.0" styleClass="panelConfirmacion" AnchorPane.bottomAnchor="249.72" AnchorPane.topAnchor="250.28">
+      <children>
+        <Button layoutX="991.0" layoutY="403.0" mnemonicParsing="false" onAction="#accept" text="Aceptar" />
+        <Button defaultButton="true" layoutX="1136.0" layoutY="403.0" mnemonicParsing="false" onAction="#cancel" text="Cancelar" />
+        <Label layoutX="46.0" layoutY="31.0" prefHeight="78.94140625" prefWidth="315.0" text="Confirmar compra" textFill="WHITE">
+          <font>
+            <Font name="Segoe UI Light" size="40.0" />
+          </font>
+        </Label>
+        <Label layoutX="440.0" layoutY="201.0" text="¿Procesar compra?" textFill="WHITE">
+          <font>
+            <Font name="Segoe UI" size="18.0" />
+          </font>
+        </Label>
+        <Label layoutX="658.0" layoutY="202.0" text="Numero entradas:" textFill="WHITE">
+          <font>
+            <Font name="Segoe UI" size="16.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label font="$x1" layoutX="658.0" layoutY="234.0" text="Pelicula:" textFill="WHITE" />
+        <Label font="$x1" layoutX="658.0" layoutY="264.0" text="Sesion:" textFill="WHITE" />
+        <Label font="$x1" layoutX="658.0" layoutY="291.0" text="Precio:" textFill="WHITE" />
+        <Label fx:id="numeroEntradas" font="$x1" layoutX="808.0" layoutY="204.0" text="2" textFill="WHITE" />
+        <Label fx:id="pelicula" font="$x1" layoutX="808.0" layoutY="237.0" text="El padrino" textFill="WHITE" />
+        <Label fx:id="sesion" font="$x1" layoutX="808.0" layoutY="267.0" text="18:00" textFill="WHITE" />
+        <Label fx:id="precio" font="$x1" layoutX="809.0" layoutY="292.0" text="15,00 €" textFill="WHITE" />
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@JMetroLightTheme.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.entrecine4;
 
 import javafx.application.Application;
@@ -7,27 +11,30 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Main class on program
- * @author Arquisoft - Entrecine4
  *
+ * @author Alberto
  */
 public class MainApp extends Application {
-
-
-    public static void main(String[] args) throws Exception {
-        launch(args);
-    }
-
+    
+    @Override
     public void start(Stage stage) throws Exception {
-        String fxmlFile = "/fxml/login.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
-        Scene scene = new Scene(rootNode);
-        scene.getStylesheets().add("/styles/JMetroLightTheme.css");
-
-        stage.setTitle("Login - Entrecine4");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        
+        Scene scene = new Scene(root);
+        
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * The main() method is ignored in correctly deployed JavaFX application.
+     * main() serves only as fallback in case the application can not be
+     * launched through deployment artifacts, e.g., in IDEs with limited FX
+     * support. NetBeans ignores main().
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
     }
 }
