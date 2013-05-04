@@ -22,8 +22,8 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
     static Form<LockSeat> lockSeatForm = Form.form(LockSeat.class);
+    public static int aux;
   
-	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
         String username = getLoggedUser();
         List<Movie> movies = Factories.services.createMoviesService().getMovies();
@@ -69,25 +69,50 @@ public class Application extends Controller {
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
     		
-    		//Provisional: if fails again to /registro
     		//TODO: Change for better validation
     		if(!password.equals(repass))
     			return redirect(routes.Application.registro());
     		else
     		{
-    			//TODO: validateUserData is wrong
     			User user=new User(-1, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
     					.validateUserData(user)==null)
     				return redirect(routes.Application.registro());
+    			Factories.services.createUserService().save(user);
     		}
     	}
     	return redirect(routes.Application.index());
     }
 
-    public static Result pelicula(Long id) {
+    public static Result pelicula(Long id) 
+    {
+    	//Get the movie
         Movie movie = Factories.services.createMoviesService().findById(id);
-        return ok(pelicula.render(getLoggedUser(),movie, userForm));
+        if(movie==null)
+        	return redirect(routes.Application.error());
+        //Get the sessions
+        List<Session> sessions=Factories.services
+        		.createSessionService().findByMovie(movie.getName());
+        
+        Session s=null;
+        Session s2=null;
+        for(int i=0;i<sessions.size();i++)
+        {
+        	s=sessions.get(i);
+        	for(int j=0;j<sessions.size();j++)
+        	{
+        		s2=sessions.get(j);
+        		if(s.getDay().equals(s2.getDay()) 
+        				&& s.getMovieTitle().equals(s2.getMovieTitle()) 
+        				&& s.getTime()==s2.getTime() 
+        				&& s.getId()!=s2.getId())
+        		{
+        			sessions.remove(j--);
+        		}
+        	}
+        }
+        
+        return ok(pelicula.render(getLoggedUser(),movie, userForm, sessions));
     }
     
     public static Result login() {
