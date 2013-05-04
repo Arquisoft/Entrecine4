@@ -101,9 +101,18 @@ border-width: 2px;
 
 }
 
-#bloqueCabeceraDcha h3:hover {
+#bloqueCabeceraDcha a:link, a:visited, a:active {
+   text-decoration: none;
+   color:#333;
+
+}
+
+
+#bloqueCabeceraDcha a:hover, h3:hover {
 color: #999;
 }
+
+
 
 #cuerpo {
 	font-family:'Helvetica Neue',Arial,sans-serif;	
@@ -264,8 +273,5 @@ border: 1px solid #ccc;
 
 /* FIN LOGIN  */
 
-#bloqueCabeceraDcha a:link, a:visited, a:active {
-   text-decoration: none;
-   color:#333;
 
-}
+
