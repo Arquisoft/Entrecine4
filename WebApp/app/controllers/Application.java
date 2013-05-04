@@ -64,7 +64,7 @@ public class Application extends Controller {
     		//Getting form data
     		String name=filledForm.field("txt_Nombre").value();
     		String surnames=filledForm.field("txt_Apellidos").value();
-    		String username=filledForm.field("txt_NombreDeUsuario").value();
+    		String username=filledForm.field("txt_NombredeUsuario").value();
     		String email=filledForm.field("email").value();
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
@@ -74,10 +74,10 @@ public class Application extends Controller {
     			return redirect(routes.Application.registro());
     		else
     		{
-    			User user=new User(-1, username, password, name, surnames, email);
+    			User user=new User(0, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
-    					.validateUserData(user)==null)
-    				return redirect(routes.Application.registro());
+    					.validateUserData(user)==null){System.err.println("hola "+ username + password+ name+ surnames+email);
+    				return redirect(routes.Application.registro());}
     			Factories.services.createUserService().save(user);
     		}
     	}
