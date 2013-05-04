@@ -1,5 +1,6 @@
-@(username: String, movie: Movie, userForm: Form[User])
+@(username: String, movie: Movie, userForm: Form[User], sessions: List[Session])
 @import snippets._
+@import helper._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pelicula.css")">
 
 <script type="text/javascript">
@@ -14,7 +15,7 @@
 </script>
 <script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
 
-@main("Cartelera - Entrecine4"){
+@main({movie.getName()}+"- Entrecine4"){
 <div id="wrapper">
     @header(username)
     <div id="cuerpo">
@@ -34,46 +35,113 @@
         <div id="reserva">
             <h3>Reserva de entradas</h3>
             <table id="tablaReserva" >
+            @{var date=new Date().getTime();
+            var day=86400000;
                 <tr>
                     <td></td>
-                    <td class="resaltarTabla">día 1</td>
-                    <td class="resaltarTabla">día 2</td>
-                    <td class="resaltarTabla">día 3</td>
-                    <td class="resaltarTabla">día 4</td>
-                    <td class="resaltarTabla">día 5</td>
+                    <td class="resaltarTabla">{new Date(date).format("dd/MM/yyyy")}</td>
+                    <td class="resaltarTabla">{new Date(date+day).format("dd/MM/yyyy")}</td>
+                    <td class="resaltarTabla">{new Date(date+day*2).format("dd/MM/yyyy")}</td>
+                    <td class="resaltarTabla">{new Date(date+day*3).format("dd/MM/yyyy")}</td>
+                    <td class="resaltarTabla">{new Date(date+day*4).format("dd/MM/yyyy")}</td>
+                </tr>}
+                <tr>
+                    <td class="resaltarTabla">
+                    @{
+                    	var time=Session.TWELVE-Session.TWELVE.intValue();                    
+                    	Session.TWELVE.intValue()+new java.text.DecimalFormat(".00").format(time*60).replace(',',':'); 
+                     }
+                    </td>
+                   
+                   @for(j <- 0 to 4) {
+                   @for(i <- 0 to sessions.size()-1){
+                   @if(new Date(System.currentTimeMillis()+86400000*j).getDate()==sessions.get(i).getDay().getDate()
+                   && sessions.get(i).getTime()==Session.TWELVE && Application.aux==0){
+                   @{Application.aux=1}
+                    <td><a href="/butacas/@sessions.get(i).getDay().getTime()/12/@movie.getName()"><button>@{new java.text.DecimalFormat("##.##").format(movie.getMorningPrice())} €</button></a></td>
+                    }
+                    	
+                    }
+                    @if(Application.aux==0){
+                    		<td><button></button></td>
+                    	}else{
+                    		@{Application.aux=0}
+                    	}
+                    
+                    }
                 </tr>
                 <tr>
-                    <td class="resaltarTabla">sesión 10</td>
-                    <td><button type="button">s10</button></td>
-                    <td><button type="button">s10</button></td>
-                    <td><button type="button">s10</button></td>
-                    <td><button type="button">s10</button></td>
-                    <td><button type="button">s10</button></td>
-                </tr>
+                    <td class="resaltarTabla">
+                    @{
+                    	var time=Session.SEVENTEEN-Session.SEVENTEEN.intValue();                    
+                    	Session.SEVENTEEN.intValue()+new java.text.DecimalFormat(".00").format(time*60).replace(',',':'); 
+                     }
+                    </td>
+                  	 @for(j <- 0 to 4) {
+                   @for(i <- 0 to sessions.size()-1){
+                   @if(new Date(System.currentTimeMillis()+86400000*j).getDate()==sessions.get(i).getDay().getDate()
+                   && sessions.get(i).getTime()==Session.SEVENTEEN && Application.aux==0){
+                   @{Application.aux=1}
+                    <td><a href="/butacas/@sessions.get(i).getDay().getTime()/17/@movie.getName()"><button>@{new java.text.DecimalFormat("##.##").format(movie.getDailyPrice())} €</button></a></td>
+                    }
+                    	
+                    }
+                    @if(Application.aux==0){
+                    		<td><button></button></td>
+                    	}else{
+                    		@{Application.aux=0}
+                    	}
+                    
+                    }
+                  </tr>
                 <tr>
-                    <td class="resaltarTabla">sesión 17</td>
-                    <td><button type="button">s17</button></td>
-                    <td><button type="button">s17</button></td>
-                    <td><button type="button">s17</button></td>
-                    <td><button type="button">s17</button></td>
-                    <td><button type="button">s17</button></td>
-                </tr>
+                    <td class="resaltarTabla">
+                    @{
+                    	var time=Session.TWENTY-Session.TWENTY.intValue();                    
+                    	Session.TWENTY.intValue()+new java.text.DecimalFormat(".00").format(time*60).replace(',',':'); 
+                     }
+                    </td>
+                     @for(j <- 0 to 4) {
+                   @for(i <- 0 to sessions.size()-1){
+                   @if(new Date(System.currentTimeMillis()+86400000*j).getDate()==sessions.get(i).getDay().getDate()
+                   && sessions.get(i).getTime()==Session.TWENTY && Application.aux==0){
+                   @{Application.aux=1}
+                    <td><a href="/butacas/@sessions.get(i).getDay().getTime()/20/@movie.getName()"><button>@{new java.text.DecimalFormat("##.##").format(movie.getDailyPrice())} €</button></a></td>
+                    }
+                    	
+                    }
+                    @if(Application.aux==0){
+                    		<td><button></button></td>
+                    	}else{
+                    		@{Application.aux=0}
+                    	}
+                    
+                    }
+                    </tr>
                 <tr>
-                    <td class="resaltarTabla">sesión 20</td>
-                    <td><button type="button">s20</button></td>
-                    <td><button type="button">s20</button></td>
-                    <td><button type="button">s20</button></td>
-                    <td><button type="button">s20</button></td>
-                    <td><button type="button">s20</button></td>
-                </tr>
-                <tr>
-                    <td class="resaltarTabla">sesión 22</td>
-                    <td><button type="button">s22</button></td>
-                    <td><button type="button">s22</button></td>
-                    <td><button type="button">s22</button></td>
-                    <td><button type="button">s22</button></td>
-                    <td><button type="button">s22</button></td>
-                </tr>
+                    <td class="resaltarTabla">
+                    @{
+                    	var time=Session.TWENTY_TWO-Session.TWENTY_TWO.intValue();                    
+                    	Session.TWENTY_TWO.intValue()+new java.text.DecimalFormat(".00").format(time*60).replace(',',':'); 
+                     }
+                    </td>
+                     @for(j <- 0 to 4) {
+                   @for(i <- 0 to sessions.size()-1){
+                   @if(new Date(System.currentTimeMillis()+86400000*j).getDate()==sessions.get(i).getDay().getDate()
+                   && sessions.get(i).getTime()==Session.TWENTY_TWO && Application.aux==0){
+                   @{Application.aux=1}
+                    <td><a href="/butacas/@sessions.get(i).getDay().getTime()/22/@movie.getName()"><button>@{new java.text.DecimalFormat("##.##").format(movie.getNightPrice())} €</button></a></td>
+                    }
+                    	
+                    }
+                    @if(Application.aux==0){
+                    		<td><button></button></td>
+                    	}else{
+                    		@{Application.aux=0}
+                    	}
+                    
+                    }
+                    </tr>
             </table>
         </div>
     </div>
