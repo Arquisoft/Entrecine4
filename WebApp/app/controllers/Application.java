@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.entrecine4.business.SessionStateService;
 import com.entrecine4.infraestructure.*;
+import com.entrecine4.*;
 
 import play.*;
 import play.api.libs.Crypto;
@@ -127,7 +128,7 @@ public class Application extends Controller {
     
     public static Result pay(){
     	Form filledForm = paymentForm.bindFromRequest();
-    	System.out.println("FORMULARIO:\n" + filledForm.toString());
+    //	System.out.println("FORMULARIO:\n" + filledForm.toString());
     	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
     	si ha sido posible completar la transacción o no, en función de lo cual
     	redirijo a la página de error o a la de agradecimiento */
@@ -137,15 +138,15 @@ public class Application extends Controller {
 //    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
     	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
 //    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
-    	String fechaNacimiento = filledForm.field("fechaCaducidad").value();
+    	String fechaCaducidad = filledForm.field("fechaCaducidad").value();
 //    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
-    	
+
     	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
     	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
-//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
+    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
     		return redirect(routes.Application.finReservaOk());
-//    	else
-//    		return redirect(routes.Application.finReservaWrong());
+    	else
+            return redirect(routes.Application.finReservaWrong());
 
     }
     
