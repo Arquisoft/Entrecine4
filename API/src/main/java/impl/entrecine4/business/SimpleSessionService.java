@@ -10,6 +10,7 @@ import models.Session;
 import com.entrecine4.business.SessionService;
 import com.entrecine4.infraestructure.Factories;
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.Log;
 import com.entrecine4.persistence.SessionDAO;
 
 public class SimpleSessionService implements SessionService 
@@ -28,6 +29,7 @@ public class SimpleSessionService implements SessionService
 			return dao.getAll();
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -47,6 +49,7 @@ public class SimpleSessionService implements SessionService
 			return dao.get(id);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -66,6 +69,7 @@ public class SimpleSessionService implements SessionService
 			return dao.getByMovie(movieTitle);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -85,6 +89,7 @@ public class SimpleSessionService implements SessionService
 			return dao.getByDay(day);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -103,6 +108,7 @@ public class SimpleSessionService implements SessionService
 			dao.setConnection(con);
 			return dao.getByDayAndTime(day, time);
 		} catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally {
 			Jdbc.close(con);
@@ -115,6 +121,7 @@ public class SimpleSessionService implements SessionService
             dao.setConnection(con);
             return dao.getByDayTimeAndFilmName(date, session, filmName);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -133,6 +140,7 @@ public class SimpleSessionService implements SessionService
 			dao.save(session);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -152,6 +160,7 @@ public class SimpleSessionService implements SessionService
 			dao.update(session);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -171,6 +180,7 @@ public class SimpleSessionService implements SessionService
 			dao.delete(session);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{

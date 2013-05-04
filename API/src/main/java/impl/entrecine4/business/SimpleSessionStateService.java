@@ -10,6 +10,7 @@ import models.SessionState;
 import com.entrecine4.business.SessionStateService;
 import com.entrecine4.infraestructure.Factories;
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.Log;
 import com.entrecine4.persistence.SessionDAO;
 import com.entrecine4.persistence.SessionStateDAO;
 
@@ -29,6 +30,7 @@ public class SimpleSessionStateService implements SessionStateService
 			return dao.getAll();
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -48,6 +50,7 @@ public class SimpleSessionStateService implements SessionStateService
 			return dao.getBySession(sessionId);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -74,6 +77,7 @@ public class SimpleSessionStateService implements SessionStateService
 			
 			return (dao.get(st)==null) ? true : false;
 		} catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -93,6 +97,7 @@ public class SimpleSessionStateService implements SessionStateService
 			dao.save(sessionState);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -112,6 +117,7 @@ public class SimpleSessionStateService implements SessionStateService
 			dao.update(sessionState);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -131,6 +137,7 @@ public class SimpleSessionStateService implements SessionStateService
 			dao.delete(sessionState);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{

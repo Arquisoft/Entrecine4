@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.Log;
+
 import models.Employee;
 
 import impl.entrecine4.persistence.SimplePersistenceFactory;
@@ -26,6 +28,7 @@ public class SimpleStaffService implements StaffService
             dao.setConnection(con);
             return dao.getAll();
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -42,6 +45,7 @@ public class SimpleStaffService implements StaffService
             dao.setConnection(con);
             return dao.get(id);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -58,6 +62,7 @@ public class SimpleStaffService implements StaffService
             dao.setConnection(con);
             dao.save(employee);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -74,6 +79,7 @@ public class SimpleStaffService implements StaffService
             dao.setConnection(con);
             dao.update(employee);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -90,6 +96,7 @@ public class SimpleStaffService implements StaffService
             dao.setConnection(con);
             dao.delete(employee);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
