@@ -1,38 +1,22 @@
-@(username: String, rooms: List[Room], userForm: Form[User])
+@(username: String, rooms: List[Room], sessions: List[Session], userForm: Form[User], ssh: SessionStateHelper)
 @import snippets._
 @import helper._
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/reservaButacas.css")">
 <script type="text/javascript">
-
-    function muestraButacas(filas, columnas){
-
-    var html = "";
-    for(var i = filas; i > 0; i--){
-    for(var j = 1; j <= columnas; j++){
-
-    html += " <button class=\"butaca\" type=\"button\" title=\"fila " + i + " columna " + j + "\" ><img src=\"@routes.Assets.at("stylesheets/images/butaca.png")\" /></button>";
+    var salaVisible = @rooms.get(0).getId();
+    function mostrarSala(sala) {
+        var antiguo = document.getElementById("sala"+salaVisible.toString());
+        antiguo.style.display="none";
+        salaVisible = document.getElementById("sala"+sala);
+        salaVisible.style.display="block"
+        salaVisible = sala;
     }
-    html += "<br>"
-
-    }
-    return html;
-    }
-
-
-    function cambiaButacas(filas, columnas) {
-        var div = document.getElementById("estructuraCine");
-        div.innerHtml= document.writeln(muestraButacas(filas, columnas));
-    }
-
-
 </script>
 <script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
 
 @main("Reserva butaca - Entrecine") {
-<div id="wrapper">
-    <div id="contCabecera">
-        @header(username)
-    </div>
+<div id="contCabecera">
+    @header(username)
 </div>
 <div id="cuerpo">
     <div class="main">
@@ -44,14 +28,28 @@
         </div>
         <div id="elegirSala">
             @for(room <- rooms) {
-                <a href="#" class="botonesSalas" onclick="cambiaButacas(@room.getRows(), @room.getColumns());" >Sala @room.getId()</a>
+                <a href="#" class="botonesSalas" onclick="mostrarSala(@room.getId())" >Sala @room.getId()</a>
+        }
+        </div>
+        <div id="estructuraCine">
+        @for(room <- rooms) {
+        @if(!(rooms.get(0).getId().equals(room.getId()))) {
+            <div id="sala@room.getId()" style="display: none;">
+        } else {
+            <div id="sala@room.getId()" style="display: inherit;">
+        }
+            @for(i <- room.getRows to 1 by -1) {
+                @for(j <- 1 to room.getColumns()) {
+                    @if(!ssh.checkFreeSeat(sessions.get(rooms.indexOf(room)).getId() ,room.getId(), i, j)) {
+                        <button class="butaca" type="button" title="fila @i columna @j"><img src='@routes.Assets.at("stylesheets/images/butacaReservada.png")' /></button>
+                    } else {
+                        <button class="butaca" type="button" title="fila @i columna @j"><img src='@routes.Assets.at("stylesheets/images/butaca.png")' /></button>
+                    }
+                }
+                <br />
             }
         </div>
-
-        <div id="estructuraCine">
-            <script type="text/javascript">
-                document.writeln(muestraButacas(@rooms.get(0).getRows(), @rooms.get(0).getColumns()));
-            </script>
+        }
         </div>
         <!-- Se pueden ir marcando las butacas reservadas cambiando el color por
         la imagen images/butacaSeleccionada.png -->
@@ -61,9 +59,5 @@
     </div>
 
 </div>
-
-</div>
-
-
     @footer()
 }

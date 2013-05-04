@@ -1,12 +1,11 @@
 package controllers;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.entrecine4.infraestructure.*;
 
-import com.entrecine4.*;
+import com.entrecine4.business.SessionStateService;
+import com.entrecine4.infraestructure.*;
 
 import play.*;
 import play.api.libs.Crypto;
@@ -149,13 +148,18 @@ public class Application extends Controller {
     	return ok(finReservaWrong.render());
     }
 
-    public static Result butacas(Long date, Double session, String nombre) {
+    public static Result butacas(Long date, Long session, String nombre) {
+        System.out.print(new Date(date));
         List<Session> sessions = Factories.services.createSessionService().findByDateTimeAndFilmName(new Date(date), session, nombre);
         List<Room> rooms = new ArrayList<Room>();
-        for(Session s : sessions)
+        List<SessionStateHelper> states = new ArrayList<SessionStateHelper>();
+        for(Session s : sessions) {
             rooms.add(Factories.services.createRoomService().findById(s.getRoomId()));
-        if(rooms.size()>0)
-            return ok(butacas.render(getLoggedUser(), rooms, userForm));
+        }
+        if(rooms.size()>0) {
+            SessionStateHelper ssh = new SessionStateHelper();
+            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, ssh));
+        }
         else
             return error();
     }
