@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="431.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.RoomsWindowController">
+  <children>
+    <Label id="lbTitulo" layoutX="131.0" layoutY="21.0" text="Gestión de salas">
+      <font>
+        <Font name="Segoe UI Light" size="50.0" />
+      </font>
+    </Label>
+    <ScrollPane layoutX="15.0" layoutY="89.0" prefHeight="313.0" prefWidth="222.0">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="313.0" prefWidth="221.0">
+          <children>
+            <ListView id="listPeliculas" fx:id="listSalas" prefHeight="298.0" prefWidth="208.0" />
+          </children>
+        </AnchorPane>
+      </content>
+    </ScrollPane>
+    <FlowPane layoutX="258.0" layoutY="327.0" minHeight="34.0" prefHeight="43.0" prefWidth="322.0">
+      <children>
+        <Button id="btNuevo" fx:id="btNueva" mnemonicParsing="false" onAction="#newRoom" text="Nueva">
+          <FlowPane.margin>
+            <Insets left="15.0" right="15.0" fx:id="x1" />
+          </FlowPane.margin>
+        </Button>
+        <Button fx:id="btEditar" disable="true" mnemonicParsing="false" onAction="#editRoom" text="Editar" FlowPane.margin="$x1" />
+        <Button fx:id="btGuardar" disable="true" mnemonicParsing="false" onAction="#saveRoom" text="Guardar" FlowPane.margin="$x1" />
+        <Button id="btDeleteMovie" fx:id="btDelete" disable="true" mnemonicParsing="false" onAction="#deleteRoom" text="Eliminar" FlowPane.margin="$x1" />
+        <Button id="btHecho" defaultButton="true" mnemonicParsing="false" onAction="#done" text="Hecho" FlowPane.margin="$x1" />
+      </children>
+    </FlowPane>
+    <Label layoutX="348.0" layoutY="115.0" text="Filas:">
+      <font>
+        <Font name="Segoe UI Light" size="30.0" fx:id="x2" />
+      </font>
+      <labelFor>
+        <TextField fx:id="txRows" editable="false" layoutX="411.0" layoutY="126.0" prefHeight="29.0" prefWidth="60.0" />
+      </labelFor>
+    </Label>
+    <Label font="$x2" layoutX="275.0" layoutY="176.0" text="Columnas:">
+      <labelFor>
+        <TextField id="txRows" fx:id="txColumns" editable="false" layoutX="411.0" layoutY="187.0" prefHeight="29.0" prefWidth="60.0" />
+      </labelFor>
+    </Label>
+    <fx:reference source="txRows" />
+    <fx:reference source="txColumns" />
+  </children>
+</AnchorPane>
