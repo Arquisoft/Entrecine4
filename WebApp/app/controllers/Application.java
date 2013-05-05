@@ -69,7 +69,6 @@ public class Application extends Controller {
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
     		
-    		//TODO: Change for better validation
     		if(!password.equals(repass))
     			return redirect(routes.Application.registro());
     		else
@@ -148,7 +147,7 @@ public class Application extends Controller {
         SessionState sessionState = new SessionState(session.getRoomId(),
                 row, column, session.getDay(), sessionId);
         Factories.services.createSessionStateService().saveSessionState(sessionState); //lock seat
-        return ok(plataformaPago.render(userForm));
+        return ok(plataformaPago.render(getLoggedUser(), userForm));
     }
     
     public static Result pay(){
@@ -176,11 +175,11 @@ public class Application extends Controller {
     }
     
     public static Result finReservaOk(){
-    	return ok(finReservaOk.render());
+    	return ok(finReservaOk.render(getLoggedUser(), userForm));
     }
     
     public static Result finReservaWrong(){
-    	return ok(finReservaWrong.render());
+    	return ok(finReservaWrong.render(getLoggedUser(), userForm));
     }
 
     public static Result butacas(Long date, Long session, String nombre) {
@@ -199,6 +198,6 @@ public class Application extends Controller {
     }
     
     public static Result error(){
-    	return ok(error404.render());
+    	return ok(error404.render(getLoggedUser(), userForm));
     }
 }

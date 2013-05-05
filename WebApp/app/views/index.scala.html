@@ -3,108 +3,33 @@
 @import helper._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")"><script type="text/javascript">
 
-    function asignar_Cartelera(){
-    var a = document.getElementById("linkCartelera");
-    a.onclick = function open_in_new_tab()
-    {
-    var win=window.open("/index", '_blank');
-    win.focus();
-    }
-    }
-
-
-    window.onload = asignar_Cartelera;
-
-</script>
-<script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
-
-@import helper._
-
 @main("Cartelera - Entrecine") {
-<div id="wrapper">
-@header(username)
-    <!-- <div id="cabecera">
-        <div id="bloqueCabeceraIzq">
-            <h1> Entrecine </h1>
-            <h2> Experimenta el realismo y la emoción </h2>
-        </div>
-        <div id="bloqueCabeceraDcha">
-            <div id="login">
-
-                @if(username==null) {
-                    <a href="#openModal" onclick="gainFocus();">Iniciar Sesion</a>
-                } else {
-                    <a href="/logout" id="hola"  onmouseover="changetext();" onmouseout="changetext();">Hola, @username.toString()</a>
-                }
-
-            </div>
-            <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
-        </div>
-    </div>-->
-    <div id="cuerpo" >
-        <div class="main">
-            <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
-            
-            @loginWindow(userForm)
-            <!-- <div id="openModal" class="modalDialog">
-                <div>
-                    <a href="#close" title="Close" class="close">X</a>
-                    <h2>Inicio de Sesión</h2>
-             @form(routes.Application.login()){
-                      <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
-                        <div  class="formularioAlineado">
-                            <input id="usernameInput" type="text" class="rounded" name="username" size="30" /><br />
-                            <input type="password" class="rounded" name="password" size="30" /><br />
-                        </div>
-                        <div align="center">
-                            <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
-                        </div>  
-                } 
-                    <form method="POST" action="#">
-                        <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
-                        <div  class="formularioAlineado">
-                            <input type="text" class="rounded" name="username" size="30" /><br />
-                            <input type="password" class="rounded" name="password" size="30" /><br />
-                        </div>
-                        <div align="center">
-                            <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
-                        </div>
-
-                    </form>
-                    @form(routes.Application.registro()) {
-                        <div align=center>
-                            <button id="registrarse" type="submit">Registrarse</button>
-                        </div>
-                    }
-
-                </div>
-            </div> -->
-            <!--FIN MODAL LOGIN -->
-
-            <div id="recomendadas">
-                <p>Te recomendamos las siguientes películas basándonos en tus anteriores compras:<br>
-                    Torrente, Combustión</p>
-            </div>
-
-            @for( movie <- movies){
-            <div class="view view-first">
-                <img src="@routes.Assets.at("stylesheets/images/small/")@movie.getImgPath()" />
-                <div class="mask">
-                    <h2>@movie.getName()</h2>
-                    <p>Género: @movie.getGenre()</p>
-                    <a href="/pelicula/@movie.getId()" class="info">Más info</a>
-                </div>
-            </div>
-        }
-        
-
-
-
-        </div>
-    </div>
-    
-    @footer()
-</div>
-
-
+	<div id="wrapper">
+	@header(username)
+   
+    	<div id="cuerpo" >
+	        <div class="main">
+	            <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
+	            @loginWindow(userForm)
+	            <!--FIN MODAL LOGIN -->
+	
+	            <div id="recomendadas">
+	                <p>Te recomendamos las siguientes películas basándonos en tus anteriores compras:<br>
+	                    Torrente, Combustión</p>
+	            </div>
+	
+	            @for( movie <- movies){
+	            <div class="view view-first">
+	                <img src="@routes.Assets.at("stylesheets/images/small/")@movie.getImgPath()" />
+	                <div class="mask">
+	                    <h2>@movie.getName()</h2>
+	                    <p>Género: @movie.getGenre()</p>
+	                    <a href="/pelicula/@movie.getId()" class="info">Más info</a>
+	                </div>
+	            </div>
+	        	}
+	    	</div>
+    	</div>
+	</div>
+	 @footer()
 }
