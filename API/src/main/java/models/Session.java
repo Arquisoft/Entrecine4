@@ -2,43 +2,46 @@ package models;
 
 import java.util.Date;
 
-public class Session
-{
+public class Session {
 	private long id;
 	private String movieTitle;
 	private Date day;
-	private double time;		//Session's hour: 12:00/17:00/20:00/22:00
+	private double time; // Session's hour: 12:00/17:00/20:00/22:00
 	private long roomId;
-	
-	public static final double TWELVE=12;
-	public static final double SEVENTEEN=17;
-	public static final double TWENTY=20;
-	public static final double TWENTY_TWO=22;
-	
+
+	public static final double TWELVE = 12;
+	public static final double SEVENTEEN = 17;
+	public static final double TWENTY = 20;
+	public static final double TWENTY_TWO = 22;
+
 	/**
 	 * Constructor without parameters
 	 */
-	public Session()
-	{
+	public Session() {
 	}
-	
+
 	/**
 	 * Constructor with parameters using all the fields
 	 * 
-	 * @param movieTitle Movie's title
-	 * @param day Session's day
-	 * @param time Session's hour
-	 * @param roomId Room's identification number where it's going to be shown the movie
+	 * @param movieTitle
+	 *            Movie's title
+	 * @param day
+	 *            Session's day
+	 * @param time
+	 *            Session's hour
+	 * @param roomId
+	 *            Room's identification number where it's going to be shown the
+	 *            movie
 	 */
-	public Session(long id, String movieTitle, Date day, double time, long roomId)
-	{
-		this.id=id;
+	public Session(long id, String movieTitle, Date day, double time,
+			long roomId) {
+		this.id = id;
 		this.movieTitle = movieTitle;
 		this.day = day;
 		this.time = time;
 		this.roomId = roomId;
 	}
-	
+
 	/**
 	 * Getter for the session's identification number
 	 * 
@@ -51,7 +54,8 @@ public class Session
 	/**
 	 * Setter for the session's identification number
 	 * 
-	 * @param id The new session's identification number
+	 * @param id
+	 *            The new session's identification number
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -62,78 +66,84 @@ public class Session
 	 * 
 	 * @return The movie's title
 	 */
-	public String getMovieTitle() 
-	{
+	public String getMovieTitle() {
 		return movieTitle;
 	}
-	
+
 	/**
 	 * Setter for the movie's title
 	 * 
-	 * @param movieTitle The new movie's title for the session
+	 * @param movieTitle
+	 *            The new movie's title for the session
 	 */
-	public void setMovieTitle(String movieTitle) 
-	{
+	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
-	
+
 	/**
 	 * Getter for the session's day
 	 * 
 	 * @return The day of the session
 	 */
-	public Date getDay() 
-	{
+	public Date getDay() {
 		return day;
 	}
-	
+
 	/**
 	 * Setter for the session's day
 	 * 
-	 * @param day The new session's day
+	 * @param day
+	 *            The new session's day
 	 */
-	public void setDay(Date day)
-	{
+	public void setDay(Date day) {
 		this.day = day;
 	}
-	
+
 	/**
 	 * Getter for the session's hour
 	 * 
 	 * @return The session's hour (12:00/17:00/20:00/22:00)
 	 */
-	public double getTime()
-	{
+	public double getTime() {
 		return time;
 	}
-	
+
 	/**
 	 * Setter for the session's hour
 	 * 
-	 * @param time The new session's hour
+	 * @param time
+	 *            The new session's hour
 	 */
-	public void setTime(double time) 
-	{
+	public void setTime(double time) {
 		this.time = time;
 	}
-	
+
 	/**
 	 * Getter for the room where it's going to be shown the movie
 	 * 
-	 * @return The room's identification number where it's going to be shown the movie
+	 * @return The room's identification number where it's going to be shown the
+	 *         movie
 	 */
-	public long getRoomId() 
-	{
+	public long getRoomId() {
 		return roomId;
 	}
-	
+
 	/**
 	 * Setter for the room where it's going to be shown the movie
 	 * 
-	 * @param roomId The new room's identification number where it's going to be shown the movie
+	 * @param roomId
+	 *            The new room's identification number where it's going to be
+	 *            shown the movie
 	 */
-	public void setRoomId(long roomId) 
-	{
+	public void setRoomId(long roomId) {
 		this.roomId = roomId;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.movieTitle + " - " + this.day + " - " + this.time;
 	}
 }

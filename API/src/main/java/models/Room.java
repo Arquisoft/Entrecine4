@@ -86,4 +86,12 @@ public class Room
 	{
 		this.columns = columns;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.id;
+	}
 }

@@ -111,5 +111,13 @@ public class Employee {
 	public void setTpvPrivilege(int tpvPrivilege) {
 		this.tpvPrivilege = tpvPrivilege;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.username;
+	}
 
 }

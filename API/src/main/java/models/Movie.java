@@ -200,4 +200,12 @@ public class Movie
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

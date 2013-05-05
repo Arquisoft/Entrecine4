@@ -132,4 +132,12 @@ public class Incidence
 	{
 		this.description = description;
 	}	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return day.toString();
+	}
 }
