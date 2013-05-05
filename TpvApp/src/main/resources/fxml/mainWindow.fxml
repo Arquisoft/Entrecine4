@@ -15,24 +15,24 @@
       <children>
         <Label id="tituloApp" layoutX="14.0" layoutY="14.0" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas" textFill="WHITE">
           <font>
-            <Font name="Segoe UI Light" size="40.0" />
+            <Font size="40.0" />
           </font>
         </Label>
         <Label layoutX="31.0" layoutY="117.0" text="Sesión" textFill="WHITE">
           <font>
-            <Font name="Segoe UI" size="21.0" fx:id="x2" />
+            <Font size="21.0" fx:id="x2" />
           </font>
         </Label>
         <Group id="Group" layoutX="31.0" layoutY="150.0">
           <children>
-            <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" text="12">
+            <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#rb12" text="12">
               <font>
-                <Font name="Segoe UI" size="16.0" fx:id="x1" />
+                <Font size="16.0" fx:id="x1" />
               </font>
             </RadioButton>
-            <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" text="17" />
-            <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" text="20" />
-            <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" text="22" />
+            <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#rb17" text="17" />
+            <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#rb20" text="20" />
+            <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#rb22" text="22" />
           </children>
         </Group>
         <TabPane fx:id="rooms" layoutX="376.0" layoutY="117.0" prefHeight="695.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE" />
@@ -40,7 +40,7 @@
         <ListView fx:id="moviesList" layoutX="31.0" layoutY="285.0" prefHeight="360.0" prefWidth="226.5" />
         <Label font="$x2" layoutX="33.0" layoutY="253.0" text="Películas" textFill="WHITE" textOverrun="CLIP" />
         <Label font="$x2" layoutX="37.0" layoutY="770.0" text="Precio:" textFill="WHITE" />
-        <Label font="$x2" layoutX="143.0" layoutY="770.0" text="18.50 €" textFill="WHITE" />
+        <Label fx:id="priceLabel" font="$x2" layoutX="143.0" layoutY="770.0" text="18.50 €" textFill="WHITE" />
         <Button layoutX="1085.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" prefWidth="150.0" text="Cerrar Sesión" />
       </children>
     </Pane>
