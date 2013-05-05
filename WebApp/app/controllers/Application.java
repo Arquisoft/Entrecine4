@@ -22,6 +22,8 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
     static Form<LockSeat> lockSeatForm = Form.form(LockSeat.class);
+    static Form auxForm;
+    static User userForPayment;
     public static int aux;
   
     public static Result index() {
@@ -139,10 +141,14 @@ public class Application extends Controller {
     }
     
     public static Result plataformaPago(){
-        Form filledForm = paymentForm.bindFromRequest();
-        Long sessionId = Long.valueOf(filledForm.field("sessionId").value());
-        int row = Integer.valueOf(filledForm.field("row").value());
-        int column = Integer.valueOf(filledForm.field("column").value());
+        Form filledForm = userForm.bindFromRequest();
+        userForPayment=new User();
+        userForPayment.setEmail(filledForm.field("email").value());
+        
+        Long sessionId = Long.valueOf(auxForm.field("sessionId").value());
+        int row = Integer.valueOf(auxForm.field("row").value());
+        int column = Integer.valueOf(auxForm.field("column").value());
+        
         Session session = Factories.services.createSessionService().findById(sessionId);
         SessionState sessionState = new SessionState(session.getRoomId(),
                 row, column, session.getDay(), sessionId);
@@ -152,23 +158,35 @@ public class Application extends Controller {
     
     public static Result pay(){
     	Form filledForm = paymentForm.bindFromRequest();
+
+    	//Default values to prevent exceptions
+    	String numeroTarjeta="1";
+    	String tipoTarjeta="Visa";
+    	String codigoSeguridad="55";
+    	String fechaCaducidad="01/01/2101";
+    	
+    	
     //	System.out.println("FORMULARIO:\n" + filledForm.toString());
     	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
     	si ha sido posible completar la transacción o no, en función de lo cual
     	redirijo a la página de error o a la de agradecimiento */
-    	String numeroTarjeta = filledForm.field("numeroTarjeta").value();
+    	numeroTarjeta = filledForm.field("numeroTarjeta").value();
 //    	System.out.println("Numero Tarjeta: "+ numeroTarjeta);
-    	String tipoTarjeta  = filledForm.field("tipoTarjeta").value();
+    	tipoTarjeta  = filledForm.field("tipoTarjeta").value();
 //    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
-    	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
+    	codigoSeguridad = filledForm.field("codigoSeguridad").value();
 //    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
-    	String fechaCaducidad = filledForm.field("fechaCaducidad").value();
+    	fechaCaducidad = filledForm.field("fechaCaducidad").value();
 //    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
 
     	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
     	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
     	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
+    	{
+    		//Purchase p = new Purchase(0, 0, movie_id,, 1, 0);
+    		//Factories.services.createPurchasesService();
     		return redirect(routes.Application.finReservaOk());
+    	}
     	else
             return redirect(routes.Application.finReservaWrong());
 
@@ -199,5 +217,45 @@ public class Application extends Controller {
     
     public static Result error(){
     	return ok(error404.render(getLoggedUser(), userForm));
+    }
+    
+    public static Result datosUsuarioPago()
+    {
+    	auxForm=lockSeatForm.bindFromRequest();
+    	User user = Factories.services.createUserService().get(getLoggedUser());
+    	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user));
+    }
+    
+    public static Result registerAndPay()
+    {
+    	Form<User> filledForm = userForm.bindFromRequest();
+    	String username="";
+    	if(filledForm.hasErrors()) 
+    	{
+    		return redirect(routes.Application.datosUsuarioPago());
+    	}
+    	else
+    	{
+    		//Getting form data
+    		String name=filledForm.field("txt_Nombre").value();
+    		String surnames=filledForm.field("txt_Apellidos").value();
+    		username=filledForm.field("txt_NombredeUsuario").value();
+    		String email=filledForm.field("email").value();
+    		String password=filledForm.field("pwd_Contraseña").value();
+    		String repass=filledForm.field("pwd_Repitalacontraseña").value();
+    		
+    		if(!password.equals(repass))
+    			return redirect(routes.Application.datosUsuarioPago());
+    		else
+    		{
+    			userForPayment=new User(0, username, password, name, surnames, email);
+    			if(Factories.services.createReservationService()
+    					.validateUserData(userForPayment)==null)
+    				return redirect(routes.Application.datosUsuarioPago());
+    			Factories.services.createUserService().save(userForPayment);
+    			response().setCookie("user", Crypto.encryptAES(username), -1);
+    		}
+    	}
+    	return ok(plataformaPago.render(username, userForm));
     }
 }

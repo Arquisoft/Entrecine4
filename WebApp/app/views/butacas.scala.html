@@ -39,7 +39,7 @@
         }
             @for(i <- room.getRows to 1 by -1) {
                 @for(j <- 1 to room.getColumns()) {
-                    @form(routes.Application.plataformaPago()) {
+                    @form(routes.Application.datosUsuarioPago()) {
                         <input type="hidden" name="sessionId" value="@sessions.get(rooms.indexOf(room)).getId()" />
                         <input type="hidden" name="row" value="@i" />
                         <input type="hidden" name="column" value="@j" />

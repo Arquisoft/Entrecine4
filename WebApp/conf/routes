@@ -18,7 +18,9 @@ GET		/finReservaOk				        controllers.Application.finReservaOk()
 GET		/finReservaWrong			        controllers.Application.finReservaWrong()
 # date as long because date is not supported
 GET     /butacas/:date/:session/:nombre     controllers.Application.butacas(date: Long, session: Long, nombre: String)
-GET		/error404					controllers.Application.error()
+GET		/error404							controllers.Application.error()
+POST	/datosUsuarioPago					controllers.Application.datosUsuarioPago()
+POST	/registerAndPay						controllers.Application.registerAndPay()
 
 
 # Map static resources from the /public folder to the /assets URL path

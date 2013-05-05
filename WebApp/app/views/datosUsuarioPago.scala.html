@@ -1,0 +1,63 @@
+@(username: String, userForm: Form[User], user: User)
+@import helper._
+@import snippets._
+
+<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/registro.css")>
+
+@main("Datos personales - Entrecine4") {
+	<div id="wrapper">
+	    @header(username)
+	    <div id="cuerpo" >
+	        <div class="main">
+	            <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
+	            @loginWindow(userForm)
+	            <!--FIN MODAL LOGIN -->
+	
+	            <div id="contenedorFormReg" >
+	        		@form(action=routes.Application.register, args='id -> "formulario"){
+	                    <div class="row requiredRow">
+	                        <label for="txt_Nombre" id="Nombre-ariaLabel">Nombre:</label>
+	                        <input id="txt_Nombre" name="txt_Nombre" type="text" aria-labelledby="Nombre-ariaLabel" class="required" title="Nombre:. Es necesario que complete este campo" value="@{if(user!=null)user.getName();}"/>
+	                    </div>
+	                    
+	                    <div class="row requiredRow">
+	                        <label for="txt_Apellidos" id="Apellidos-ariaLabel">Apellidos:</label>
+	                        <input id="txt_Apellidos" name="txt_Apellidos" type="text" aria-labelledby="Apellidos-ariaLabel" class="required" title="Apellidos:. Es necesario que complete este campo" value="@{if(user!=null)user.getSurnames();}"/>
+	                    </div>
+	                    
+	                    <div class="row requiredRow">
+	                        <label for="txt_NombredeUsuario" id="NombredeUsuario-ariaLabel">Nombre de Usuario:</label>
+	                        <input id="txt_NombredeUsuario" name="txt_NombredeUsuario" type="text" aria-labelledby="NombredeUsuario-ariaLabel" class="required" title="Nombre de Usuario:. Es necesario que complete este campo" value="@username"/>
+	                    </div>
+	                    
+	                    <div class="row requiredRow">
+	                        <label for="Email" id="Email-ariaLabel">Email:</label>
+	                        <input id="Email" name="Email" type="email" aria-labelledby="Email-ariaLabel" class="required" title="Email:. Es necesario que complete este campo" value="@{if(user!=null)user.getEmail();}"/>
+	                    </div>
+	                    
+	                    <div class="row requiredRow">
+	                        <label for="pwd_Contraseña" id="Contraseña-ariaLabel">Contraseña:</label>
+	                        <input id="pwd_Contraseña" name="pwd_Contraseña" type="password" aria-labelledby="Contraseña-ariaLabel" class="required" title="Contraseña:. Es necesario que complete este campo" />
+	                    </div>
+	                    
+	                    <div class="row requiredRow">
+	                        <label for="pwd_Repitalacontraseña" id="Repitalacontraseña-ariaLabel">Repita la contraseña:</label>
+	                        <input id="pwd_Repitalacontraseña" name="pwd_Repitalacontraseña" type="password" aria-labelledby="Repitalacontraseña-ariaLabel" class="required" title="Repita la contraseña:. Es necesario que complete este campo" />
+	                    </div>
+	                    
+	                    <div class="row">
+	                        <input id="botonEnviar" type="submit" onclick="document.getElementById('formulario').action='/registerAndPay'" value="Registrar y continuar" />
+	                        <input id="botonEnviar" type="submit" onclick="document.getElementById('formulario').action='/plataformaPago'" value="Continuar" />
+	                    </div>
+	                    }
+	            </div>
+	        </div>
+	
+	        <div id="LogoDcha">
+	            <img src=@routes.Assets.at("stylesheets/images/palomitas.png") alt="palomitas">
+	        </div>
+	    </div>
+	</div>
+	
+	@footer()
+}

@@ -151,7 +151,6 @@ color: #999;
 	clear: both;
 }
 
-
 #tablaReserva button {
 	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
 	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
@@ -166,11 +165,14 @@ color: #999;
 	font-size:16px;
 	font-weight:700;
 	height:32px;
+	width:80px;
 	padding:4px 16px;
 	text-shadow:#5DE78F 0 1px 0
 }
 
-
+#tablaReserva button:hover{
+	cursor:hand;
+}
 
 .resaltarTabla {
      -moz-border-radius: 5px;
