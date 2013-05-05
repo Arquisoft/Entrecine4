@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Incidence
 {
-	private long id;
-	private long roomId;
+	private Long id;
+	private Long roomId;
 	private Date day;
-	private long sessionId;
+	private Long sessionId;
 	private String description;
 	
 	/**

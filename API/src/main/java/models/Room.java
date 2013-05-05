@@ -2,7 +2,7 @@ package models;
 
 public class Room
 {
-	private long id;
+	private Long id;
 	private int rows;
 	private int columns;
 	
@@ -92,6 +92,6 @@ public class Room
 	 */
 	@Override
 	public String toString() {
-		return this.id;
+		return String.valueOf(this.id);
 	}
 }

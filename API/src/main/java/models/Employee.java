@@ -2,7 +2,7 @@ package models;
 
 public class Employee {
 
-	private long id;
+	private Long id;
 	private String username;
 	private String password;
 	private int isAdmin; // DB contains 0 (no admin) or 1 (admin) instead of booleans

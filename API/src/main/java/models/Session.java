@@ -3,11 +3,11 @@ package models;
 import java.util.Date;
 
 public class Session {
-	private long id;
+	private Long id;
 	private String movieTitle;
 	private Date day;
 	private double time; // Session's hour: 12:00/17:00/20:00/22:00
-	private long roomId;
+	private Long roomId;
 
 	public static final double TWELVE = 12;
 	public static final double SEVENTEEN = 17;

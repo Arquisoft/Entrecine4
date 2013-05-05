@@ -2,7 +2,7 @@ package models;
 
 public class Movie
 {
-	private long id;
+	private Long id;
 	private String name;
 	private String synopsis;
 	private String imgPath;
