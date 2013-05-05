@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.entrecine4;
 
 import java.io.IOException;
@@ -16,11 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Dani
- */
 public class MainWindowController implements Initializable {
     @FXML
     private Button btGestionarPeliculas;
@@ -38,6 +29,11 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
+    /**
+	 * It shows the RoomsWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
     @FXML
     public void showRoomsWindow(ActionEvent event) throws IOException {
         String fxmlFile = "/fxml/roomsWindow.fxml";
@@ -56,6 +52,11 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
+    /**
+	 * It shows the IncidencesWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
     @FXML
     public void showIncidenceWindow(ActionEvent event) throws IOException {
         String fxmlFile = "/fxml/incidenceWindow.fxml";
@@ -74,6 +75,11 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
+    /**
+	 * It shows the MoviesWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
     @FXML
     public void showMoviesWindow(ActionEvent event) throws IOException {
         String fxmlFile = "/fxml/moviesWindow.fxml";
@@ -92,6 +98,11 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
+    /**
+	 * It shows the StaffWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
     @FXML
     public void showStaffWindow(ActionEvent event) throws IOException {
         String fxmlFile = "/fxml/staffWindow.fxml";

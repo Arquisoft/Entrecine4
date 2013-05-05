@@ -23,11 +23,7 @@ import models.Employee;
 import com.entrecine4.business.StaffService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- * 
- * @author Dani
- */
+
 public class StaffWindowController implements Initializable {
 
 	private StaffService service = Factories.services.createStaffService();
@@ -79,6 +75,11 @@ public class StaffWindowController implements Initializable {
 		});
 	}
 
+	/**
+	 * This method is called when btNuevo is pressed
+	 * It makes all changes in order to add new employees
+	 * @param event
+	 */
 	@FXML
 	private void newEmployee(ActionEvent event) {
 		newEmployee = true;
@@ -89,6 +90,11 @@ public class StaffWindowController implements Initializable {
 		btDelete.setDisable(true);
 	}
 
+	/**
+	 * This method is called when btEditar is pressed
+	 * It makes all changes in order to edit the selected employee
+	 * @param event
+	 */
 	@FXML
 	private void editEmployee(ActionEvent event) {
 		btEditar.setDisable(true);
@@ -96,6 +102,11 @@ public class StaffWindowController implements Initializable {
 		conmuteFields();
 	}
 
+	/**
+	 * This method is called when btGuardar is pressed
+	 * It makes all changes in order to save an employee
+	 * @param event
+	 */
 	@FXML
 	private void saveEmployee(ActionEvent event) {
 		if (validateFields()) {
@@ -124,6 +135,11 @@ public class StaffWindowController implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is called when btDelete is pressed
+	 * It makes all changes in order to delete an employee
+	 * @param event
+	 */
 	@FXML
 	private void deleteEmployee(ActionEvent event) {
 		eraseFieldsContent();
@@ -135,24 +151,39 @@ public class StaffWindowController implements Initializable {
 		updateList();
 	}
 
+	/**
+	 * This method is called when btHecho is pressed
+	 * Close the current window
+	 * @param event
+	 */
 	@FXML
 	private void done(ActionEvent event) {
 		((Stage) txPassword.getScene().getWindow()).close(); // close current
 																// window
 	}
 
+	/**
+	 * This method erases the content of the fields
+	 */
 	private void eraseFieldsContent() {
 		txPassword.setText("");
 		txUsuario.setText("");
 		checkAdmin.setIndeterminate(true);
 	}
 
+	/**
+	 * Conmute the disable property of the fields
+	 */
 	private void conmuteFields() {
 		txPassword.setEditable(!txPassword.isEditable());
 		txUsuario.setEditable(!txUsuario.isEditable());
 		checkAdmin.setDisable(!checkAdmin.isDisable());
 	}
 
+	/**
+	 * It validates if the inputs are OK
+	 * @return true if are OK, false otherwise
+	 */
 	private boolean validateFields() {
 		if (txUsuario.getText().equals("") || txPassword.getText().equals("")
 				|| checkAdmin.isIndeterminate())
@@ -160,12 +191,18 @@ public class StaffWindowController implements Initializable {
 		return true;
 	}
 
+	/**
+	 * Set to 'b' the following fields
+	 * @param b
+	 */
 	private void putEditables(boolean b) {
 		txUsuario.setEditable(b);
 		txPassword.setEditable(b);
 		checkAdmin.setDisable(!b);
 	}
-
+	/**
+	 * It updates the incidences list
+	 */
 	private void updateList() {
 		listaStaff.setItems(FXCollections.observableArrayList(service
 				.getStaff()));

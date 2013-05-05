@@ -12,6 +12,9 @@ import javafx.stage.Stage;
  */
 public class AdminDA extends Application {
 
+    /* (non-Javadoc)
+     * @see javafx.application.Application#start(javafx.stage.Stage)
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));

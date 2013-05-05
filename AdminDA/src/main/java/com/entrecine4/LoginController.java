@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.entrecine4;
 
 import java.io.IOException;
@@ -24,11 +20,7 @@ import models.Employee;
 import com.entrecine4.business.StaffService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- *
- * @author Dani
- */
+
 public class LoginController implements Initializable {
 
 	private StaffService service = Factories.services.createStaffService();
@@ -47,6 +39,11 @@ public class LoginController implements Initializable {
         // TODO
     }
 
+    /**
+     * It checks if the user is administrator
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
         if (validateUser()) {
@@ -58,6 +55,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * It checks if the username exists, the password coincides and if it's admin
+     * @return true if all of this are true
+     */
     private boolean validateUser() {
 		List<Employee> list = service.getStaff();
 		for(Employee e : list)
@@ -68,6 +69,11 @@ public class LoginController implements Initializable {
 		return false;
 	}
 
+    /**
+	 * It shows the MainWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
 	private void showMainWindow() throws IOException {
         String fxmlFile = "/fxml/mainWindow.fxml";
         FXMLLoader loader = new FXMLLoader();

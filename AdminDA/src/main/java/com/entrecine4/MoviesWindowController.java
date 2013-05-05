@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.entrecine4;
 
 import java.net.URL;
@@ -26,11 +22,6 @@ import models.Movie;
 import com.entrecine4.business.MoviesService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- * 
- * @author Dani
- */
 public class MoviesWindowController implements Initializable {
 
 	private MoviesService service = Factories.services.createMoviesService();
@@ -93,6 +84,10 @@ public class MoviesWindowController implements Initializable {
 		});
 	}
 
+	/**
+	 * Set to 'b' the following fields
+	 * @param b
+	 */
 	private void putEditables(boolean b) {
 		txMorningPrice.setEditable(b);
 		txSynopsis.setEditable(b);
@@ -102,6 +97,11 @@ public class MoviesWindowController implements Initializable {
 		txGenre.setEditable(b);
 	}
 
+	/**
+	 * This method is called when btEditar is pressed
+	 * It makes all changes in order to edit the selected movie
+	 * @param event
+	 */
 	@FXML
 	public void editMovie(ActionEvent e) {
 		btEditar.setDisable(true);
@@ -109,6 +109,11 @@ public class MoviesWindowController implements Initializable {
 		conmuteFields();
 	}
 
+	/**
+	 * This method is called when btHecho is pressed
+	 * Close the current window
+	 * @param event
+	 */
 	@FXML
 	public void done(ActionEvent e) {
 		((Stage) txMorningPrice.getScene().getWindow()).close(); // close
@@ -116,6 +121,11 @@ public class MoviesWindowController implements Initializable {
 																	// window
 	}
 
+	/**
+	 * This method is called when btGuardar is pressed
+	 * It makes all changes in order to save a movie
+	 * @param event
+	 */
 	@FXML
 	public void saveMovie(ActionEvent e) {
 		if (validateFields()) {
@@ -146,6 +156,9 @@ public class MoviesWindowController implements Initializable {
 		}
 	}
 
+	/**
+	 * Conmute the disable property of the fields
+	 */
 	private void conmuteFields() {
 		txMorningPrice.setEditable(!txMorningPrice.isEditable());
 		txSynopsis.setEditable(!txSynopsis.isEditable());
@@ -155,6 +168,11 @@ public class MoviesWindowController implements Initializable {
 		txGenre.setEditable(!txGenre.isEditable());
 	}
 
+	/**
+	 * This method is called when btNuevo is pressed
+	 * It makes all changes in order to add new movies
+	 * @param event
+	 */
 	@FXML
 	public void newMovie(ActionEvent e) {
 		newMovie = true;
@@ -165,6 +183,11 @@ public class MoviesWindowController implements Initializable {
 		btDelete.setDisable(true);
 	}
 
+	/**
+	 * This method is called when btDelete is pressed
+	 * It makes all changes in order to delete a movie
+	 * @param event
+	 */
 	@FXML
 	public void deleteMovie(ActionEvent e) {
 		eraseFieldsContent();
@@ -176,6 +199,9 @@ public class MoviesWindowController implements Initializable {
 		updateList();
 	}
 
+	/**
+	 * This method erases the content of the fields
+	 */
 	private void eraseFieldsContent() {
 		txMorningPrice.setText("");
 		txSynopsis.setText("");
@@ -184,7 +210,11 @@ public class MoviesWindowController implements Initializable {
 		txDailyPrice.setText("");
 		txGenre.setText("");
 	}
-
+	
+	/**
+	 * It validates if the inputs are OK
+	 * @return true if are OK, false otherwise
+	 */
 	private boolean validateFields() {
 		if (txDailyPrice.getText().equals("")
 				|| txNightPrice.getText().equals("")
@@ -203,6 +233,9 @@ public class MoviesWindowController implements Initializable {
 		return true;
 	}
 
+	/**
+	 * It updates the movies list
+	 */
 	private void updateList() {
 		listPeliculas.setItems(FXCollections.observableArrayList(service
 				.getMovies()));

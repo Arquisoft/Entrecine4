@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.entrecine4;
 
 import java.net.URL;
@@ -22,11 +18,7 @@ import models.Session;
 import com.entrecine4.business.SessionService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- * 
- * @author Dani
- */
+
 public class PickSessionWindowController implements Initializable {
 
 	private SessionService service = Factories.services.createSessionService();
@@ -53,6 +45,10 @@ public class PickSessionWindowController implements Initializable {
 		});
 	}
 
+	/**
+	 * It puts the session in the previous window and closes itself
+	 * @param event
+	 */
 	@FXML
 	private void accept(ActionEvent event) {
 		Session s = listSession.getSelectionModel().getSelectedItem();
@@ -64,6 +60,10 @@ public class PickSessionWindowController implements Initializable {
 
 	}
 
+	/**
+	 * This method closes the window
+	 * @param event
+	 */
 	@FXML
 	private void cancel(ActionEvent event) {
 		((Stage) listSession.getScene().getWindow()).close(); // close current

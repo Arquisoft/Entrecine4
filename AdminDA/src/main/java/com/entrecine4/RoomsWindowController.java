@@ -19,11 +19,6 @@ import models.Room;
 import com.entrecine4.business.RoomService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- * 
- * @author Dani
- */
 public class RoomsWindowController implements Initializable {
 
 	private RoomService service = Factories.services.createRoomService();
@@ -64,6 +59,11 @@ public class RoomsWindowController implements Initializable {
 		});
 	}
 
+	/**
+	 * This method is called when btNuevo is pressed
+	 * It makes all changes in order to add new rooms
+	 * @param event
+	 */
 	@FXML
 	public void newRoom(ActionEvent event) {
 		newRoom = true;
@@ -73,7 +73,12 @@ public class RoomsWindowController implements Initializable {
 		btGuardar.setDisable(false);
 		btDelete.setDisable(true);
 	}
-
+	
+	/**
+	 * This method is called when btEditar is pressed
+	 * It makes all changes in order to edit the selected room
+	 * @param event
+	 */
 	@FXML
 	public void editRoom(ActionEvent event) {
 		btEditar.setDisable(true);
@@ -81,6 +86,11 @@ public class RoomsWindowController implements Initializable {
 		conmuteFields();
 	}
 
+	/**
+	 * This method is called when btGuardar is pressed
+	 * It makes all changes in order to save a room
+	 * @param event
+	 */
 	@FXML
 	public void saveRoom(ActionEvent event) {
 		if (validateFields()) {
@@ -106,6 +116,11 @@ public class RoomsWindowController implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is called when btDelete is pressed
+	 * It makes all changes in order to delete a room
+	 * @param event
+	 */
 	@FXML
 	public void deleteRoom(ActionEvent event) {
 		eraseFieldsContent();
@@ -117,22 +132,37 @@ public class RoomsWindowController implements Initializable {
 		updateList();
 	}
 
+	/**
+	 * This method is called when btHecho is pressed
+	 * Close the current window
+	 * @param event
+	 */
 	@FXML
 	public void done(ActionEvent event) {
 		((Stage) txColumns.getScene().getWindow()).close(); // close current
 															// window
 	}
 
+	/**
+	 * Commute the disable property of the fields
+	 */
 	private void conmuteFields() {
 		txColumns.setEditable(!txColumns.isEditable());
 		txRows.setEditable(!txRows.isEditable());
 	}
 
+	/**
+	 * This method erases the content of the fields
+	 */
 	private void eraseFieldsContent() {
 		txRows.setText("");
 		txColumns.setText("");
 	}
 
+	/**
+	 * It validates if the inputs are OK
+	 * @return true if are OK, false otherwise
+	 */
 	private boolean validateFields() {
 		if (txRows.getText().equals("") || txColumns.getText().equals(""))
 			return false;
@@ -145,11 +175,18 @@ public class RoomsWindowController implements Initializable {
 		return true;
 	}
 
+	/**
+	 * Set to 'b' the following fields
+	 * @param b
+	 */
 	private void putEditables(boolean b) {
 		txRows.setEditable(b);
 		txColumns.setEditable(b);
 	}
 
+	/**
+	 * It updates the incidences list
+	 */
 	private void updateList() {
 		listSalas
 				.setItems(FXCollections.observableArrayList(service.getRooms()));

@@ -29,11 +29,7 @@ import models.Session;
 import com.entrecine4.business.IncidenceService;
 import com.entrecine4.infraestructure.Factories;
 
-/**
- * FXML Controller class
- * 
- * @author Dani
- */
+
 public class IncidenceWindowController implements Initializable {
 
 	private IncidenceService service = Factories.services
@@ -96,6 +92,10 @@ public class IncidenceWindowController implements Initializable {
 		});
 	}
 
+	/**
+	 * Set to 'b' the following fields
+	 * @param b
+	 */
 	private void putEditables(boolean b) {
 		txDescripcion.setEditable(b);
 		txFecha.setEditable(b);
@@ -103,6 +103,11 @@ public class IncidenceWindowController implements Initializable {
 		btToday.setDisable(!b);
 	}
 
+	/**
+	 * This method is called when btNuevo is pressed
+	 * It makes all changes in order to add new incidences
+	 * @param event
+	 */
 	@FXML
 	private void newIncidence(ActionEvent event) {
 		newIncidence = true;
@@ -113,6 +118,11 @@ public class IncidenceWindowController implements Initializable {
 		btDelete.setDisable(true);
 	}
 
+	/**
+	 * This method is called when btEditar is pressed
+	 * It makes all changes in order to edit the selected incidence
+	 * @param event
+	 */
 	@FXML
 	private void editIncidence(ActionEvent event) {
 		btEditar.setDisable(true);
@@ -120,6 +130,11 @@ public class IncidenceWindowController implements Initializable {
 		conmuteFields();
 	}
 
+	/**
+	 * This method is called when btGuardar is pressed
+	 * It makes all changes in order to save an incidence
+	 * @param event
+	 */
 	@FXML
 	private void saveIncidence(ActionEvent event) {
 		if (validateFields()) {
@@ -150,6 +165,11 @@ public class IncidenceWindowController implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is called when btDelete is pressed
+	 * It makes all changes in order to delete an incidence
+	 * @param event
+	 */
 	@FXML
 	private void deleteIncidence(ActionEvent event) {
 		eraseFieldsContent();
@@ -161,12 +181,22 @@ public class IncidenceWindowController implements Initializable {
 		updateList();
 	}
 
+	/**
+	 * This method is called when btHecho is pressed
+	 * Close the current window
+	 * @param event
+	 */
 	@FXML
 	private void done(ActionEvent event) {
 		((Stage) txDescripcion.getScene().getWindow()).close(); // close current
 																// window
 	}
 
+	/**
+	 * This method is called when btElegirSesion is pressed
+	 * It shows the PickSessionWindow window
+	 * @param event
+	 */
 	@FXML
 	private void showPickSessionWindow(ActionEvent event) throws IOException {
 		String fxmlFile = "/fxml/pickSessionWindow.fxml";
@@ -189,6 +219,9 @@ public class IncidenceWindowController implements Initializable {
 		stage.show();
 	}
 
+	/**
+	 * This method erases the content of the fields
+	 */
 	private void eraseFieldsContent() {
 		txDescripcion.setText("");
 		txFecha.setText("");
@@ -196,6 +229,9 @@ public class IncidenceWindowController implements Initializable {
 		txSala.setText("");
 	}
 
+	/**
+	 * Conmute the disable property of the fields
+	 */
 	private void conmuteFields() {
 		txDescripcion.setEditable(!txDescripcion.isEditable());
 		txFecha.setEditable(!txFecha.isEditable());
@@ -203,6 +239,10 @@ public class IncidenceWindowController implements Initializable {
 		btToday.setDisable(!btToday.isDisable());
 	}
 
+	/**
+	 * It validates if the inputs are OK
+	 * @return true if are OK, false otherwise
+	 */
 	private boolean validateFields() {
 		if (txDescripcion.getText().equals("") || txFecha.getText().equals("")
 				|| txSesion.getText().equals(""))
@@ -217,16 +257,27 @@ public class IncidenceWindowController implements Initializable {
 		return true;
 	}
 
+	/**
+	 * This method sets today's date into txFecha
+	 * @param e
+	 */
 	@FXML
 	private void printTodayDate(ActionEvent e) {
 		txFecha.setText(new Date(System.currentTimeMillis()).toString());
 	}
 
+	/**
+	 * It sets the text of txSesion and txSala when a session is picked
+	 * @param s The session has been picked
+	 */
 	void setSession(Session s) {
 		txSesion.setText(String.valueOf(s.getId()));
 		txSala.setText(String.valueOf(s.getRoomId()));
 	}
 
+	/**
+	 * It updates the incidences list
+	 */
 	private void updateList() {
 		listIncidences.setItems(FXCollections.observableArrayList(service
 				.getIncidences()));
