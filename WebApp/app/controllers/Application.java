@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.entrecine4.business.SessionStateService;
 import com.entrecine4.infraestructure.*;
+import com.entrecine4.*;
 
 import play.*;
 import play.api.libs.Crypto;
@@ -21,8 +22,8 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
     static Form<LockSeat> lockSeatForm = Form.form(LockSeat.class);
+    public static int aux;
   
-	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
         String username = getLoggedUser();
         List<Movie> movies = Factories.services.createMoviesService().getMovies();
@@ -63,30 +64,54 @@ public class Application extends Controller {
     		//Getting form data
     		String name=filledForm.field("txt_Nombre").value();
     		String surnames=filledForm.field("txt_Apellidos").value();
-    		String username=filledForm.field("txt_NombreDeUsuario").value();
+    		String username=filledForm.field("txt_NombredeUsuario").value();
     		String email=filledForm.field("email").value();
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
     		
-    		//Provisional: if fails again to /registro
-    		//TODO: Change for better validation
     		if(!password.equals(repass))
     			return redirect(routes.Application.registro());
     		else
     		{
-    			//TODO: validateUserData is wrong
-    			User user=new User(-1, username, password, name, surnames, email);
+    			User user=new User(0, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
     					.validateUserData(user)==null)
     				return redirect(routes.Application.registro());
+    			Factories.services.createUserService().save(user);
     		}
     	}
     	return redirect(routes.Application.index());
     }
 
-    public static Result pelicula(Long id) {
+    public static Result pelicula(Long id) 
+    {
+    	//Get the movie
         Movie movie = Factories.services.createMoviesService().findById(id);
-        return ok(pelicula.render(getLoggedUser(),movie, userForm));
+        if(movie==null)
+        	return redirect(routes.Application.error());
+        //Get the sessions
+        List<Session> sessions=Factories.services
+        		.createSessionService().findByMovie(movie.getName());
+        
+        Session s=null;
+        Session s2=null;
+        for(int i=0;i<sessions.size();i++)
+        {
+        	s=sessions.get(i);
+        	for(int j=0;j<sessions.size();j++)
+        	{
+        		s2=sessions.get(j);
+        		if(s.getDay().equals(s2.getDay()) 
+        				&& s.getMovieTitle().equals(s2.getMovieTitle()) 
+        				&& s.getTime()==s2.getTime() 
+        				&& s.getId()!=s2.getId())
+        		{
+        			sessions.remove(j--);
+        		}
+        	}
+        }
+        
+        return ok(pelicula.render(getLoggedUser(),movie, userForm, sessions));
     }
     
     public static Result login() {
@@ -120,14 +145,14 @@ public class Application extends Controller {
         int column = Integer.valueOf(filledForm.field("column").value());
         Session session = Factories.services.createSessionService().findById(sessionId);
         SessionState sessionState = new SessionState(session.getRoomId(),
-                row, column, session.getDay(), (long) session.getTime());
+                row, column, session.getDay(), sessionId);
         Factories.services.createSessionStateService().saveSessionState(sessionState); //lock seat
-        return ok(plataformaPago.render(userForm));
+        return ok(plataformaPago.render(getLoggedUser(), userForm));
     }
     
     public static Result pay(){
     	Form filledForm = paymentForm.bindFromRequest();
-    	System.out.println("FORMULARIO:\n" + filledForm.toString());
+    //	System.out.println("FORMULARIO:\n" + filledForm.toString());
     	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
     	si ha sido posible completar la transacción o no, en función de lo cual
     	redirijo a la página de error o a la de agradecimiento */
@@ -137,24 +162,24 @@ public class Application extends Controller {
 //    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
     	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
 //    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
-    	String fechaNacimiento = filledForm.field("fechaCaducidad").value();
+    	String fechaCaducidad = filledForm.field("fechaCaducidad").value();
 //    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
-    	
+
     	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
     	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
-//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
+    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
     		return redirect(routes.Application.finReservaOk());
-//    	else
-//    		return redirect(routes.Application.finReservaWrong());
+    	else
+            return redirect(routes.Application.finReservaWrong());
 
     }
     
     public static Result finReservaOk(){
-    	return ok(finReservaOk.render());
+    	return ok(finReservaOk.render(getLoggedUser(), userForm));
     }
     
     public static Result finReservaWrong(){
-    	return ok(finReservaWrong.render());
+    	return ok(finReservaWrong.render(getLoggedUser(), userForm));
     }
 
     public static Result butacas(Long date, Long session, String nombre) {
@@ -173,6 +198,6 @@ public class Application extends Controller {
     }
     
     public static Result error(){
-    	return ok(error404.render());
+    	return ok(error404.render(getLoggedUser(), userForm));
     }
 }

@@ -20,6 +20,15 @@ public class PaymentGateway {
 	 * @return
 	 */
 	public static boolean pay(String cardNumber, String type, String SecurityCode, String expirationDate){
+        int begin = Integer.valueOf(cardNumber.substring(0,1));
+        if(cardNumber.length()!=16) //all cards have the same number of digits
+            return false;
+        else if(type.equals("American Express") && begin!=3)
+            return false; //for American Express it must begin with 3
+        else if(type.equals("Visa") && begin!=4)
+            return false; //for Visa it must begin with 4
+        else if(type.equals("Mastercard") && begin!=5)
+            return false; //for Mastercard it must begin with 5
 		Random r = new Random();
 		if(r.nextInt(10) < 1)
 			return false;
