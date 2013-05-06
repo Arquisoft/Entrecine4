@@ -1,9 +1,15 @@
 package controllers;
 
+import impl.entrecine4.business.SimplePurchasesService;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+
+import com.entrecine4.business.PurchasesService;
 import com.entrecine4.business.SessionStateService;
 import com.entrecine4.infraestructure.*;
 import com.entrecine4.*;
@@ -211,31 +217,61 @@ public class Application extends Controller {
     	Form filledForm = paymentForm.bindFromRequest();
 
     	//Default values to prevent exceptions
-    	String numeroTarjeta="1";
-    	String tipoTarjeta="Visa";
-    	String codigoSeguridad="55";
-    	String fechaCaducidad="01/01/2101";
+    	String numeroTarjeta;//="1";
+    	String tipoTarjeta;//="Visa";
+    	String codigoSeguridad;//="55";
+    	String fechaCaducidad;//="01/01/2101";
+    	
+    	int sessionID = Integer.parseInt(auxForm.field("sessionId").value());
+    	
+    	int row = Integer.parseInt(auxForm.field("row").value());
+    	int column = Integer.parseInt(auxForm.field("column").value());
+    	
+    	List<Map<String, Integer>> seatsList = new ArrayList<Map<String, Integer>>();
+    	Map map = new HashMap<String, Integer>();
+    	map.put("ROW", row);
+    	map.put("COLUMN", column);
+    	seatsList.add(map);
+    	
+    	System.out.println("ID DE USUARIO: " + userForPayment.getId());
+    	
+    	List<Session> sessions = Factories.services.createSessionService().getSessions();
+    	
+    	String movie_title = null;
+    	Long movie_id = 0L;
+    	
+    	for(Session session : sessions)
+    		if(session.getId() == sessionID)
+    			movie_title = session.getMovieTitle();
     	
     	
-    //	System.out.println("FORMULARIO:\n" + filledForm.toString());
-    	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
-    	si ha sido posible completar la transacción o no, en función de lo cual
-    	redirijo a la página de error o a la de agradecimiento */
+    	if(movie_title != null){
+    		List<Movie> movies = Factories.services.createMoviesService().getMovies();
+    		for(Movie movie : movies)
+    			if(movie.getName().equals(movie_title))
+    				movie_id = movie.getId();
+    	}
+    		
+    	
+    	
+   
     	numeroTarjeta = filledForm.field("numeroTarjeta").value();
-//    	System.out.println("Numero Tarjeta: "+ numeroTarjeta);
     	tipoTarjeta  = filledForm.field("tipoTarjeta").value();
-//    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
     	codigoSeguridad = filledForm.field("codigoSeguridad").value();
-//    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
     	fechaCaducidad = filledForm.field("fechaCaducidad").value();
-//    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
 
-    	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
-    	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
+    	
     	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
     	{
-    		//Purchase p = new Purchase(0, 0, movie_id,, 1, 0);
-    		//Factories.services.createPurchasesService();
+    		String ticket_id_code = TicketIDCodeManager.generateCode(sessionID, seatsList);
+    		Purchase p = new Purchase(0L, userForPayment.getId(), movie_id, ticket_id_code, 1, 0);
+    		
+    		System.out.println(p.getId() + "   " + p.getMovie_id() + "   " + p.getTicket_id_code() + "   " + p.getPaid() + "   " + p.getCollected() + "   "+ p.getUser_id());
+    		PurchasesService ps = Factories.services.createPurchasesService();
+    		/* DA EXCEPCIÓN. SI SE PASAN TODOS LOS PARÁMETROS A MANO TAMBIÉN DA. SI SE PONEN ESTAS 3 LÍNEAS EN UNA CLASE DENTRO DE LA API
+    		 * EN EL PUBLIC STATIC VOID MAIN FUNCIONA.
+    		 */
+    		ps.savePurchase(p);
     		return redirect(routes.Application.finReservaOk());
     	}
     	else
