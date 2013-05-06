@@ -1,10 +1,12 @@
 package com.entrecine4;
 
-import com.entrecine4.business.MoviesService;
-import com.entrecine4.business.RoomService;
-import com.entrecine4.business.SessionService;
-import com.entrecine4.business.SessionStateService;
-import com.entrecine4.infraestructure.Factories;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -21,12 +30,11 @@ import models.Room;
 import models.Session;
 import models.SessionState;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import com.entrecine4.business.MoviesService;
+import com.entrecine4.business.RoomService;
+import com.entrecine4.business.SessionService;
+import com.entrecine4.business.SessionStateService;
+import com.entrecine4.infraestructure.Factories;
 
 public class MainWindowController implements Initializable {
     @FXML
@@ -102,9 +110,11 @@ public class MainWindowController implements Initializable {
     private void chooseFilm(ActionEvent event) {
         disableAllRadioButton();
         Movie selectedMovie = moviesService.findByTitle(comboMovies.getValue());
-        sessions = sessionService.findByMovie(comboMovies.getValue());
+        sessions = sessionService.findByDay(new Date());
         for(Session s : sessions) {
-            if(s.getTime() == 12)
+        	if(!s.getMovieTitle().equals(comboMovies.getValue()))
+        		;
+        	else if(s.getTime() == 12)
                 rb12.setDisable(false);
             else if(s.getTime() == 17)
                 rb17.setDisable(false);
@@ -140,7 +150,8 @@ public class MainWindowController implements Initializable {
         rb22.setDisable(true);
     }
 
-    private void searchRoom(double session) {        roomTabPane.getTabs().remove(0,currentRooms); //remove all before enter new ones
+    private void searchRoom(double session) {
+    	roomTabPane.getTabs().remove(0,currentRooms); //remove all before enter new ones
         sessions = sessionService.findByDayAndTime(new Date(), session);
         rooms = new ArrayList<Room>();
         currentRooms = 0;
@@ -167,13 +178,19 @@ public class MainWindowController implements Initializable {
             for (int row = 1; row < room.getRows()+1; row++) {
                 final Button btn = new Button();
                 btn.setText((row)+","+(column));
-                if(!sessionStateService.checkFreeSeat(session.getId(), room.getId(), row, column))
+                if(reserved(sessionStates,row,column))
                     btn.setDisable(true);
                 btn.setOnAction(new EventHandler<ActionEvent>() {
 
                     @Override
                     public void handle(ActionEvent event) {
-                        //go to next window
+                        try {
+                        	PaymentGatewayController.row=Integer.parseInt(btn.getText().split(",")[0]);
+                        	PaymentGatewayController.column=Integer.parseInt(btn.getText().split(",")[1]);
+							showPaymentWindow();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
                     }
                 });
 
@@ -183,6 +200,32 @@ public class MainWindowController implements Initializable {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pane);
         return scrollPane;
+    }
+    
+    private boolean reserved(List<SessionState> sessionStates,int row, int column)
+    {
+    	for(SessionState sst: sessionStates)
+    	{
+    		if(sst.getRow()==row && sst.getColumn()==column)
+    			return true;
+    	}
+    	return false;
+    }
+    
+    /**
+     * It shows the MainWindow window
+     * @param event
+     * @throws IOException if the fxmlFile doesn't exist
+     */
+    private void showPaymentWindow() throws IOException {
+    	String fxmlFile = "/fxml/paymentGateway.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+        Scene scene = new Scene(rootNode);
+        scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
+
+        ((Stage)btCerrarSesion.getScene().getWindow()).setScene(scene);
     }
 
 }

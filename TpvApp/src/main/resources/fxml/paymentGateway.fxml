@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainWrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.PaymentGatewayController">
+  <children>
+    <Label fx:id="lbTitle" prefHeight="57.0" prefWidth="337.0" text="Plataforma de pago" textFill="#202020" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
+      <font>
+        <Font name="Segoe UI Light" size="36.0" />
+      </font>
+    </Label>
+    <AnchorPane id="AnchorPane" fx:id="wrapper" layoutY="169.0" prefHeight="296.0" prefWidth="683.0" style="-fx-background-color: #ccc;&#10;-fx-padding-left:20px;&#10;-fx-padding-right:20px;" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="59.0">
+      <children>
+        <Label id="lbTipo" fx:id="lbType" prefHeight="27.0" prefWidth="148.0" text="Tipo de tarjeta">
+          <font>
+            <Font name="Segoe UI Light" size="20.0" fx:id="x2" />
+          </font>
+          <labelFor>
+            <ComboBox id="tipo" fx:id="comboType" layoutY="3.0" onAction="#chooseType" prefHeight="27.0" prefWidth="278.0" promptText="Tipo de tarjeta" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Visa" />
+                  <String fx:value="MasterCard" />
+                  <String fx:value="American Express" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+          </labelFor>
+        </Label>
+        <Label fx:id="lbNum" font="$x2" layoutY="79.0" prefHeight="27.0" prefWidth="190.0" text="Número de tarjeta">
+          <labelFor>
+            <TextField id="numero" fx:id="txtNumber" layoutY="79.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+          </labelFor>
+        </Label>
+        <Label fx:id="lbCode" font="$x2" layoutY="150.0" prefHeight="27.0" prefWidth="190.0" text="Código de seguridad">
+          <labelFor>
+            <TextField id="code" fx:id="txtCode" layoutY="150.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+          </labelFor>
+        </Label>
+        <Label fx:id="lbDate" font="$x2" layoutY="229.0" prefHeight="27.0" prefWidth="321.0" text="Fecha de caducidad (dd/mm/aaaa)">
+          <labelFor>
+            <TextField id="expiration" fx:id="txtDate" layoutY="229.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+          </labelFor>
+        </Label>
+        <fx:reference source="comboType" />
+        <fx:reference source="txtNumber" />
+        <fx:reference source="txtCode" />
+        <fx:reference source="txtDate" />
+      </children>
+    </AnchorPane>
+    <Button fx:id="btPay" defaultButton="true" mnemonicParsing="false" onAction="#pay" prefHeight="35.0" prefWidth="109.0" text="Pagar" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="31.0" />
+    <Button fx:id="btClose" mnemonicParsing="false" onAction="#close" prefHeight="35.0" prefWidth="109.0" text="Cerrar" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="31.0" />
+  </children>
+</AnchorPane>
