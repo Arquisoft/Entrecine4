@@ -265,7 +265,9 @@ public class Application extends Controller {
     	{
     		String ticket_id_code = TicketIDCodeManager.generateCode(sessionID, seatsList);
     		Purchase p = new Purchase(0L, userForPayment.getId(), movie_id, ticket_id_code, 1, 0);
-    		
+    		/*  Generamos el código QR y enviamos el correo */
+    		GenerateQR.generate(ticket_id_code);
+    		SendEmail.sendNewMail(userForPayment, "Imagen.png");
     		System.out.println(p.getId() + "   " + p.getMovie_id() + "   " + p.getTicket_id_code() + "   " + p.getPaid() + "   " + p.getCollected() + "   "+ p.getUser_id());
     		PurchasesService ps = Factories.services.createPurchasesService();
     		/* DA EXCEPCIÓN. SI SE PASAN TODOS LOS PARÁMETROS A MANO TAMBIÉN DA. SI SE PONEN ESTAS 3 LÍNEAS EN UNA CLASE DENTRO DE LA API
