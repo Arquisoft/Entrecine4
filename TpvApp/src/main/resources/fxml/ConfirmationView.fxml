@@ -40,6 +40,6 @@
     </Pane>
   </children>
   <stylesheets>
-    <URL value="@JMetroLightTheme.css" />
+    <URL value="@../styles/JMetroLightTheme.css" />
   </stylesheets>
 </AnchorPane>

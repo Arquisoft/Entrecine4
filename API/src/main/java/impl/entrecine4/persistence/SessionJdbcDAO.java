@@ -141,7 +141,7 @@ public class SessionJdbcDAO implements SessionDAO
 		List<Session> result=new ArrayList<Session>();
 		
 		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY_AND_TIME"));
-		pst.setDate(1, (java.sql.Date) day);
+		pst.setDate(1, new java.sql.Date(day.getTime()));
 		pst.setDouble(2, time);
 		
 		rs=pst.executeQuery();

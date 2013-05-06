@@ -3,49 +3,60 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="961.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainViewController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
   <children>
-    <Pane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" styleClass="panelEntradas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Label id="tituloApp" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
+      <font>
+        <Font name="Segoe UI Light" size="40.0" />
+      </font>
+    </Label>
+    <Label layoutY="106.0" text="Sesión:" AnchorPane.rightAnchor="221.0">
+      <font>
+        <Font size="16.0" fx:id="x2" />
+      </font>
+    </Label>
+    <Group id="Group" layoutY="138.0" AnchorPane.rightAnchor="44.0">
       <children>
-        <Label id="tituloApp" layoutX="14.0" layoutY="14.0" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas" textFill="WHITE">
+        <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#pressed12" text="12">
           <font>
-            <Font size="40.0" />
+            <Font name="Segoe UI Light" size="18.0" fx:id="x1" />
           </font>
-        </Label>
-        <Label layoutX="31.0" layoutY="117.0" text="Sesión" textFill="WHITE">
-          <font>
-            <Font size="21.0" fx:id="x2" />
-          </font>
-        </Label>
-        <Group id="Group" layoutX="31.0" layoutY="150.0">
-          <children>
-            <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#rb12" text="12">
-              <font>
-                <Font size="16.0" fx:id="x1" />
-              </font>
-            </RadioButton>
-            <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#rb17" text="17" />
-            <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#rb20" text="20" />
-            <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#rb22" text="22" />
-          </children>
-        </Group>
-        <TabPane fx:id="rooms" layoutX="376.0" layoutY="117.0" prefHeight="695.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE" />
-        <Button fx:id="btContinuar" defaultButton="true" layoutX="1143.0" layoutY="906.0" mnemonicParsing="false" onAction="#buy" text="Continuar" />
-        <ListView fx:id="moviesList" layoutX="31.0" layoutY="285.0" prefHeight="360.0" prefWidth="226.5" />
-        <Label font="$x2" layoutX="33.0" layoutY="253.0" text="Películas" textFill="WHITE" textOverrun="CLIP" />
-        <Label font="$x2" layoutX="37.0" layoutY="770.0" text="Precio:" textFill="WHITE" />
-        <Label fx:id="priceLabel" font="$x2" layoutX="143.0" layoutY="770.0" text="18.50 €" textFill="WHITE" />
-        <Button layoutX="1085.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" prefWidth="150.0" text="Cerrar Sesión" />
+        </RadioButton>
+        <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#pressed17" text="17" />
+        <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#pressed20" text="20" />
+        <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#pressed22" text="22" />
       </children>
-    </Pane>
+    </Group>
+    <TabPane fx:id="roomTabPane" prefHeight="354.13" prefWidth="709.0" style="-fx-border-width: 1;&#10;-fx-border-color: grey;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="45.5" AnchorPane.rightAnchor="45.5" AnchorPane.topAnchor="203.87" />
+    <TilePane id="panelPelis" alignment="CENTER" hgap="20.0" prefHeight="990.0" prefWidth="1252.0000999999975" vgap="20.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+      <children>
+        <VBox id="VBox" alignment="CENTER" spacing="5.0">
+          <children>
+            <Button fx:id="btPelicula1" mnemonicParsing="false" prefHeight="200.0" prefWidth="300.0" />
+            <Label id="tituloPelicula1" fx:id="lbTituloPelicula1" text="Título Película 1" />
+          </children>
+        </VBox>
+        <VBox id="VBox" alignment="CENTER" spacing="5.0">
+          <children>
+            <Button fx:id="btPelicula2" mnemonicParsing="false" prefHeight="200.0" prefWidth="300.0" />
+            <Label id="tituloPelicula2" fx:id="lbTituloPelicula2" text="Título Película 2" />
+          </children>
+        </VBox>
+      </children>
+    </TilePane>
+    <Button id="cerrarSesion" fx:id="btCerrarSesion" mnemonicParsing="false" onAction="#logoutPressed" text="Cerrar Sesión" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="36.0">
+      <font>
+        <Font size="11.0" />
+      </font>
+    </Button>
+    <Label font="$x2" layoutY="101.0" text="Pelicula:" AnchorPane.leftAnchor="46.0" />
+    <ComboBox fx:id="comboMovies" layoutY="137.0" onAction="#chooseFilm" prefHeight="25.0" prefWidth="261.0" promptText="Escoja película" AnchorPane.leftAnchor="46.0" />
   </children>
-  <stylesheets>
-    <URL value="@JMetroLightTheme.css" />
-  </stylesheets>
 </AnchorPane>

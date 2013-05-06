@@ -19,9 +19,13 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+        scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
+
+        stage.setTitle("Login - Entrecine4");
+
+
         stage.setScene(scene);
         stage.show();
     }
