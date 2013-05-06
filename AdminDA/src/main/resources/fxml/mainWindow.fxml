@@ -11,26 +11,24 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
   <children>
-    <ScrollPane id="ScrollPane" prefViewportHeight="369.0" prefViewportWidth="438.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="179.0">
-      <content>
-        <TilePane hgap="40.0" minHeight="245.0" prefHeight="369.0" prefWidth="438.0" style="-fx-background-color: #fff;" vgap="40.0">
-          <children>
-            <Button fx:id="btGestionarPeliculas" mnemonicParsing="false" onAction="#showMoviesWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Películas">
-              <TilePane.margin>
-                <Insets />
-              </TilePane.margin>
-            </Button>
-            <Button fx:id="btGestionarSalas" mnemonicParsing="false" onAction="#showRoomsWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Salas" />
-            <Button id="btGestionarIncidencias" fx:id="btGestionarPersonal" mnemonicParsing="false" onAction="#showStaffWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Personal" />
-            <Button fx:id="btGestionarIncidencias" mnemonicParsing="false" onAction="#showIncidenceWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Incidencias" />
-          </children>
-        </TilePane>
-      </content>
-    </ScrollPane>
-    <Label prefHeight="97.0" prefWidth="628.0" text="Cliente de Administración" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="43.0">
+    <Label prefHeight="97.0" prefWidth="535.0" text="Cliente de Administración" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="43.0">
       <font>
         <Font name="Segoe UI Light" size="50.0" />
       </font>
     </Label>
+    <TilePane alignment="CENTER" layoutX="59.0" layoutY="126.0" prefHeight="428.0" prefWidth="683.0">
+      <children>
+        <Button fx:id="btGestionarPeliculas" mnemonicParsing="false" onAction="#showMoviesWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Películas">
+          <TilePane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" fx:id="x1" />
+          </TilePane.margin>
+        </Button>
+        <Button fx:id="btGestionarSalas" mnemonicParsing="false" onAction="#showRoomsWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Salas" TilePane.margin="$x1" />
+        <Button id="btGestionarIncidencias" fx:id="btGestionarPersonal" mnemonicParsing="false" onAction="#showStaffWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Personal" TilePane.margin="$x1" />
+        <Button fx:id="btGestionarIncidencias" mnemonicParsing="false" onAction="#showIncidenceWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Incidencias" TilePane.margin="$x1" />
+        <Button fx:id="btGestionarSesiones" mnemonicParsing="false" onAction="#showSessionsWindow" prefHeight="150.0" prefWidth="150.0" text="Gestionar Sesiones" TilePane.alignment="CENTER" TilePane.margin="$x1" />
+      </children>
+    </TilePane>
+    <Button fx:id="btSalir" defaultButton="true" layoutX="674.0" layoutY="544.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
   </children>
 </AnchorPane>

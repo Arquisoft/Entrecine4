@@ -120,4 +120,36 @@ public class MainWindowController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    /**
+	 * It shows the SessionsWindow window
+	 * @param event
+	 * @throws IOException if the fxmlFile doesn't exist
+	 */
+    @FXML
+    public void showSessionsWindow(ActionEvent event) throws IOException {
+        String fxmlFile = "/fxml/sessionsWindow.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+        Scene scene = new Scene(rootNode);
+        scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
+       
+        Stage stage = new Stage();
+        
+        stage.sizeToScene();
+
+        stage.setTitle("Administración - Sesiones - Entrecine4");
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    /**
+	 * Closes the application
+	 * @param event
+	 */
+    @FXML
+    public void exit(ActionEvent event) {
+    	((Stage) btGestionarIncidencias.getScene().getWindow()).close();
+    }
 }
