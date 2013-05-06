@@ -56,7 +56,7 @@ public class Application extends Controller {
     
     public static Result register()
     {
-    	Form<User> filledForm = userForm.bindFromRequest();
+    	Form filledForm = userForm.bindFromRequest();
     	if(filledForm.hasErrors()) 
     	{
     		return redirect(routes.Application.registro());
@@ -141,9 +141,60 @@ public class Application extends Controller {
     }
     
     public static Result plataformaPago(){
+        
         Form filledForm = userForm.bindFromRequest();
         userForPayment=new User();
         userForPayment.setEmail(filledForm.field("email").value());
+
+        // Si el email no es válido se devuelve a la página de datosUsuarioPago indicando el error
+        if(userForPayment.getEmail() == null || !userForPayment.getEmail().contains("@")){
+        	User user = Factories.services.createUserService().get(getLoggedUser());
+        	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "Email incorrecto"));
+        }
+        
+        
+        
+        	// Como tiene todos los datos supongo que le ha dado a Registrar y Continuar.
+//        	if(filledForm.hasErrors()) 
+//        	{
+//        		return redirect(routes.Application.datosUsuarioPago());
+//        	}
+//        	else
+//        	{
+        		//Getting form data
+        		userForPayment.setName(filledForm.field("txt_Nombre").value());
+        		userForPayment.setSurnames(filledForm.field("txt_Apellidos").value());
+        		userForPayment.setUsername(filledForm.field("txt_NombredeUsuario").value());
+        		userForPayment.setEmail(filledForm.field("email").value());
+        		userForPayment.setPassword(filledForm.field("pwd_Contraseña").value());
+        		String repass=filledForm.field("pwd_Repitalacontraseña").value();
+        		
+        		// There's no need to check the name since it was already checked and returned error in case there was one.
+                if(!userForPayment.getName().equals("") && !userForPayment.getSurnames().equals("") && !userForPayment.getPassword().equals("")){
+        		
+        		if(!userForPayment.getPassword().equals(repass)){
+        			User user = Factories.services.createUserService().get(getLoggedUser());
+            		return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "Las contraseñas no coinciden"));
+        		} else
+        		{
+        			System.out.println("Las contraseñas no son iguales y entra");
+        			if(Factories.services.createReservationService()
+        					.validateUserData(userForPayment)==null)
+        				return redirect(routes.Application.datosUsuarioPago());
+//        			Aquí debemos comprobar que el usuario no exista, en cuyo caso volvemos a la página de datosUsuariosPago con el error
+        			System.out.println("AQUÍ COMPROBAMOS QUE EL USUARIO NO EXISTA YA");
+        			if(Factories.services.createUserService().get(userForPayment.getUsername()) != null){
+        				User user = Factories.services.createUserService().get(getLoggedUser());
+                		return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "El usuario " + userForPayment.getUsername() + " ya existe"));
+        			}
+        				
+        			// Since the user does not exist, everything is OK. Therefore, we're going to create it.
+        			Factories.services.createUserService().save(userForPayment);
+        			response().setCookie("user", Crypto.encryptAES(userForPayment.getUsername()), -1);
+        		}
+//        	}
+        	return ok(plataformaPago.render(userForPayment.getUsername(), userForm));        	
+        }
         
         Long sessionId = Long.valueOf(auxForm.field("sessionId").value());
         int row = Integer.valueOf(auxForm.field("row").value());
@@ -223,39 +274,8 @@ public class Application extends Controller {
     {
     	auxForm=lockSeatForm.bindFromRequest();
     	User user = Factories.services.createUserService().get(getLoggedUser());
-    	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user));
+    	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, ""));
     }
     
-    public static Result registerAndPay()
-    {
-    	Form<User> filledForm = userForm.bindFromRequest();
-    	String username="";
-    	if(filledForm.hasErrors()) 
-    	{
-    		return redirect(routes.Application.datosUsuarioPago());
-    	}
-    	else
-    	{
-    		//Getting form data
-    		String name=filledForm.field("txt_Nombre").value();
-    		String surnames=filledForm.field("txt_Apellidos").value();
-    		username=filledForm.field("txt_NombredeUsuario").value();
-    		String email=filledForm.field("email").value();
-    		String password=filledForm.field("pwd_Contraseña").value();
-    		String repass=filledForm.field("pwd_Repitalacontraseña").value();
-    		
-    		if(!password.equals(repass))
-    			return redirect(routes.Application.datosUsuarioPago());
-    		else
-    		{
-    			userForPayment=new User(0, username, password, name, surnames, email);
-    			if(Factories.services.createReservationService()
-    					.validateUserData(userForPayment)==null)
-    				return redirect(routes.Application.datosUsuarioPago());
-    			Factories.services.createUserService().save(userForPayment);
-    			response().setCookie("user", Crypto.encryptAES(username), -1);
-    		}
-    	}
-    	return ok(plataformaPago.render(username, userForm));
-    }
+   
 }
