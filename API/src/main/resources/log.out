@@ -1,0 +1,22 @@
+MLog clients using log4j logging.
+Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+MBean: com.mchange.v2.c3p0:type=PooledDataSource[1hge2zy8uy3hsu61qw8yuo|e4865ce] registered.
+incremented pending_acquires: 1
+incremented pending_acquires: 2
+incremented pending_acquires: 3
+com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; mox_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false]
+Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge2zy8uy3hsu61qw8yuo|e4865ce, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge2zy8uy3hsu61qw8yuo|e4865ce, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://81.9.245.239:3306/aspruebas, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+awaitAvailable(): [unknown]
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 0, unused: 0, excluded: 0]
+com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@b05236.acquireResource() returning. 
+com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@b05236.acquireResource() returning. 
+com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@b05236.acquireResource() returning. 
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 1, unused: 1, excluded: 0]
+decremented pending_acquires: 2
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 2, unused: 2, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@3af7345b)
+decremented pending_acquires: 1
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 3, unused: 3, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@3af7345b)
+decremented pending_acquires: 0
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 3, unused: 2, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@3af7345b)
+trace com.mchange.v2.resourcepool.BasicResourcePool@6f7cf6b6 [managed: 3, unused: 2, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@3af7345b)
