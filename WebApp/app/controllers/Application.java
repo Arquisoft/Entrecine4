@@ -149,10 +149,12 @@ public class Application extends Controller {
     public static Result plataformaPago(){
         
         Form filledForm = userForm.bindFromRequest();
+        if(getLoggedUser() == null){
         userForPayment=new User();
-        userForPayment.setEmail(filledForm.field("email").value());
+        userForPayment.setEmail(filledForm.field("email").value());}
 
         // Si el email no es válido se devuelve a la página de datosUsuarioPago indicando el error
+        
         if(userForPayment.getEmail() == null || !userForPayment.getEmail().contains("@")){
         	User user = Factories.services.createUserService().get(getLoggedUser());
         	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "Email incorrecto"));
@@ -260,14 +262,16 @@ public class Application extends Controller {
     	codigoSeguridad = filledForm.field("codigoSeguridad").value();
     	fechaCaducidad = filledForm.field("fechaCaducidad").value();
 
+    	if(numeroTarjeta == null || tipoTarjeta == null || codigoSeguridad == null || fechaCaducidad == null)
+        	return ok(plataformaPago.render(userForPayment.getUsername(), userForm));        	
     	
     	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
     	{
     		String ticket_id_code = TicketIDCodeManager.generateCode(sessionID, seatsList);
     		Purchase p = new Purchase(0L, userForPayment.getId(), movie_id, ticket_id_code, 1, 0);
     		/*  Generamos el código QR y enviamos el correo */
-    		GenerateQR.generate(ticket_id_code);
-    		SendEmail.sendNewMail(userForPayment, "Imagen.png");
+    		//GenerateQR.generate(ticket_id_code);
+    		//SendEmail.sendNewMail(userForPayment.getEmail(), "Imagen.png");
     		System.out.println(p.getId() + "   " + p.getMovie_id() + "   " + p.getTicket_id_code() + "   " + p.getPaid() + "   " + p.getCollected() + "   "+ p.getUser_id());
     		PurchasesService ps = Factories.services.createPurchasesService();
     		/* DA EXCEPCIÓN. SI SE PASAN TODOS LOS PARÁMETROS A MANO TAMBIÉN DA. SI SE PONEN ESTAS 3 LÍNEAS EN UNA CLASE DENTRO DE LA API
@@ -307,6 +311,7 @@ public class Application extends Controller {
     public static Result error(){
     	return ok(error404.render(getLoggedUser(), userForm));
     }
+    
     
     public static Result datosUsuarioPago()
     {
