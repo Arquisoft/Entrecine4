@@ -36,6 +36,8 @@ public class MoviesWindowController implements Initializable {
 	@FXML
 	private TextField txGenre;
 	@FXML
+	private TextField txImagen;
+	@FXML
 	private Font x1;
 	@FXML
 	private Label lbSynopsis;
@@ -73,6 +75,7 @@ public class MoviesWindowController implements Initializable {
 				txTitle.setText(m.getName());
 				txSynopsis.setText(m.getSynopsis());
 				txGenre.setText(m.getGenre());
+				txImagen.setText(m.getImgPath());
 				txMorningPrice.setText(String.valueOf(m.getMorningPrice()));
 				txDailyPrice.setText(String.valueOf(m.getDailyPrice()));
 				txNightPrice.setText(String.valueOf(m.getNightPrice()));
@@ -86,6 +89,7 @@ public class MoviesWindowController implements Initializable {
 
 	/**
 	 * Set to 'b' the following fields
+	 * 
 	 * @param b
 	 */
 	private void putEditables(boolean b) {
@@ -95,11 +99,13 @@ public class MoviesWindowController implements Initializable {
 		txNightPrice.setEditable(b);
 		txDailyPrice.setEditable(b);
 		txGenre.setEditable(b);
+		txImagen.setEditable(b);
 	}
 
 	/**
-	 * This method is called when btEditar is pressed
-	 * It makes all changes in order to edit the selected movie
+	 * This method is called when btEditar is pressed It makes all changes in
+	 * order to edit the selected movie
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -110,8 +116,8 @@ public class MoviesWindowController implements Initializable {
 	}
 
 	/**
-	 * This method is called when btHecho is pressed
-	 * Close the current window
+	 * This method is called when btHecho is pressed Close the current window
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -122,8 +128,9 @@ public class MoviesWindowController implements Initializable {
 	}
 
 	/**
-	 * This method is called when btGuardar is pressed
-	 * It makes all changes in order to save a movie
+	 * This method is called when btGuardar is pressed It makes all changes in
+	 * order to save a movie
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -142,6 +149,7 @@ public class MoviesWindowController implements Initializable {
 			m.setNightPrice(Double.parseDouble(txNightPrice.getText()));
 			m.setDailyPrice(Double.parseDouble(txDailyPrice.getText()));
 			m.setGenre(txGenre.getText());
+			m.setImgPath(txImagen.getText());
 
 			if (newMovie) {
 				service.saveMovie(m);
@@ -166,11 +174,13 @@ public class MoviesWindowController implements Initializable {
 		txNightPrice.setEditable(!txTitle.isEditable());
 		txDailyPrice.setEditable(!txTitle.isEditable());
 		txGenre.setEditable(!txGenre.isEditable());
+		txImagen.setEditable(!txImagen.isEditable());
 	}
 
 	/**
-	 * This method is called when btNuevo is pressed
-	 * It makes all changes in order to add new movies
+	 * This method is called when btNuevo is pressed It makes all changes in
+	 * order to add new movies
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -184,8 +194,9 @@ public class MoviesWindowController implements Initializable {
 	}
 
 	/**
-	 * This method is called when btDelete is pressed
-	 * It makes all changes in order to delete a movie
+	 * This method is called when btDelete is pressed It makes all changes in
+	 * order to delete a movie
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -209,10 +220,12 @@ public class MoviesWindowController implements Initializable {
 		txNightPrice.setText("");
 		txDailyPrice.setText("");
 		txGenre.setText("");
+		txImagen.setText("");
 	}
-	
+
 	/**
 	 * It validates if the inputs are OK
+	 * 
 	 * @return true if are OK, false otherwise
 	 */
 	private boolean validateFields() {
@@ -220,7 +233,9 @@ public class MoviesWindowController implements Initializable {
 				|| txNightPrice.getText().equals("")
 				|| txMorningPrice.getText().equals("")
 				|| txSynopsis.getText().equals("")
-				|| txTitle.getText().equals("") || txGenre.getText().equals("")) {
+				|| txTitle.getText().equals("") 
+				|| txGenre.getText().equals("")
+				|| txImagen.getText().equals("")) {
 			return false;
 		}
 		try {

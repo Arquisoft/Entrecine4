@@ -141,7 +141,8 @@ public class IncidenceWindowController implements Initializable {
 			Incidence i;
 			if (newIncidence) {
 				i = new Incidence();
-				listIncidences.getItems().add(i);
+				//ObservableList<Incidence> a = listIncidences.getItems();
+				//a.add(i);
 			} else {
 				i = listIncidences.getSelectionModel().getSelectedItem();
 			}

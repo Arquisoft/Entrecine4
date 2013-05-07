@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="pnAnchor" prefHeight="480.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MoviesWindowController">
+<AnchorPane id="AnchorPane" fx:id="pnAnchor" prefHeight="505.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MoviesWindowController">
   <children>
     <Label fx:id="lbTitulo" layoutX="182.0" layoutY="14.0" text="Gestión de películas">
       <font>
@@ -26,34 +26,34 @@
           </labelFor>
         </Label>
         <fx:reference source="txTitle" />
-        <Label id="lbTitle" fx:id="lbSynopsis" font="$x1" layoutX="33.0" layoutY="97.0" text="Sinopsis:">
+        <Label id="lbTitle" fx:id="lbSynopsis" font="$x1" layoutX="33.0" layoutY="140.0" text="Sinopsis:">
           <labelFor>
-            <TextArea fx:id="txSynopsis" editable="false" layoutX="114.0" layoutY="97.0" prefHeight="139.0" prefWidth="301.0" wrapText="true" />
+            <TextArea fx:id="txSynopsis" editable="false" layoutX="114.0" layoutY="140.0" prefHeight="139.0" prefWidth="301.0" wrapText="true" />
           </labelFor>
         </Label>
         <fx:reference source="txSynopsis" />
-        <Label id="lbTitle" fx:id="lbMorningPrice" layoutX="33.0" layoutY="246.0" text="Precio mañana:">
+        <Label id="lbTitle" fx:id="lbMorningPrice" layoutX="33.0" layoutY="289.0" text="Precio mañana:">
           <font>
             <Font name="Segoe UI Light" size="14.0" fx:id="x2" />
           </font>
           <labelFor>
-            <TextField fx:id="txMorningPrice" editable="false" layoutX="124.0" layoutY="246.0" prefWidth="34.0" />
+            <TextField fx:id="txMorningPrice" editable="false" layoutX="124.0" layoutY="289.0" prefWidth="34.0" />
           </labelFor>
         </Label>
         <fx:reference source="txMorningPrice" />
-        <Label id="lbTitle" fx:id="lbDailyPrice" font="$x2" layoutX="169.0" layoutY="246.0" text="Precio diario:">
+        <Label id="lbTitle" fx:id="lbDailyPrice" font="$x2" layoutX="169.0" layoutY="289.0" text="Precio diario:">
           <labelFor>
-            <TextField id="txMorningPrice" fx:id="txDailyPrice" editable="false" layoutX="249.0" layoutY="246.0" prefWidth="34.0" />
+            <TextField id="txMorningPrice" fx:id="txDailyPrice" editable="false" layoutX="249.0" layoutY="289.0" prefWidth="34.0" />
           </labelFor>
         </Label>
         <fx:reference source="txDailyPrice" />
-        <Label id="lbTitle" fx:id="lbNightPrice" font="$x2" layoutX="300.0" layoutY="246.0" text="Precio noche:">
+        <Label id="lbTitle" fx:id="lbNightPrice" font="$x2" layoutX="300.0" layoutY="289.0" text="Precio noche:">
           <labelFor>
-            <TextField id="txMorningPrice" fx:id="txNightPrice" editable="false" layoutX="381.0" layoutY="246.0" prefWidth="34.0" />
+            <TextField id="txMorningPrice" fx:id="txNightPrice" editable="false" layoutX="381.0" layoutY="289.0" prefWidth="34.0" />
           </labelFor>
         </Label>
         <fx:reference source="txNightPrice" />
-        <FlowPane layoutX="-31.0" layoutY="303.0" prefHeight="34.0" prefWidth="553.000022070315">
+        <FlowPane layoutX="-31.0" layoutY="347.0" prefHeight="34.0" prefWidth="553.000022070315">
           <children>
             <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#newMovie" text="Nueva">
               <FlowPane.margin>
@@ -72,8 +72,22 @@
           </labelFor>
         </Label>
         <fx:reference source="txGenre" />
+        <Label id="lbTitle" font="$x1" layoutX="33.0" layoutY="95.0" text="Imagen:">
+          <labelFor>
+            <TextField id="txTitle" fx:id="txImagen" editable="false" layoutX="114.0" layoutY="100.0" prefWidth="200.0" />
+          </labelFor>
+        </Label>
+        <fx:reference source="txImagen" />
+        <Label id="lbTitle" layoutX="322.0" layoutY="100.0" text="(Ruta del archivo)">
+          <font>
+            <Font name="Segoe UI Light" size="15.0" />
+          </font>
+          <labelFor>
+            <TextField id="txTitle" editable="false" layoutX="114.0" layoutY="100.0" prefWidth="200.0" />
+          </labelFor>
+        </Label>
       </children>
     </Pane>
-    <ListView fx:id="listPeliculas" layoutX="29.0" layoutY="88.0" prefHeight="350.0" prefWidth="207.0" />
+    <ListView fx:id="listPeliculas" layoutX="29.0" layoutY="88.0" prefHeight="381.0" prefWidth="207.0" />
   </children>
 </AnchorPane>
