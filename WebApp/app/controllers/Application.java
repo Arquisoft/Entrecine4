@@ -152,6 +152,9 @@ public class Application extends Controller {
         if(getLoggedUser() == null){
         userForPayment=new User();
         userForPayment.setEmail(filledForm.field("email").value());}
+        else  {
+        	userForPayment = Factories.services.createUserService().get(getLoggedUser());
+        }
 
         // Si el email no es válido se devuelve a la página de datosUsuarioPago indicando el error
         
@@ -301,8 +304,7 @@ public class Application extends Controller {
             rooms.add(Factories.services.createRoomService().findById(s.getRoomId()));
         }
         if(rooms.size()>0) {
-            SessionStateHelper ssh = new SessionStateHelper();
-            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, ssh, lockSeatForm));
+            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, Factories.services.createSessionStateService().getSessionStates(), lockSeatForm));
         }
         else
             return error();
@@ -320,11 +322,12 @@ public class Application extends Controller {
     	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, ""));
     }
     
-    public static boolean checkFree(List<SessionState> sst, int row, int column)
+    public static boolean checkFree(List<SessionState> sst, int row, int column, Long session, Long room)
     {
     	for(SessionState s: sst)
     	{
-    		if(s.getRow() == row && s.getColumn() == column)
+    		if(s.getRow() == row && s.getColumn() == column &&
+    				s.getSession() == session && s.getRoomId() == room)
     			return false;
     	}
     	

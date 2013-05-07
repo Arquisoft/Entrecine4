@@ -43,7 +43,7 @@
                         <input type="hidden" name="sessionId" value="@sessions.get(rooms.indexOf(room)).getId()" />
                         <input type="hidden" name="row" value="@i" />
                         <input type="hidden" name="column" value="@j" />
-                        @if(routes.Application.checkFree(sst,i,j))) {
+                        @if(!Application.checkFree(sst,i,j, sessions.get(rooms.indexOf(room)).getId(), room.getId())) {
                             <button class="butaca" type="submit" title="fila @i columna @j" disabled><img src='@routes.Assets.at("stylesheets/images/butacaReservada.png")' /></button>
                         } else {
                             <button class="butaca" type="submit"  title="fila @i columna @j"><img src='@routes.Assets.at("stylesheets/images/butaca.png")'/></button>

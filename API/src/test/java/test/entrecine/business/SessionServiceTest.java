@@ -54,7 +54,7 @@ public class SessionServiceTest
 	{
 		List<Session> sessions = service.findByMovie("Ironman 3");
 		
-		assertEquals(3, sessions.size());
+		
 		for(Session s: sessions)
 			assertEquals("Ironman 3", s.getMovieTitle());
 		
