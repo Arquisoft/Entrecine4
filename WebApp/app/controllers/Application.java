@@ -315,5 +315,15 @@ public class Application extends Controller {
     	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, ""));
     }
     
+    public static boolean checkFree(List<SessionState> sst, int row, int column)
+    {
+    	for(SessionState s: sst)
+    	{
+    		if(s.getRow() == row && s.getColumn() == column)
+    			return false;
+    	}
+    	
+    	return true;
+    }
    
 }

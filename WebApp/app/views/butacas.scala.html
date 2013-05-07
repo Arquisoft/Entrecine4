@@ -1,4 +1,4 @@
-@(username: String, rooms: List[Room], sessions: List[Session], userForm: Form[User], ssh: SessionStateHelper, lockSeatForm: Form[LockSeat])
+@(username: String, rooms: List[Room], sessions: List[Session], userForm: Form[User], sst: List[SessionState], lockSeatForm: Form[LockSeat])
 @import snippets._
 @import helper._
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/reservaButacas.css")">
@@ -43,7 +43,7 @@
                         <input type="hidden" name="sessionId" value="@sessions.get(rooms.indexOf(room)).getId()" />
                         <input type="hidden" name="row" value="@i" />
                         <input type="hidden" name="column" value="@j" />
-                        @if(!ssh.checkFreeSeat(sessions.get(rooms.indexOf(room)).getId() ,room.getId(), i, j)) {
+                        @if(routes.Application.checkFree(sst,i,j))) {
                             <button class="butaca" type="submit" title="fila @i columna @j" disabled><img src='@routes.Assets.at("stylesheets/images/butacaReservada.png")' /></button>
                         } else {
                             <button class="butaca" type="submit"  title="fila @i columna @j"><img src='@routes.Assets.at("stylesheets/images/butaca.png")'/></button>
