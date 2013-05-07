@@ -36,8 +36,24 @@ public class Application extends Controller {
         String username = getLoggedUser();
         List<Movie> movies = Factories.services.createMoviesService().getMovies();
         if(Factories.services.createUserService().get(username) == null) // user !exists?
-            return ok(index.render(null,movies, userForm));
-        return ok(index.render(username,movies, userForm));
+            return ok(index.render(null,movies, userForm,null));
+
+        List<Purchase> purchases = Factories.services.createPurchasesService()
+        		.findPurchasesUser(Factories.services.createUserService()
+        				.get(getLoggedUser()).getId());
+        
+        List<Movie> recommended=new ArrayList<Movie>();
+        List<Movie> temp=new ArrayList<Movie>();
+        
+        for(Purchase p:purchases)
+        	temp.add(Factories.services.createMoviesService().findById(p.getMovie_id()));
+        
+        for(Movie m: temp)
+        	for(Movie m2:movies)
+        		if(!m.getName().equals(m2.getName()) && m.getGenre().equals(m2.getGenre()))
+        			recommended.add(m2);
+        
+        return ok(index.render(username,movies, userForm, recommended));
     }
     
     private static String getLoggedUser()

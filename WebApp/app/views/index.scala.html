@@ -1,4 +1,4 @@
-@(username: String, movies: List[Movie], userForm: Form[User])
+@(username: String, movies: List[Movie], userForm: Form[User], recommended: List[Movie])
 @import snippets._
 @import helper._
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")"><script type="text/javascript">
@@ -14,8 +14,16 @@
 	            <!--FIN MODAL LOGIN -->
 	
 	            <div id="recomendadas">
-	                <p>Te recomendamos las siguientes películas basándonos en tus anteriores compras:<br>
-	                    Torrente, Combustión</p>
+	            @if(recommended!=null){
+	                <ul id="listaRecomendadas">Peliculas recomendadas
+	                @for( movie <- recommended){
+		                <li>
+		                <a href="/pelicula/@movie.getId()"><strong>@movie.getName():</strong>
+		                	<span style="font-size:12px;">@movie.getSynopsis()</span>
+	                		<img id="mini" src="@routes.Assets.at("stylesheets/images/small/")@movie.getImgPath()" />
+	                		</a>
+	                	</li>}
+	                </ul>}else{}
 	            </div>
 	
 	            @for( movie <- movies){
