@@ -24,14 +24,33 @@
     </Label>
     <Group id="Group" layoutY="138.0" AnchorPane.rightAnchor="44.0">
       <children>
-        <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#pressed12" text="12">
+        <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#pressed12" text="">
           <font>
             <Font name="Segoe UI Light" size="18.0" fx:id="x1" />
           </font>
+          <graphic>
+            <Label prefHeight="20.000106811523438" text="12">
+              <font>
+                <Font size="18.0" fx:id="x3" />
+              </font>
+            </Label>
+          </graphic>
         </RadioButton>
-        <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#pressed17" text="17" />
-        <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#pressed20" text="20" />
-        <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#pressed22" text="22" />
+        <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#pressed17" text="">
+          <graphic>
+            <Label font="$x3" prefHeight="20.000106811523438" text="17" />
+          </graphic>
+        </RadioButton>
+        <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#pressed20" text="">
+          <graphic>
+            <Label font="$x3" prefHeight="20.000106811523438" text="20" />
+          </graphic>
+        </RadioButton>
+        <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#pressed22" text="">
+          <graphic>
+            <Label font="$x3" prefHeight="20.000106811523438" text="22" />
+          </graphic>
+        </RadioButton>
       </children>
     </Group>
     <TabPane fx:id="roomTabPane" prefHeight="354.13" prefWidth="709.0" style="-fx-border-width: 1;&#10;-fx-border-color: grey;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="45.5" AnchorPane.rightAnchor="45.5" AnchorPane.topAnchor="203.87" />

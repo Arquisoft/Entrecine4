@@ -72,7 +72,6 @@ public class PaymentGatewayController implements Initializable {
     
     /**
      * It shows the MainWindow window
-     * @param event
      * @throws IOException if the fxmlFile doesn't exist
      */
     private void showMainWindow() throws IOException
@@ -97,14 +96,18 @@ public class PaymentGatewayController implements Initializable {
     @FXML
     private void pay(ActionEvent event) throws IOException 
     {
-    	if(number==null || type==null || securityCode==null || expirationDate==null)
+        number = txtNumber.getText();
+        securityCode = txtCode.getText();
+        expirationDate = txtDate.getText();
+
+    	if(type==null || number.equals("")
+                || securityCode.equals("") || expirationDate.equals(""))
     		return;
     	if(Factories.services.createReservationService()
-    			.goToPaymentGategay(number, type, securityCode, expirationDate));
-    	{	
-    		//insert sessionstate
-    		//new SessionState(room, row, column, new Date(), session);
-    		showMainWindow();
+    			.goToPaymentGategay(number, type, securityCode, expirationDate)) {
+            Factories.services.createSessionStateService().saveSessionState(
+                    new SessionState(room, row, column, new Date(), session));
+            showMainWindow();
     	}
     }
     

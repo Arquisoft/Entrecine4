@@ -70,7 +70,6 @@ public class LoginController implements Initializable {
 
     /**
      * It shows the MainWindow window
-     * @param event
      * @throws IOException if the fxmlFile doesn't exist
      */
     private void showMainWindow() throws IOException {
