@@ -47,4 +47,13 @@ public interface MoviesService {
 	 * 				Movie to be deleted
 	 */
 	public void deleteMovie(Movie movie);
+
+    /**
+     * Return the price of the movie depending on the show time
+     * @param movie
+     * @param time
+     * @return price
+     */
+    public double getPrice(Movie movie, double time);
+
 }

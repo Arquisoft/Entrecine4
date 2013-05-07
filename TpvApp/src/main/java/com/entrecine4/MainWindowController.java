@@ -196,11 +196,13 @@ public class MainWindowController implements Initializable {
                         	PaymentGatewayController.column=Integer.parseInt(btn.getText().split(",")[1]);
                             PaymentGatewayController.room=room.getId();
                             PaymentGatewayController.session=session.getId();
+                            PaymentGatewayController.price=getPrice(session);
 							showPaymentWindow();
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
                     }
+
                 });
 
                 pane.add(btn, column, row);
@@ -236,4 +238,8 @@ public class MainWindowController implements Initializable {
         ((Stage)btCerrarSesion.getScene().getWindow()).setScene(scene);
     }
 
+    private double getPrice(Session session) {
+        Movie movie = moviesService.findByTitle(comboMovies.getValue());
+        return moviesService.getPrice(movie, session.getTime());
+    }
 }

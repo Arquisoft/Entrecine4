@@ -1,10 +1,6 @@
 package com.entrecine4;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
-
+import com.entrecine4.infraestructure.Factories;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.SessionState;
 
-import com.entrecine4.infraestructure.Factories;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -56,11 +56,14 @@ public class PaymentGatewayController implements Initializable {
     private Button btClose;
     @FXML
     private ComboBox<String> comboType;
-    
+    @FXML
+    private Text txtTotal;
+
     private String type, number, securityCode, expirationDate;
     static int row, column;
     static long room;
     static long session;
+    static double price;
 
     /**
      * Initializes the controller class.
@@ -68,6 +71,7 @@ public class PaymentGatewayController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        txtTotal.setText(String.valueOf(price));
     }
     
     /**

@@ -19,12 +19,12 @@
     </Label>
     <AnchorPane id="AnchorPane" fx:id="wrapper" layoutY="169.0" prefHeight="296.0" prefWidth="683.0" style="-fx-background-color: #ccc;&#10;-fx-padding-left:20px;&#10;-fx-padding-right:20px;" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="59.0">
       <children>
-        <Label id="lbTipo" fx:id="lbType" prefHeight="27.0" prefWidth="148.0" text="Tipo de tarjeta">
+        <Label id="lbTipo" fx:id="lbType" layoutX="13.0" layoutY="22.0" prefHeight="27.0" prefWidth="148.0" text="Tipo de tarjeta">
           <font>
             <Font name="Segoe UI Light" size="20.0" fx:id="x2" />
           </font>
           <labelFor>
-            <ComboBox id="tipo" fx:id="comboType" layoutY="3.0" onAction="#chooseType" prefHeight="27.0" prefWidth="278.0" promptText="Tipo de tarjeta" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0">
+            <ComboBox id="tipo" fx:id="comboType" layoutY="22.0" onAction="#chooseType" prefHeight="27.0" prefWidth="278.0" promptText="Tipo de tarjeta" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="14.0">
               <items>
                 <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Visa" />
@@ -35,19 +35,19 @@
             </ComboBox>
           </labelFor>
         </Label>
-        <Label fx:id="lbNum" font="$x2" layoutY="79.0" prefHeight="27.0" prefWidth="190.0" text="Número de tarjeta">
+        <Label fx:id="lbNum" font="$x2" layoutX="13.0" layoutY="93.0" prefHeight="27.0" prefWidth="190.0" text="Número de tarjeta">
           <labelFor>
-            <TextField id="numero" fx:id="txtNumber" layoutY="79.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+            <TextField id="numero" fx:id="txtNumber" layoutY="93.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="14.0" />
           </labelFor>
         </Label>
-        <Label fx:id="lbCode" font="$x2" layoutY="150.0" prefHeight="27.0" prefWidth="190.0" text="Código de seguridad">
+        <Label fx:id="lbCode" font="$x2" layoutX="14.0" layoutY="164.0" prefHeight="27.0" prefWidth="190.0" text="Código de seguridad">
           <labelFor>
-            <TextField id="code" fx:id="txtCode" layoutY="150.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+            <TextField id="code" fx:id="txtCode" layoutY="164.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="14.0" />
           </labelFor>
         </Label>
-        <Label fx:id="lbDate" font="$x2" layoutY="229.0" prefHeight="27.0" prefWidth="321.0" text="Fecha de caducidad (dd/mm/aaaa)">
+        <Label fx:id="lbDate" font="$x2" layoutX="14.0" layoutY="238.0" prefHeight="27.0" prefWidth="321.0" text="Fecha de caducidad (dd/mm/aaaa)">
           <labelFor>
-            <TextField id="expiration" fx:id="txtDate" layoutY="229.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" />
+            <TextField id="expiration" fx:id="txtDate" layoutY="238.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="14.0" />
           </labelFor>
         </Label>
         <fx:reference source="comboType" />
@@ -58,5 +58,16 @@
     </AnchorPane>
     <Button fx:id="btPay" defaultButton="true" mnemonicParsing="false" onAction="#pay" prefHeight="35.0" prefWidth="109.0" text="Pagar" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="31.0" />
     <Button fx:id="btClose" mnemonicParsing="false" onAction="#close" prefHeight="35.0" prefWidth="109.0" text="Atrás" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="31.0" />
+    <HBox id="HBox" alignment="CENTER" layoutX="529.0" layoutY="101.0" prefWidth="201.0" spacing="5.0">
+      <children>
+        <Label prefHeight="32.0" prefWidth="64.0" text="Total:">
+          <font>
+            <Font name="Segoe UI Light" size="24.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Text fx:id="txtTotal" font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+        <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
+      </children>
+    </HBox>
   </children>
 </AnchorPane>

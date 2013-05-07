@@ -121,4 +121,20 @@ public class SimpleMoviesService implements MoviesService {
         }
 	}
 
+    /* (non-Javadoc)
+	 * @see com.entrecine4.business.MoviesService#getPrice(com.entrecine4.model.Movie)
+	 */
+    @Override
+    public double getPrice(Movie movie, double time) {
+        if(time == 12)
+            return movie.getMorningPrice();
+        else if(time == 17)
+            return movie.getDailyPrice();
+        else if(time == 20 || time == 22)
+            return movie.getNightPrice();
+        RuntimeException e = new RuntimeException("Invalid time of session for movies");
+        Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
+        throw e;
+    }
+
 }
