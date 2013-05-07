@@ -108,6 +108,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void chooseFilm(ActionEvent event) {
+        removeRooms();
         disableAllRadioButton();
         Movie selectedMovie = moviesService.findByTitle(comboMovies.getValue());
         sessions = sessionService.findByDay(new Date());
@@ -151,7 +152,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void searchRoom(double session) {
-    	roomTabPane.getTabs().remove(0,currentRooms); //remove all before enter new ones
+        toogleGroup.getSelectedToggle().setSelected(false);
+        removeRooms();
         sessions = sessionService.findByDayAndTime(new Date(), session);
         rooms = new ArrayList<Room>();
         currentRooms = 0;
@@ -165,7 +167,12 @@ public class MainWindowController implements Initializable {
         }
     }
 
-    private ScrollPane fillRoomPane(Room room, Session session) {
+    private void removeRooms() {
+        roomTabPane.getTabs().remove(0,currentRooms); //remove all before enter new ones
+        currentRooms = 0;
+    }
+
+    private ScrollPane fillRoomPane(final Room room, final Session session) {
 
         GridPane pane = new GridPane();
         pane.setVgap(5);
@@ -187,6 +194,8 @@ public class MainWindowController implements Initializable {
                         try {
                         	PaymentGatewayController.row=Integer.parseInt(btn.getText().split(",")[0]);
                         	PaymentGatewayController.column=Integer.parseInt(btn.getText().split(",")[1]);
+                            PaymentGatewayController.room=room.getId();
+                            PaymentGatewayController.session=session.getId();
 							showPaymentWindow();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -214,7 +223,6 @@ public class MainWindowController implements Initializable {
     
     /**
      * It shows the MainWindow window
-     * @param event
      * @throws IOException if the fxmlFile doesn't exist
      */
     private void showPaymentWindow() throws IOException {
