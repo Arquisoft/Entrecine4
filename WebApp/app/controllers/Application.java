@@ -49,7 +49,8 @@ public class Application extends Controller {
         if(cookie != null) {
             user = Crypto.decryptAES(cookie.value()); //if not null decrypt
         }
-         
+        if(user.equals(""))
+            return null; //if someone enters one time as a logged user when system remove that, the cookie is an empty string
          return user;
     }
 
