@@ -15,7 +15,7 @@ import com.entrecine4.infraestructure.Factories;
 public class IncidenceServiceTest 
 {
 	private IncidenceService service = Factories.services.createIncidenceService();
-	
+	 
 	/**
 	 * Method that tests the recovering of all the incidences stored in the database
 	 */
