@@ -3,6 +3,7 @@ package com.entrecine4;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,13 +43,14 @@ public class MainWindowController implements Initializable {
 
         Scene scene = new Scene(rootNode);
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
-       
+
         Stage stage = new Stage();
 
         stage.sizeToScene();
 
         stage.setTitle("Administración - Salas - Entrecine4");
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
     
@@ -72,6 +74,7 @@ public class MainWindowController implements Initializable {
 
         stage.setTitle("Administración - Incidencias - Entrecine4");
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
     
@@ -95,6 +98,7 @@ public class MainWindowController implements Initializable {
 
         stage.setTitle("Administración - Películas - Entrecine4");
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
     
@@ -118,6 +122,7 @@ public class MainWindowController implements Initializable {
 
         stage.setTitle("Administración - Personal - Entrecine4");
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
     
@@ -141,6 +146,7 @@ public class MainWindowController implements Initializable {
 
         stage.setTitle("Administración - Sesiones - Entrecine4");
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
     

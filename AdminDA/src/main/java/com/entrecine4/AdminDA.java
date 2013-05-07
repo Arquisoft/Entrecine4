@@ -26,6 +26,7 @@ public class AdminDA extends Application {
 
 
         stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
         stage.show();
     }
 

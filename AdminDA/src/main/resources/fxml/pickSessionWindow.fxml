@@ -2,29 +2,38 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.PickSessionWindowController">
+<AnchorPane id="AnchorPane" minHeight="386.0" prefHeight="386.0" prefWidth="632.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.PickSessionWindowController">
   <children>
     <Label id="lbTitulo" layoutX="155.0" layoutY="14.0" text="Escoge sesión">
       <font>
         <Font name="Segoe UI Light" size="50.0" />
       </font>
     </Label>
-    <ScrollPane layoutX="115.0" layoutY="114.0" prefHeight="269.0" prefWidth="291.0">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="301.0" prefWidth="290.0">
-          <children>
-            <ListView id="listPeliculas" fx:id="listSession" prefHeight="301.0" prefWidth="290.0" />
-          </children>
-        </AnchorPane>
-      </content>
-    </ScrollPane>
-    <Button id="btHecho" fx:id="btAceptar" defaultButton="true" disable="true" layoutX="431.0" layoutY="362.0" mnemonicParsing="false" onAction="#accept" text="Aceptar" />
-    <Button id="btHecho" fx:id="btCancelar" layoutX="506.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" text="Cancelar" />
-    <Label labelFor="$listSession" layoutX="115.0" layoutY="95.0" text="Sesión: Película - Fecha - Horario:" />
+    <Label layoutX="115.0" layoutY="95.0" text="Sesión: Película - Fecha - Horario:">
+      <labelFor>
+        <ListView id="listPeliculas" fx:id="listSession" layoutX="115.0" layoutY="111.0" prefHeight="236.0" prefWidth="290.0" />
+      </labelFor>
+    </Label>
+    <fx:reference source="listSession" />
+    <FlowPane layoutX="398.0" layoutY="356.0" prefHeight="34.0" prefWidth="234.0">
+      <children>
+        <Button id="btHecho" fx:id="btAceptar" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#accept" text="Aceptar">
+          <FlowPane.margin>
+            <Insets right="20.0" />
+          </FlowPane.margin>
+        </Button>
+        <Button id="btHecho" fx:id="btCancelar" mnemonicParsing="false" onAction="#cancel" text="Cancelar">
+          <FlowPane.margin>
+            <Insets left="20.0" />
+          </FlowPane.margin>
+        </Button>
+      </children>
+    </FlowPane>
   </children>
 </AnchorPane>

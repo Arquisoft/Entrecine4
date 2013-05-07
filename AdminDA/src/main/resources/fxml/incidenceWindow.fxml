@@ -9,22 +9,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minHeight="502.0" prefHeight="502.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.IncidenceWindowController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.IncidenceWindowController">
   <children>
     <Label id="lbTitulo" layoutX="181.0" layoutY="22.0" text="Gestión de incidencias">
       <font>
         <Font name="Segoe UI Light" size="50.0" />
       </font>
     </Label>
-    <ScrollPane layoutX="14.0" layoutY="88.0" prefHeight="365.0" prefWidth="222.0">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="364.0" prefWidth="221.0">
-          <children>
-            <ListView id="listPeliculas" fx:id="listIncidences" prefHeight="350.0" prefWidth="207.0" />
-          </children>
-        </AnchorPane>
-      </content>
-    </ScrollPane>
     <Label id="lbTitle" layoutX="294.0" layoutY="89.0" text="Fecha (AAAA-MM-DD):">
       <font>
         <Font name="Segoe UI Light" size="20.0" fx:id="x1" />
@@ -70,5 +61,6 @@
         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
       </padding>
     </AnchorPane>
+    <ListView id="listPeliculas" fx:id="listIncidences" layoutX="35.0" layoutY="94.0" prefHeight="350.0" prefWidth="207.0" />
   </children>
 </AnchorPane>

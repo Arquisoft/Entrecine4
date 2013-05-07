@@ -15,15 +15,6 @@
         <Font name="Segoe UI Light" size="50.0" />
       </font>
     </Label>
-    <ScrollPane layoutX="37.0" layoutY="88.0" prefHeight="365.0" prefWidth="222.0">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="364.0" prefWidth="221.0">
-          <children>
-            <ListView fx:id="listPeliculas" prefHeight="350.0" prefWidth="207.0" />
-          </children>
-        </AnchorPane>
-      </content>
-    </ScrollPane>
     <Pane layoutX="290.0" layoutY="88.0" prefHeight="364.0" prefWidth="461.0">
       <children>
         <Label fx:id="lbTitle" layoutX="33.0" layoutY="12.0" text="Título:">
@@ -83,5 +74,6 @@
         <fx:reference source="txGenre" />
       </children>
     </Pane>
+    <ListView fx:id="listPeliculas" layoutX="29.0" layoutY="88.0" prefHeight="350.0" prefWidth="207.0" />
   </children>
 </AnchorPane>

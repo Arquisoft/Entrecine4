@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
 
         Scene scene = new Scene(rootNode);
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
-       
+
         Stage stage = new Stage();
 
         stage.sizeToScene();

@@ -216,6 +216,7 @@ public class IncidenceWindowController implements Initializable {
 
 		stage.setTitle("Administración - Escoge sesión - Entrecine4");
 		stage.setScene(scene);
+        ((Stage)scene.getWindow()).setResizable(false);
 		stage.show();
 	}
 
