@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     private TextField txUsername;
     @FXML
     private PasswordField txPassword;
+	private int tpvPrivileges = 0;
 
     /**
      * Initializes the controller class.
@@ -63,8 +64,10 @@ public class LoginController implements Initializable {
         for(Employee e : list)
             if(e.getUsername().equals(txUsername.getText()) &&
                     e.getPassword().equals(txPassword.getText()) &&
-                    e.getIsAdmin()==1)
+                    e.getIsAdmin()==1){
+            	tpvPrivileges  = e.getTpvPrivilege();
                 return true;
+            }
         return false;
     }
 
@@ -76,10 +79,9 @@ public class LoginController implements Initializable {
         String fxmlFile = "/fxml/mainWindow.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+        rootNode.setUserData(new Integer(tpvPrivileges));
         Scene scene = new Scene(rootNode);
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());
-
         Stage stage = new Stage();
 
         stage.sizeToScene();

@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="872.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.MainWindowController">
   <children>
     <Label id="tituloApp" minHeight="48.0" prefHeight="48.0" prefWidth="362.0" text="Venta de Entradas" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
       <font>
@@ -24,7 +24,7 @@
     </Label>
     <Group id="Group" layoutY="138.0" AnchorPane.rightAnchor="44.0">
       <children>
-        <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#pressed12" text="">
+        <RadioButton id="rb10" fx:id="rb12" mnemonicParsing="false" onAction="#pressed12">
           <font>
             <Font name="Segoe UI Light" size="18.0" fx:id="x1" />
           </font>
@@ -36,17 +36,17 @@
             </Label>
           </graphic>
         </RadioButton>
-        <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#pressed17" text="">
+        <RadioButton fx:id="rb17" font="$x1" layoutX="59.0" mnemonicParsing="false" onAction="#pressed17">
           <graphic>
             <Label font="$x3" prefHeight="20.000106811523438" text="17" />
           </graphic>
         </RadioButton>
-        <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#pressed20" text="">
+        <RadioButton fx:id="rb20" font="$x1" layoutX="118.0" mnemonicParsing="false" onAction="#pressed20">
           <graphic>
             <Label font="$x3" prefHeight="20.000106811523438" text="20" />
           </graphic>
         </RadioButton>
-        <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#pressed22" text="">
+        <RadioButton fx:id="rb22" font="$x1" layoutX="177.0" mnemonicParsing="false" onAction="#pressed22">
           <graphic>
             <Label font="$x3" prefHeight="20.000106811523438" text="22" />
           </graphic>
@@ -77,5 +77,6 @@
     </Button>
     <Label font="$x2" layoutY="101.0" text="Pelicula:" AnchorPane.leftAnchor="46.0" />
     <ComboBox fx:id="comboMovies" layoutY="137.0" onAction="#chooseFilm" prefHeight="25.0" prefWidth="261.0" promptText="Escoja película" AnchorPane.leftAnchor="46.0" />
+    <ComboBox fx:id="cbTpv" layoutX="399.0" layoutY="36.0" onAction="#showManageWindow" prefHeight="25.0" prefWidth="261.0" promptText="Gestionar..." />
   </children>
 </AnchorPane>
