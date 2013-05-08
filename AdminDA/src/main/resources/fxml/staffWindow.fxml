@@ -45,7 +45,8 @@
           </children>
         </FlowPane>
         <fx:reference source="txPassword" />
-        <CheckBox fx:id="checkAdmin" font="$x1" indeterminate="true" layoutX="186.0" layoutY="168.0" mnemonicParsing="false" prefHeight="42.9609375" prefWidth="200.0" text="¿Es administrador?" />
+        <CheckBox fx:id="checkAdmin" font="$x1" indeterminate="true" layoutX="154.0" layoutY="168.0" mnemonicParsing="false" prefHeight="42.9609375" prefWidth="200.0" text="¿Es administrador?" />
+        <CheckBox id="checkAdmin" fx:id="checkTPV" font="$x1" indeterminate="true" layoutX="154.0" layoutY="217.0" mnemonicParsing="false" prefHeight="42.9609375" prefWidth="232.0" text="¿Tiene privilegios TPV?" />
       </children>
     </Pane>
     <ListView id="listPeliculas" fx:id="listaStaff" layoutX="37.0" layoutY="104.0" prefHeight="350.0" prefWidth="207.0" />

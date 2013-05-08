@@ -71,5 +71,10 @@
       </labelFor>
     </Label>
     <ListView id="listPeliculas" fx:id="listSessions" layoutX="27.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="207.0" />
+    <Label fx:id="lbError" layoutX="263.0" layoutY="358.0" textFill="#ff3333" visible="false">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Label>
   </children>
 </AnchorPane>

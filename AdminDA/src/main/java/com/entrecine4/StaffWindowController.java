@@ -47,6 +47,8 @@ public class StaffWindowController implements Initializable {
 	private Button btDelete;
 	@FXML
 	private CheckBox checkAdmin;
+	@FXML
+	private CheckBox checkTPV;
 	private boolean newEmployee = false;
 
 	/**
@@ -56,6 +58,7 @@ public class StaffWindowController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		btEditar.setDisable(true);
 		checkAdmin.setDisable(true);
+		checkTPV.setDisable(true);
 		ObservableList<Employee> items = FXCollections
 				.observableArrayList(service.getStaff());
 		listaStaff.setItems(items);
@@ -67,6 +70,8 @@ public class StaffWindowController implements Initializable {
 				txPassword.setText(String.valueOf(e.getPassword()));
 				checkAdmin.setIndeterminate(false);
 				checkAdmin.setSelected(e.getIsAdmin() == 1);
+				checkTPV.setIndeterminate(false);
+				checkTPV.setSelected(e.getTpvPrivilege() == 1);
 				putEditables(false);
 				btEditar.setDisable(false);
 				btGuardar.setDisable(true);
@@ -123,6 +128,10 @@ public class StaffWindowController implements Initializable {
 				e.setIsAdmin(1);
 			else
 				e.setIsAdmin(0);
+			if (checkTPV.isSelected())
+				e.setTpvPrivilege(1);
+			else
+				e.setTpvPrivilege(0);
 			if (newEmployee) {
 				service.saveEmployee(e);
 				newEmployee = false;
@@ -169,6 +178,7 @@ public class StaffWindowController implements Initializable {
 		txPassword.setText("");
 		txUsuario.setText("");
 		checkAdmin.setIndeterminate(true);
+		checkTPV.setIndeterminate(true);
 	}
 
 	/**
@@ -178,6 +188,7 @@ public class StaffWindowController implements Initializable {
 		txPassword.setEditable(!txPassword.isEditable());
 		txUsuario.setEditable(!txUsuario.isEditable());
 		checkAdmin.setDisable(!checkAdmin.isDisable());
+		checkTPV.setDisable(!checkTPV.isDisable());
 	}
 
 	/**
@@ -186,7 +197,7 @@ public class StaffWindowController implements Initializable {
 	 */
 	private boolean validateFields() {
 		if (txUsuario.getText().equals("") || txPassword.getText().equals("")
-				|| checkAdmin.isIndeterminate())
+				|| checkAdmin.isIndeterminate()|| checkTPV.isIndeterminate())
 			return false;
 		return true;
 	}
@@ -199,6 +210,7 @@ public class StaffWindowController implements Initializable {
 		txUsuario.setEditable(b);
 		txPassword.setEditable(b);
 		checkAdmin.setDisable(!b);
+		checkTPV.setDisable(!b);
 	}
 	/**
 	 * It updates the incidences list

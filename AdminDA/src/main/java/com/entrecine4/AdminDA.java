@@ -12,12 +12,13 @@ import javafx.stage.Stage;
  */
 public class AdminDA extends Application {
 
+	public static String file = "/fxml/login.fxml";
     /* (non-Javadoc)
      * @see javafx.application.Application#start(javafx.stage.Stage)
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(file));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/JMetroLightTheme.css").toExternalForm());

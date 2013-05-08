@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -57,6 +58,8 @@ public class SessionsWindowController implements Initializable {
 	@FXML
 	private ComboBox<Long> cbSalas;
 	@FXML
+	private Label lbError;
+	@FXML
 	private ComboBox<Double> cbHorario;
 	private boolean newSession = false;
 
@@ -78,6 +81,7 @@ public class SessionsWindowController implements Initializable {
 				cbSalas.setValue(s.getRoomId());
 				cbHorario.setValue(s.getTime());
 				putEditables(false);
+				lbError.setVisible(false);
 				btEditar.setDisable(false);
 				btGuardar.setDisable(true);
 				btDelete.setDisable(false);
@@ -126,6 +130,7 @@ public class SessionsWindowController implements Initializable {
 		newSession = true;
 		putEditables(true);
 		eraseFieldsContent();
+		lbError.setVisible(false);
 		btEditar.setDisable(true);
 		btGuardar.setDisable(false);
 		btDelete.setDisable(true);
@@ -193,6 +198,7 @@ public class SessionsWindowController implements Initializable {
 
 			btGuardar.setDisable(true);
 			btEditar.setDisable(false);
+			lbError.setVisible(false);
 			conmuteFields();
 			eraseFieldsContent();
 			updateList();
@@ -221,7 +227,24 @@ public class SessionsWindowController implements Initializable {
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
+		if(validateSession())
+			return false;
 		return true;
+	}
+
+	/**
+	 * It validates if a room in a day and in an hour is empty
+	 * @return true if not
+	 */
+	private boolean validateSession() {
+		List<Session> list = service.findByDayAndTime(Date.valueOf(txFecha.getText()), cbHorario.getValue());
+		for(Session s : list)
+			if(s.getRoomId() == cbSalas.getValue()){
+				lbError.setText("La sala "+s.getRoomId()+" ya está ocupada para el "+s.getDay()+" a las "+s.getTime()+": "+s.getMovieTitle()+".");
+				lbError.setVisible(true);
+				return true;
+			}
+		return false;
 	}
 
 	/**
@@ -237,6 +260,7 @@ public class SessionsWindowController implements Initializable {
 		listSessions.getItems().remove(s);
 		btDelete.setDisable(true);
 		btEditar.setDisable(true);
+		lbError.setVisible(false);
 		updateList();
 	}
 
