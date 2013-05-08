@@ -38,7 +38,7 @@ public class SessionStateDaoTest {
 	 */
 	@Test(expected = SQLException.class)
 	public void testInsertTwo() throws SQLException {
-		SessionState sessionState = new SessionState(1, 3, 5, new Date(), 3);
+		SessionState sessionState = new SessionState(0, 3, 5, new Date(), 3);
 		dao.save(sessionState);
 		dao.save(sessionState);
 	}
@@ -49,7 +49,7 @@ public class SessionStateDaoTest {
 	 */
 	@Test
 	public void testSaveAndDelete() throws SQLException {
-		SessionState sessionState = new SessionState(1, 3, 5, new Date(), 3);
+		SessionState sessionState = new SessionState(0, 3, 5, new Date(), 3);
 		dao.save(sessionState);
 		SessionState recoveredSessionState = dao.get(sessionState);
 		assertEquals(sessionState.getRoomId(), recoveredSessionState.getRoomId());
@@ -66,7 +66,7 @@ public class SessionStateDaoTest {
 	 */
 	@Test
 	public void testUpdate() throws SQLException {
-		SessionState sessionState = new SessionState(1, 3, 5, new Date(), 3);
+		SessionState sessionState = new SessionState(0, 3, 5, new Date(), 3);
 		dao.save(sessionState);
 		sessionState.setRow(5);
 		sessionState.setColumn(10);
