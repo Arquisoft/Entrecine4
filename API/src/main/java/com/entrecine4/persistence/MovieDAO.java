@@ -26,6 +26,15 @@ public interface MovieDAO
 	public Movie get(long movieId) throws SQLException;
 	
 	/**
+	 * Method to get a movie from the database using its title
+	 * 
+	 * @param movieName Movie's title
+	 * @return The requested movie if exists, otherwise null
+	 * @throws SQLException
+	 */
+	public Movie get(String movieName) throws SQLException;
+	
+	/**
 	 * Method to get all the movies from the database
 	 * 
 	 * @return A list with all the movies

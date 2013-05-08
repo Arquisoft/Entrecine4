@@ -2,7 +2,7 @@ package models;
 
 public class Room
 {
-	private long id;
+	private Long id;
 	private int rows;
 	private int columns;
 	
@@ -85,5 +85,13 @@ public class Room
 	public void setColumns(int columns) 
 	{
 		this.columns = columns;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.valueOf(this.id);
 	}
 }

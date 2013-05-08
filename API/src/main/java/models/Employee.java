@@ -2,7 +2,7 @@ package models;
 
 public class Employee {
 
-	private long id;
+	private Long id;
 	private String username;
 	private String password;
 	private int isAdmin; // DB contains 0 (no admin) or 1 (admin) instead of booleans
@@ -110,6 +110,14 @@ public class Employee {
 	 */
 	public void setTpvPrivilege(int tpvPrivilege) {
 		this.tpvPrivilege = tpvPrivilege;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.username;
 	}
 
 }

@@ -1,9 +1,17 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.entrecine4.infraestructure.*;
+import impl.entrecine4.business.SimplePurchasesService;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+import com.entrecine4.business.PurchasesService;
+import com.entrecine4.business.SessionStateService;
+import com.entrecine4.infraestructure.*;
 import com.entrecine4.*;
 
 import play.*;
@@ -19,14 +27,33 @@ public class Application extends Controller {
 	
 	static Form<User> userForm = Form.form(User.class);
 	static Form<PaymentData> paymentForm = Form.form(PaymentData.class);
+    static Form<LockSeat> lockSeatForm = Form.form(LockSeat.class);
+    static Form auxForm;
+    static User userForPayment;
+    public static int aux;
   
-	//TODO: extract to method to use in more cases for load the user
     public static Result index() {
         String username = getLoggedUser();
         List<Movie> movies = Factories.services.createMoviesService().getMovies();
         if(Factories.services.createUserService().get(username) == null) // user !exists?
-            return ok(index.render(null,movies, userForm));
-        return ok(index.render(username,movies, userForm));
+            return ok(index.render(null,movies, userForm,null));
+
+        List<Purchase> purchases = Factories.services.createPurchasesService()
+        		.findPurchasesUser(Factories.services.createUserService()
+        				.get(getLoggedUser()).getId());
+        
+        List<Movie> recommended=new ArrayList<Movie>();
+        List<Movie> temp=new ArrayList<Movie>();
+        
+        for(Purchase p:purchases)
+        	temp.add(Factories.services.createMoviesService().findById(p.getMovie_id()));
+        
+        for(Movie m: temp)
+        	for(Movie m2:movies)
+        		if(!m.getName().equals(m2.getName()) && m.getGenre().equals(m2.getGenre()))
+        			recommended.add(m2);
+        
+        return ok(index.render(username,movies, userForm, recommended));
     }
     
     private static String getLoggedUser()
@@ -38,7 +65,8 @@ public class Application extends Controller {
         if(cookie != null) {
             user = Crypto.decryptAES(cookie.value()); //if not null decrypt
         }
-         
+        if(user.equals(""))
+            return null; //if someone enters one time as a logged user when system remove that, the cookie is an empty string
          return user;
     }
 
@@ -51,7 +79,7 @@ public class Application extends Controller {
     
     public static Result register()
     {
-    	Form<User> filledForm = userForm.bindFromRequest();
+    	Form filledForm = userForm.bindFromRequest();
     	if(filledForm.hasErrors()) 
     	{
     		return redirect(routes.Application.registro());
@@ -61,30 +89,54 @@ public class Application extends Controller {
     		//Getting form data
     		String name=filledForm.field("txt_Nombre").value();
     		String surnames=filledForm.field("txt_Apellidos").value();
-    		String username=filledForm.field("txt_NombreDeUsuario").value();
+    		String username=filledForm.field("txt_NombredeUsuario").value();
     		String email=filledForm.field("email").value();
     		String password=filledForm.field("pwd_Contraseña").value();
     		String repass=filledForm.field("pwd_Repitalacontraseña").value();
     		
-    		//Provisional: if fails again to /registro
-    		//TODO: Change for better validation
     		if(!password.equals(repass))
     			return redirect(routes.Application.registro());
     		else
     		{
-    			//TODO: validateUserData is wrong
-    			User user=new User(-1, username, password, name, surnames, email);
+    			User user=new User(0, username, password, name, surnames, email);
     			if(Factories.services.createReservationService()
     					.validateUserData(user)==null)
     				return redirect(routes.Application.registro());
+    			Factories.services.createUserService().save(user);
     		}
     	}
     	return redirect(routes.Application.index());
     }
 
-    public static Result pelicula(Long id) {
+    public static Result pelicula(Long id) 
+    {
+    	//Get the movie
         Movie movie = Factories.services.createMoviesService().findById(id);
-        return ok(pelicula.render(getLoggedUser(),movie, userForm));
+        if(movie==null)
+        	return redirect(routes.Application.error());
+        //Get the sessions
+        List<Session> sessions=Factories.services
+        		.createSessionService().findByMovie(movie.getName());
+        
+        Session s=null;
+        Session s2=null;
+        for(int i=0;i<sessions.size();i++)
+        {
+        	s=sessions.get(i);
+        	for(int j=0;j<sessions.size();j++)
+        	{
+        		s2=sessions.get(j);
+        		if(s.getDay().equals(s2.getDay()) 
+        				&& s.getMovieTitle().equals(s2.getMovieTitle()) 
+        				&& s.getTime()==s2.getTime() 
+        				&& s.getId()!=s2.getId())
+        		{
+        			sessions.remove(j--);
+        		}
+        	}
+        }
+        
+        return ok(pelicula.render(getLoggedUser(),movie, userForm, sessions));
     }
     
     public static Result login() {
@@ -112,42 +164,191 @@ public class Application extends Controller {
     }
     
     public static Result plataformaPago(){
-    	return ok(plataformaPago.render(userForm));
+        
+        Form filledForm = userForm.bindFromRequest();
+        if(getLoggedUser() == null){
+        userForPayment=new User();
+        userForPayment.setEmail(filledForm.field("email").value());}
+        else  {
+        	userForPayment = Factories.services.createUserService().get(getLoggedUser());
+        }
+
+        // Si el email no es válido se devuelve a la página de datosUsuarioPago indicando el error
+        
+        if(userForPayment.getEmail() == null || !userForPayment.getEmail().contains("@")){
+        	User user = Factories.services.createUserService().get(getLoggedUser());
+        	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "Email incorrecto"));
+        }
+        
+        
+        
+        	// Como tiene todos los datos supongo que le ha dado a Registrar y Continuar.
+//        	if(filledForm.hasErrors()) 
+//        	{
+//        		return redirect(routes.Application.datosUsuarioPago());
+//        	}
+//        	else
+//        	{
+        		//Getting form data
+        		userForPayment.setName(filledForm.field("txt_Nombre").value());
+        		userForPayment.setSurnames(filledForm.field("txt_Apellidos").value());
+        		userForPayment.setUsername(filledForm.field("txt_NombredeUsuario").value());
+        		userForPayment.setEmail(filledForm.field("email").value());
+        		userForPayment.setPassword(filledForm.field("pwd_Contraseña").value());
+        		String repass=filledForm.field("pwd_Repitalacontraseña").value();
+        		
+        		// There's no need to check the name since it was already checked and returned error in case there was one.
+                if(!userForPayment.getName().equals("") && !userForPayment.getSurnames().equals("") && !userForPayment.getPassword().equals("")){
+        		
+        		if(!userForPayment.getPassword().equals(repass)){
+        			User user = Factories.services.createUserService().get(getLoggedUser());
+            		return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "Las contraseñas no coinciden"));
+        		} else
+        		{
+        			System.out.println("Las contraseñas no son iguales y entra");
+        			if(Factories.services.createReservationService()
+        					.validateUserData(userForPayment)==null)
+        				return redirect(routes.Application.datosUsuarioPago());
+//        			Aquí debemos comprobar que el usuario no exista, en cuyo caso volvemos a la página de datosUsuariosPago con el error
+        			System.out.println("AQUÍ COMPROBAMOS QUE EL USUARIO NO EXISTA YA");
+        			if(Factories.services.createUserService().get(userForPayment.getUsername()) != null){
+        				User user = Factories.services.createUserService().get(getLoggedUser());
+                		return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, "El usuario " + userForPayment.getUsername() + " ya existe"));
+        			}
+        				
+        			// Since the user does not exist, everything is OK. Therefore, we're going to create it.
+        			Factories.services.createUserService().save(userForPayment);
+        			response().setCookie("user", Crypto.encryptAES(userForPayment.getUsername()), -1);
+        		}
+//        	}
+        	return ok(plataformaPago.render(userForPayment.getUsername(), userForm));        	
+        }
+        
+        Long sessionId = Long.valueOf(auxForm.field("sessionId").value());
+        int row = Integer.valueOf(auxForm.field("row").value());
+        int column = Integer.valueOf(auxForm.field("column").value());
+        
+        Session session = Factories.services.createSessionService().findById(sessionId);
+        SessionState sessionState = new SessionState(session.getRoomId(),
+                row, column, session.getDay(), sessionId);
+        Factories.services.createSessionStateService().saveSessionState(sessionState); //lock seat
+        return ok(plataformaPago.render(getLoggedUser(), userForm));
     }
     
     public static Result pay(){
     	Form filledForm = paymentForm.bindFromRequest();
-    	System.out.println("FORMULARIO:\n" + filledForm.toString());
-    	/*Ahora debo llamar al método de pasarela de pago de la API que me devuelve
-    	si ha sido posible completar la transacción o no, en función de lo cual
-    	redirijo a la página de error o a la de agradecimiento */
-    	String numeroTarjeta = filledForm.field("numeroTarjeta").value();
-//    	System.out.println("Numero Tarjeta: "+ numeroTarjeta);
-    	String tipoTarjeta  = filledForm.field("tipoTarjeta").value();
-//    	System.out.println("Tipo Tarjeta: "+  tipoTarjeta);
-    	String codigoSeguridad = filledForm.field("codigoSeguridad").value();
-//    	System.out.println("Codigo de seguridad: "+ codigoSeguridad);
-    	String fechaNacimiento = filledForm.field("fechaCaducidad").value();
-//    	System.out.println("Fecha de caducidad: "+ fechaCaducidad);
+
+    	//Default values to prevent exceptions
+    	String numeroTarjeta;//="1";
+    	String tipoTarjeta;//="Visa";
+    	String codigoSeguridad;//="55";
+    	String fechaCaducidad;//="01/01/2101";
     	
-    	/*ESTE CONDICIONAL NO FUNCIONA: Debería funcionar, pero salta error en tiempo de ejecución,
-    	 * como que no existe la función a la que se está llamando. Revistar qué es lo que no funciona.*/
-//    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
+    	int sessionID = Integer.parseInt(auxForm.field("sessionId").value());
+    	
+    	int row = Integer.parseInt(auxForm.field("row").value());
+    	int column = Integer.parseInt(auxForm.field("column").value());
+    	
+    	List<Map<String, Integer>> seatsList = new ArrayList<Map<String, Integer>>();
+    	Map map = new HashMap<String, Integer>();
+    	map.put("ROW", row);
+    	map.put("COLUMN", column);
+    	seatsList.add(map);
+    	
+    	System.out.println("ID DE USUARIO: " + userForPayment.getId());
+    	
+    	List<Session> sessions = Factories.services.createSessionService().getSessions();
+    	
+    	String movie_title = null;
+    	Long movie_id = 0L;
+    	
+    	for(Session session : sessions)
+    		if(session.getId() == sessionID)
+    			movie_title = session.getMovieTitle();
+    	
+    	
+    	if(movie_title != null){
+    		List<Movie> movies = Factories.services.createMoviesService().getMovies();
+    		for(Movie movie : movies)
+    			if(movie.getName().equals(movie_title))
+    				movie_id = movie.getId();
+    	}
+    		
+    	
+    	
+   
+    	numeroTarjeta = filledForm.field("numeroTarjeta").value();
+    	tipoTarjeta  = filledForm.field("tipoTarjeta").value();
+    	codigoSeguridad = filledForm.field("codigoSeguridad").value();
+    	fechaCaducidad = filledForm.field("fechaCaducidad").value();
+
+    	if(numeroTarjeta == null || tipoTarjeta == null || codigoSeguridad == null || fechaCaducidad == null)
+        	return ok(plataformaPago.render(userForPayment.getUsername(), userForm));        	
+    	
+    	if(PaymentGateway.pay(numeroTarjeta, tipoTarjeta, codigoSeguridad, fechaCaducidad))
+    	{
+    		String ticket_id_code = TicketIDCodeManager.generateCode(sessionID, seatsList);
+    		Purchase p = new Purchase(0L, userForPayment.getId(), movie_id, ticket_id_code, 1, 0);
+    		/*  Generamos el código QR y enviamos el correo */
+    		//GenerateQR.generate(ticket_id_code);
+    		//SendEmail.sendNewMail(userForPayment.getEmail(), "Imagen.png");
+    		System.out.println(p.getId() + "   " + p.getMovie_id() + "   " + p.getTicket_id_code() + "   " + p.getPaid() + "   " + p.getCollected() + "   "+ p.getUser_id());
+    		PurchasesService ps = Factories.services.createPurchasesService();
+    		/* DA EXCEPCIÓN. SI SE PASAN TODOS LOS PARÁMETROS A MANO TAMBIÉN DA. SI SE PONEN ESTAS 3 LÍNEAS EN UNA CLASE DENTRO DE LA API
+    		 * EN EL PUBLIC STATIC VOID MAIN FUNCIONA.
+    		 */
+    		ps.savePurchase(p);
     		return redirect(routes.Application.finReservaOk());
-//    	else
-//    		return redirect(routes.Application.finReservaWrong());
+    	}
+    	else
+            return redirect(routes.Application.finReservaWrong());
 
     }
     
     public static Result finReservaOk(){
-    	return ok(finReservaOk.render());
+    	return ok(finReservaOk.render(getLoggedUser(), userForm));
     }
     
     public static Result finReservaWrong(){
-    	return ok(finReservaWrong.render());
+    	return ok(finReservaWrong.render(getLoggedUser(), userForm));
+    }
+
+    public static Result butacas(Long date, Long session, String nombre) {
+        List<Session> sessions = Factories.services.createSessionService().findByDateTimeAndFilmName(new Date(date), session, nombre);
+        List<Room> rooms = new ArrayList<Room>();
+        List<SessionStateHelper> states = new ArrayList<SessionStateHelper>();
+        for(Session s : sessions) {
+            rooms.add(Factories.services.createRoomService().findById(s.getRoomId()));
+        }
+        if(rooms.size()>0) {
+            return ok(butacas.render(getLoggedUser(), rooms, sessions, userForm, Factories.services.createSessionStateService().getSessionStates(), lockSeatForm));
+        }
+        else
+            return error();
     }
     
     public static Result error(){
-    	return ok(error404.render());
+    	return ok(error404.render(getLoggedUser(), userForm));
     }
+    
+    
+    public static Result datosUsuarioPago()
+    {
+    	auxForm=lockSeatForm.bindFromRequest();
+    	User user = Factories.services.createUserService().get(getLoggedUser());
+    	return ok(datosUsuarioPago.render(getLoggedUser(), userForm, user, ""));
+    }
+    
+    public static boolean checkFree(List<SessionState> sst, int row, int column, Long session, Long room)
+    {
+    	for(SessionState s: sst)
+    	{
+    		if(s.getRow() == row && s.getColumn() == column &&
+    				s.getSession() == session && s.getRoomId() == room)
+    			return false;
+    	}
+    	
+    	return true;
+    }
+   
 }

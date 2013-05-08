@@ -317,7 +317,6 @@
 
 	<modules>
 		<module>API</module>
-		<module>WebApp</module>
     <module>TpvApp</module>
     <module>AdminDA</module>
   </modules>

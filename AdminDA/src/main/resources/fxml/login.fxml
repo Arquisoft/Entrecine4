@@ -8,9 +8,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.LoginController">
   <children>
-    <Pane layoutY="171.0" prefHeight="324.0" prefWidth="1280.0" styleClass="iniciarSesion">
+    <Pane layoutX="-215.0" layoutY="172.0" prefHeight="324.0" prefWidth="1280.0" styleClass="iniciarSesion">
       <children>
         <Label layoutX="424.0" layoutY="14.0" text="Iniciar Sesión" textFill="WHITE">
           <font>

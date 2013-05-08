@@ -26,7 +26,42 @@ src: url('impregnable.ttf');
 	position:relative;
 }
 
+#listaRecomendadas{
+	list-style: none;
+	font-family: magnum;
+	font-size:1.2em;
+	padding:10px;
+}
 
+#listaRecomendadas li{
+	margin-top:3px;
+	display:none;
+}
+
+#mini{
+	height:150px;
+	width:200px;
+}
+
+
+#listaRecomendadas a:link, a:visited, a:active {
+   text-decoration: none;
+   color:#333;
+   font-family: oswaldRegular;
+}
+
+#listaRecomendadas:hover li{
+	display:block;
+}
+
+#listaRecomendadas:hover{
+	cursor:hand;
+	display:block;
+}
+
+#listaRecomendadas p{
+	font-size:12px;
+}
 
 html,body{
 height:100%;

@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Incidence
 {
-	private long id;
-	private long roomId;
+	private Long id;
+	private Long roomId;
 	private Date day;
-	private long sessionId;
+	private Long sessionId;
 	private String description;
 	
 	/**
@@ -132,4 +132,12 @@ public class Incidence
 	{
 		this.description = description;
 	}	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return day.toString();
+	}
 }

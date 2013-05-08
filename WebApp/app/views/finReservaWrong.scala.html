@@ -1,71 +1,23 @@
+@(username: String, userForm: Form[User])
 @import helper._
+@import snippets._
 
 <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/finReserva.css")">
 
-<script type="text/javascript">
-window.onload = function(){
-var a = document.getElementById("linkCartelera");
-a.onclick = function open_in_new_tab()
-{
-  var win=window.open("index.html", '_blank');
-  win.focus();
-}
-}
-</script>
-
-<script type="text/javascript"  src="http://alvaroastur4server.no-ip.info/Entrecines_web/organizacionEfectosSAC.js"></script>
-
-
 <div id="wrapper">
         <div id="contCabecera">
-    <div id="cabecera">
-        <div id="bloqueCabeceraIzq">
-        <h1> Entrecine </h1>
-        <h2> Experimenta el realismo y la emoción </h2>
-        </div>
-        <div id="bloqueCabeceraDcha">
-            <div id="login">
-            <a href="#openModal">Iniciar Sesion</a>
-
-
-            </div>
-              <h3><a id="linkCartelera" href="#">Cartelera</a></h3>
-        </div>
-    </div> </div>
+    		@header(username)
+    	</div>
     <div id="cuerpo" >
         <div class="main">
                 <!-- INICIO MODAL LOGIN (tiene que estar aquí para que aparezca centrado en la página) -->
-                <div id="openModal" class="modalDialog">
-                <div>
-                <a href="#close" title="Close" class="close">X</a>
-                <h2>Inicio de Sesión</h2>
-                <form method="POST" action="#">
-                    <div class="formularioAlineado">Usuario:<br />Contraseña:</div>
-                <div  class="formularioAlineado">
-                <input type="text" class="rounded" name="username" size="30" /><br />
-                <input type="password" class="rounded" name="passwort" size="30" /><br />
-                </div>
-                <div align="center">
-                <input id="iniciarSesion" type="submit" value="Iniciar Sesión" />
-                </div>
-
-                </form>
-                <div align=center>
-                    <button id="registrarse" type="button">Registrarse</button>
-                </div>
-             </div>
-            </div>
+               	@loginWindow(userForm)
                 <!--FIN MODAL LOGIN -->
                 <div id="contenedorAgradecimiento">
-                <h1>No se ha podido completar su compra</h1>
-                <h3>En breve le redigiremos a la página principal...</h3>
+                	<h1>No se ha podido completar su compra</h1>
+                	<h3>En breve le redigiremos a la página principal...</h3>
                 </div>
-            </div>
-            </div>
-
-    </div>
-
+      	</div>
+	</div>
 </div>
-    <footer>
-        <h2>Entrecine</h2>
-    </footer>
+@footer()

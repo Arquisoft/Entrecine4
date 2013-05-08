@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.IncidenceWindowController">
+  <children>
+    <Label id="lbTitulo" layoutX="181.0" layoutY="22.0" text="Gestión de incidencias">
+      <font>
+        <Font name="Segoe UI Light" size="50.0" />
+      </font>
+    </Label>
+    <Label id="lbTitle" layoutX="294.0" layoutY="89.0" text="Fecha (AAAA-MM-DD):">
+      <font>
+        <Font name="Segoe UI Light" size="20.0" fx:id="x1" />
+      </font>
+      <labelFor>
+        <TextField id="txTitle" fx:id="txFecha" editable="false" layoutX="504.0" layoutY="94.0" prefWidth="200.0" />
+      </labelFor>
+    </Label>
+    <fx:reference source="txFecha" />
+    <Label id="lbTitle" font="$x1" layoutX="294.0" layoutY="264.0" text="Descripción:">
+      <labelFor>
+        <TextArea fx:id="txDescripcion" editable="false" layoutX="404.0" layoutY="271.0" prefWidth="300.0" wrapText="true" />
+      </labelFor>
+    </Label>
+    <fx:reference source="txDescripcion" />
+    <FlowPane layoutX="272.0" layoutY="455.0" prefHeight="34.0" prefWidth="553.000022070315">
+      <children>
+        <Button id="btNuevo" fx:id="btNueva" mnemonicParsing="false" onAction="#newIncidence" text="Nueva">
+          <FlowPane.margin>
+            <Insets left="15.0" right="15.0" fx:id="x2" />
+          </FlowPane.margin>
+        </Button>
+        <Button fx:id="btEditar" disable="true" mnemonicParsing="false" onAction="#editIncidence" text="Editar" FlowPane.margin="$x2" />
+        <Button fx:id="btGuardar" disable="true" mnemonicParsing="false" onAction="#saveIncidence" text="Guardar" FlowPane.margin="$x2" />
+        <Button id="btDeleteMovie" fx:id="btDelete" disable="true" mnemonicParsing="false" onAction="#deleteIncidence" text="Eliminar" FlowPane.margin="$x2" />
+        <Button fx:id="btHecho" defaultButton="true" mnemonicParsing="false" onAction="#done" text="Hecho" FlowPane.margin="$x2" />
+      </children>
+    </FlowPane>
+    <Button fx:id="btToday" disable="true" layoutX="715.0" layoutY="95.0" mnemonicParsing="false" onAction="#printTodayDate" text="Hoy" />
+    <AnchorPane fx:id="pnSession" layoutX="294.0" layoutY="130.0" prefHeight="121.0" prefWidth="465.0">
+      <children>
+        <TextField id="txTitle" fx:id="txSesion" editable="false" layoutX="119.0" layoutY="19.0" prefWidth="200.0" />
+        <Label id="lbTitle" font="$x1" labelFor="$txSesion" layoutX="19.0" layoutY="14.0" text="Sesión:" />
+        <Label id="lbTitle" font="$x1" layoutX="19.0" layoutY="54.0" text="Sala:">
+          <labelFor>
+            <TextField id="txTitle" fx:id="txSala" editable="false" layoutX="119.0" layoutY="59.0" prefWidth="39.0" />
+          </labelFor>
+        </Label>
+        <Button fx:id="btElegirSesion" disable="true" layoutX="392.0" layoutY="86.0" mnemonicParsing="false" onAction="#showPickSessionWindow" text="Elegir" />
+        <fx:reference source="txSala" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </AnchorPane>
+    <ListView id="listPeliculas" fx:id="listIncidences" layoutX="35.0" layoutY="94.0" prefHeight="350.0" prefWidth="207.0" />
+  </children>
+</AnchorPane>

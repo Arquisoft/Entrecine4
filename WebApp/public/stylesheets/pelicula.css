@@ -101,9 +101,18 @@ border-width: 2px;
 
 }
 
-#bloqueCabeceraDcha h3:hover {
+#bloqueCabeceraDcha a:link, a:visited, a:active {
+   text-decoration: none;
+   color:#333;
+
+}
+
+
+#bloqueCabeceraDcha a:hover, h3:hover {
 color: #999;
 }
+
+
 
 #cuerpo {
 	font-family:'Helvetica Neue',Arial,sans-serif;	
@@ -142,7 +151,6 @@ color: #999;
 	clear: both;
 }
 
-
 #tablaReserva button {
 	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
 	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
@@ -157,11 +165,14 @@ color: #999;
 	font-size:16px;
 	font-weight:700;
 	height:32px;
+	width:80px;
 	padding:4px 16px;
 	text-shadow:#5DE78F 0 1px 0
 }
 
-
+#tablaReserva button:hover{
+	cursor:hand;
+}
 
 .resaltarTabla {
      -moz-border-radius: 5px;
@@ -264,8 +275,5 @@ border: 1px solid #ccc;
 
 /* FIN LOGIN  */
 
-#bloqueCabeceraDcha a:link, a:visited, a:active {
-   text-decoration: none;
-   color:#333;
 
-}
+
