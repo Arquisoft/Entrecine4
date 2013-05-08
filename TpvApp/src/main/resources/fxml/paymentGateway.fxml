@@ -69,5 +69,6 @@
         <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
       </children>
     </HBox>
+    <Button fx:id="btPagoMetalico" layoutX="300.0" mnemonicParsing="false" onAction="#pagarMetalico" prefHeight="35.0" prefWidth="201.0" text="Pagar en metálico" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" />
   </children>
 </AnchorPane>

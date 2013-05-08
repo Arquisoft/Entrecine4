@@ -58,6 +58,8 @@ public class PaymentGatewayController implements Initializable {
     private ComboBox<String> comboType;
     @FXML
     private Text txtTotal;
+    @FXML
+    private Button btPagoMetalico;
 
     private String type, number, securityCode, expirationDate;
     static int row, column;
@@ -119,5 +121,12 @@ public class PaymentGatewayController implements Initializable {
     private void close(ActionEvent event) throws IOException 
     {
 	    showMainWindow();
+    }
+
+    @FXML
+    private void pagarMetalico(ActionEvent event) throws IOException {
+        Factories.services.createSessionStateService().saveSessionState(
+                new SessionState(room, row, column, new Date(), session));
+        showMainWindow();
     }
 }
