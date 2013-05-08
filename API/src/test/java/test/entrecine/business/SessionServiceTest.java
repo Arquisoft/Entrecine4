@@ -114,7 +114,7 @@ public class SessionServiceTest
 		assertEquals("Ironman 3", session.getMovieTitle());
 		assertEquals(Date.valueOf("2013-05-09"), session.getDay());
 		assertTrue(12==session.getTime());
-		assertEquals(2, session.getRoomId());
+		assertEquals(1, session.getRoomId());
 		
 		session.setMovieTitle("42");
 		session.setRoomId(2);
