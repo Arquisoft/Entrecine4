@@ -44,7 +44,7 @@ src: url('segoeUI.ttf');
     -fx-background-color: #cccccc;
   
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
+    -fx-font-size: 18pt;
     -fx-text-fill: black;
 }
 
@@ -209,7 +209,7 @@ src: url('segoeUI.ttf');
  ******************************************************************************/
 
 .radio-button {
-    -fx-text-fill: #212121;
+    -fx-text-fill: white;
 }
 
 .radio-button .radio  {
@@ -646,40 +646,70 @@ src: url('segoeUI.ttf');
     -fx-padding: 0.166667em; /* 2 */
 }
 
-.buttonTabPane {
-     -fx-padding: 5 22 5 22;   
-    -fx-border-style: null; 
-    -fx-background-radius: 0;
-
-    -fx-background-color: #eee;
-  
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: black;
-
-    -fx-border-width:1;  
-    -fx-border-color:grey;
-
-}
-
 
 #btPelicula1 {
-    -fx-background-image: url("images/small/1.jpg");
     -fx-background-repeat: stretch;  
     -fx-background-position: center center;
 }
 
 #btPelicula2 {
-    -fx-background-image: url("images/small/2.jpg");
     -fx-background-repeat: stretch;  
     -fx-background-position: center center;
 }
 
-#panelPelis{
-    -fx-background-color: linear-gradient(#F4FBF2, #ffffff);
-
+.iniciarSesion{
+    -fx-background-color: #FAA226;
 }
 
-.iniciarSesion{
+.panelEntradas{
+    -fx-background-color: #FAA226;
+}
+
+.list-cell {
+  -fx-cell-size: 5em;
+  -fx-font-size: 15pt;
+}
+
+.list-cell:even {
+   -fx-background-color: skyblue;
+   -fx-text-fill: white;
+ }
+ 
+ .list-cell:odd {
+   -fx-background-color: steelblue;
+   -fx-text-fill: white;
+ }
+ 
+ .list-cell:selected {
+   -fx-background-color: white;
+   -fx-text-fill: black;
+ }
+ 
+ .tab{
+    -fx-padding: 5 22 5 22;   
+    -fx-border-style: null; 
+    -fx-background-radius: 0;
+
+    -fx-background-color: gray;
+     
+   -fx-text-fill: black;
+  
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 15pt;
+    -fx-text-fill: black;
+
+    -fx-border-width:1;  
+    -fx-border-color:grey;
+ }
+ 
+ .tab:selected {
+    -fx-background-color: white;
+}
+ 
+ .tab-header-background {
+     -fx-background-color: #008287;
+ }
+ 
+ .panelConfirmacion{
     -fx-background-color: #FAA226;
 }

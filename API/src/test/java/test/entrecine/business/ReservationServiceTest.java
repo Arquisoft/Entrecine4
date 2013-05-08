@@ -10,10 +10,7 @@ import com.entrecine4.business.ReservationService;
 import com.entrecine4.infraestructure.Factories;
 
 /**
- * Only have sense test this methods, the other ones need manual testing, and the
- * others services are CRUD services, but we can't do rollback while testing them
- * so if we test them we will probably corrupt the database, so for now the only 
- * way to know if they work fine is testing the DAO's directly
+ * Only have sense test this methods, the other ones need manual testing
  */
 public class ReservationServiceTest 
 {

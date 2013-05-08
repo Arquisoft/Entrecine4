@@ -1,6 +1,8 @@
 package impl.entrecine4.business;
 
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.Log;
+
 import impl.entrecine4.persistence.SimplePersistenceFactory;
 
 import java.sql.Connection;
@@ -26,6 +28,7 @@ public class SimpleRoomService implements RoomService {
             dao.setConnection(con);
             return dao.getAll();
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -42,6 +45,7 @@ public class SimpleRoomService implements RoomService {
             dao.setConnection(con);
             return dao.get(id);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -58,6 +62,7 @@ public class SimpleRoomService implements RoomService {
             dao.setConnection(con);
             dao.save(room);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -74,6 +79,7 @@ public class SimpleRoomService implements RoomService {
             dao.setConnection(con);
             dao.update(room);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);
@@ -90,6 +96,7 @@ public class SimpleRoomService implements RoomService {
             dao.setConnection(con);
             dao.delete(room);
         } catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
             throw new RuntimeException();
         } finally {
             Jdbc.close(con);

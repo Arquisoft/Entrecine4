@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="826.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.entrecine4.StaffWindowController">
+  <children>
+    <Label id="lbTitulo" layoutX="179.0" layoutY="17.0" text="Gestión de empleados">
+      <font>
+        <Font name="Segoe UI Light" size="50.0" />
+      </font>
+    </Label>
+    <Pane layoutX="283.0" layoutY="90.0" prefHeight="364.0" prefWidth="461.0">
+      <children>
+        <Label id="lbTitle" layoutX="33.0" layoutY="27.0" text="Usuario:">
+          <font>
+            <Font name="Segoe UI Light" size="20.0" fx:id="x1" />
+          </font>
+          <labelFor>
+            <TextField id="txTitle" fx:id="txUsuario" editable="false" layoutX="140.0" layoutY="32.0" prefWidth="200.0" />
+          </labelFor>
+        </Label>
+        <fx:reference source="txUsuario" />
+        <Label id="lbTitle" font="$x1" layoutX="33.0" layoutY="84.0" text="Contraseña:">
+          <labelFor>
+            <PasswordField fx:id="txPassword" editable="false" layoutX="140.0" layoutY="89.0" prefWidth="200.0" />
+          </labelFor>
+        </Label>
+        <FlowPane layoutX="-31.0" layoutY="303.0" prefHeight="34.0" prefWidth="553.000022070315">
+          <children>
+            <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#newEmployee" text="Nuevo">
+              <FlowPane.margin>
+                <Insets left="15.0" right="15.0" fx:id="x2" />
+              </FlowPane.margin>
+            </Button>
+            <Button fx:id="btEditar" disable="true" mnemonicParsing="false" onAction="#editEmployee" text="Editar" FlowPane.margin="$x2" />
+            <Button fx:id="btGuardar" disable="true" mnemonicParsing="false" onAction="#saveEmployee" text="Guardar" FlowPane.margin="$x2" />
+            <Button id="btDeleteMovie" fx:id="btDelete" disable="true" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" FlowPane.margin="$x2" />
+            <Button id="btHecho" defaultButton="true" mnemonicParsing="false" onAction="#done" text="Hecho" FlowPane.margin="$x2" />
+          </children>
+        </FlowPane>
+        <fx:reference source="txPassword" />
+        <CheckBox fx:id="checkAdmin" font="$x1" indeterminate="true" layoutX="154.0" layoutY="168.0" mnemonicParsing="false" prefHeight="42.9609375" prefWidth="200.0" text="¿Es administrador?" />
+        <CheckBox id="checkAdmin" fx:id="checkTPV" font="$x1" indeterminate="true" layoutX="154.0" layoutY="217.0" mnemonicParsing="false" prefHeight="42.9609375" prefWidth="232.0" text="¿Tiene privilegios TPV?" />
+      </children>
+    </Pane>
+    <ListView id="listPeliculas" fx:id="listaStaff" layoutX="37.0" layoutY="104.0" prefHeight="350.0" prefWidth="207.0" />
+  </children>
+</AnchorPane>

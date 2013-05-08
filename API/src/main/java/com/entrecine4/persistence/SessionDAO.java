@@ -17,7 +17,7 @@ public interface SessionDAO
 	 */
 	public void setConnection(Connection connection);
 	
-	
+
 	/**
 	 * Method to get a session using the session's identification number
 	 * 
@@ -62,28 +62,37 @@ public interface SessionDAO
 	 * @throws SQLException
 	 */
 	public List<Session> getByDayAndTime(Date day, double time) throws SQLException;
-	
+
+    /**
+     * Method to get a list for params given
+     * @param date the date
+     * @param session the session
+     * @param filmName the name of the film
+     * @return A list of sessions
+     */
+    public List<Session> getByDayTimeAndFilmName(Date date, double session, String filmName) throws SQLException;
+
 	/**
 	 * Method to save a session in the database
-	 * 
+	 *
 	 * @param session The instance of Session to be saved
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void save(Session session) throws SQLException;
-	
+
 	/**
 	 * Method to update the data of a session
-	 * 
+	 *
 	 * @param session The instance of Session to be updated
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void update(Session session) throws SQLException;
-	
+
 	/**
 	 * Method to delete a session from the database
-	 * 
+	 *
 	 * @param session The instance of Session to be deleted
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void delete(Session session) throws SQLException;
 }

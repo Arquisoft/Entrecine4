@@ -9,6 +9,7 @@ import models.Purchase;
 import com.entrecine4.business.PurchasesService;
 import com.entrecine4.infraestructure.Factories;
 import com.entrecine4.infraestructure.Jdbc;
+import com.entrecine4.infraestructure.Log;
 import com.entrecine4.persistence.PurchaseDAO;
 
 public class SimplePurchasesService implements PurchasesService 
@@ -26,6 +27,7 @@ public class SimplePurchasesService implements PurchasesService
 			dao.setConnection(con);
 			return dao.getAll();
 		} catch (SQLException e) {
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -45,6 +47,7 @@ public class SimplePurchasesService implements PurchasesService
 			return dao.get(id);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -64,6 +67,7 @@ public class SimplePurchasesService implements PurchasesService
 			return dao.getByUser(userId);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -83,6 +87,7 @@ public class SimplePurchasesService implements PurchasesService
 			return dao.get(ticketCode);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -98,9 +103,11 @@ public class SimplePurchasesService implements PurchasesService
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.save(purchase);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -116,9 +123,11 @@ public class SimplePurchasesService implements PurchasesService
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.update(purchase);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{
@@ -130,13 +139,15 @@ public class SimplePurchasesService implements PurchasesService
 	 * @see com.entrecine4.business.PurchasesService#deletePurchae(models.Purchase)
 	 */
 	@Override
-	public void deletePurchae(Purchase purchase) 
+	public void deletePurchase(Purchase purchase) 
 	{
 		Connection con = Jdbc.getConnection();
 		try {
+			dao.setConnection(con);
 			dao.delete(purchase);
 		} catch (SQLException e) 
 		{
+        	Log.log("----TRACE----\n"+e.getStackTrace().toString()+"\n\n\n");
 			throw new RuntimeException();
 		} finally
 		{

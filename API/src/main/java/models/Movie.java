@@ -2,7 +2,7 @@ package models;
 
 public class Movie
 {
-	private long id;
+	private Long id;
 	private String name;
 	private String synopsis;
 	private String imgPath;
@@ -28,6 +28,7 @@ public class Movie
 	 * @param morningPrice Price of the ticket in the morning
 	 * @param dailyPrice Price of the ticket in the afternoon
 	 * @param nightPrice Price of the ticket in the night
+	 * @param genre Movie's genre
 	 */
 	public Movie(long id, String name, String synopsis, String imgPath,
 			double morningPrice, double dailyPrice, double nightPrice, String genre)
@@ -198,5 +199,13 @@ public class Movie
 	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

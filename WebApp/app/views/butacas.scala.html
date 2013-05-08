@@ -1,0 +1,67 @@
+@(username: String, rooms: List[Room], sessions: List[Session], userForm: Form[User], sst: List[SessionState], lockSeatForm: Form[LockSeat])
+@import snippets._
+@import helper._
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/reservaButacas.css")">
+<script type="text/javascript">
+    var salaVisible = @rooms.get(0).getId();
+    function mostrarSala(sala) {
+        var antiguo = document.getElementById("sala"+salaVisible.toString());
+        antiguo.style.display="none";
+        salaVisible = document.getElementById("sala"+sala);
+        salaVisible.style.display="block"
+        salaVisible = sala;
+    }
+</script>
+
+@main("Reserva butaca - Entrecine") {
+<div id="contCabecera">
+    @header(username)
+</div>
+<div id="cuerpo">
+    <div class="main">
+        @loginWindow(userForm)
+
+        <div id="leyendaAyuda">
+            <img src="@routes.Assets.at("stylesheets/images/butaca.png")"/> butaca sin reservar <img src="@routes.Assets.at("stylesheets/images/butacaReservada.png")"/> butaca ya
+            reservada <img src="@routes.Assets.at("stylesheets/images/butacaSeleccionada.png")"/> butaca seleccionada
+        </div>
+        <div id="elegirSala">
+            @for(room <- rooms) {
+                <a href="#" class="botonesSalas" onclick="mostrarSala(@room.getId())" >Sala @room.getId()</a>
+        }
+        </div>
+        <div id="estructuraCine">
+        @for(room <- rooms) {
+        @if(!(rooms.get(0).getId().equals(room.getId()))) {
+            <div id="sala@room.getId()" style="display: none;">
+        } else {
+            <div id="sala@room.getId()" style="display: inherit;">
+        }
+            @for(i <- room.getRows to 1 by -1) {
+                @for(j <- 1 to room.getColumns()) {
+                    @form(routes.Application.datosUsuarioPago()) {
+                        <input type="hidden" name="sessionId" value="@sessions.get(rooms.indexOf(room)).getId()" />
+                        <input type="hidden" name="row" value="@i" />
+                        <input type="hidden" name="column" value="@j" />
+                        @if(!Application.checkFree(sst,i,j, sessions.get(rooms.indexOf(room)).getId(), room.getId())) {
+                            <button class="butaca" type="submit" title="fila @i columna @j" disabled><img src='@routes.Assets.at("stylesheets/images/butacaReservada.png")' /></button>
+                        } else {
+                            <button class="butaca" type="submit"  title="fila @i columna @j"><img src='@routes.Assets.at("stylesheets/images/butaca.png")'/></button>
+                        }
+                    }
+                }
+                <br />
+            }
+        </div>
+        }
+        </div>
+        <!-- Se pueden ir marcando las butacas reservadas cambiando el color por
+        la imagen images/butacaSeleccionada.png -->
+        <div id="botonReserva">
+            <a href="#" class="botonReserva">Realizar Reserva</a>
+        </div>
+    </div>
+
+</div>
+    @footer()
+}

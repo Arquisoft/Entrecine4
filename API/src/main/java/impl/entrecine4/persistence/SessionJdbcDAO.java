@@ -115,7 +115,7 @@ public class SessionJdbcDAO implements SessionDAO
 		List<Session> result=new ArrayList<Session>();
 		
 		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY"));
-		pst.setDate(0, (java.sql.Date) day);
+		pst.setDate(1, new java.sql.Date(day.getTime()));
 		
 		rs=pst.executeQuery();
 		while(rs.next())
@@ -141,7 +141,7 @@ public class SessionJdbcDAO implements SessionDAO
 		List<Session> result=new ArrayList<Session>();
 		
 		pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY_AND_TIME"));
-		pst.setDate(1, (java.sql.Date) day);
+		pst.setDate(1, new java.sql.Date(day.getTime()));
 		pst.setDouble(2, time);
 		
 		rs=pst.executeQuery();
@@ -162,7 +162,33 @@ public class SessionJdbcDAO implements SessionDAO
 		return result;
 	}
 
-	@Override
+    @Override
+    public List<Session> getByDayTimeAndFilmName(Date date, double session, String filmName) throws SQLException {
+        List<Session> result=new ArrayList<Session>();
+
+        pst=connection.prepareStatement(PropertiesReader.get("GET_SESSIONS_BY_DAY_TIME_AND_FILMNAME"));
+        pst.setDate(1, new java.sql.Date(date.getTime()));
+        pst.setDouble(2, session);
+        pst.setString(3, filmName);
+
+        rs=pst.executeQuery();
+        while(rs.next()) {
+            Session tempSession = new Session();
+            tempSession.setId(rs.getLong("ID"));
+            tempSession.setMovieTitle(rs.getString("NOMBRE_PELICULA"));
+            tempSession.setDay(rs.getDate("DIA"));
+            tempSession.setTime(rs.getDouble("SESION"));
+            tempSession.setRoomId(rs.getLong("SALA"));
+
+            result.add(tempSession);
+        }
+
+        Jdbc.close(rs, pst);
+
+        return result;
+    }
+
+    @Override
 	public void save(Session session) throws SQLException 
 	{
 		pst=connection.prepareStatement(PropertiesReader.get("INSERT_SESSION"));
