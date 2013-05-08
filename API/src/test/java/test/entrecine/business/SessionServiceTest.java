@@ -40,7 +40,7 @@ public class SessionServiceTest
 		Session session = service.findById(25L);
 		
 		assertEquals("Ironman 3", session.getMovieTitle());
-		assertEquals(Date.valueOf("2013-05-08"), session.getDay());
+		assertEquals(Date.valueOf("2013-05-09"), session.getDay());
 		assertTrue(12==session.getTime());
 		assertEquals(1, session.getRoomId());	
 	}
@@ -58,9 +58,9 @@ public class SessionServiceTest
 		for(Session s: sessions)
 			assertEquals("Ironman 3", s.getMovieTitle());
 		
-		sessions = service.findByDay(Date.valueOf("2013-05-08"));
+		sessions = service.findByDay(Date.valueOf("2013-05-09"));
 		
-		assertEquals(4, sessions.size());
+		assertEquals(1, sessions.size());
 		for(Session s: sessions)
 		{
 			if(s.getId()==24)
@@ -112,9 +112,9 @@ public class SessionServiceTest
 		Session session = service.findById(25L);
 		
 		assertEquals("Ironman 3", session.getMovieTitle());
-		assertEquals(Date.valueOf("2013-05-08"), session.getDay());
+		assertEquals(Date.valueOf("2013-05-09"), session.getDay());
 		assertTrue(12==session.getTime());
-		assertEquals(1, session.getRoomId());	
+		assertEquals(2, session.getRoomId());
 		
 		session.setMovieTitle("42");
 		session.setRoomId(2);
